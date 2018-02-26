@@ -3,8 +3,8 @@ import React, {Component} from 'react';
 class UserRole extends Component{
     render(){
         return(
-            <div>
-                <div>
+            <div className="col-md-9">
+                <div className="col-md-12 p-0">
                     <button>Search</button>
                     <span></span>
                     <span>2 records found</span>

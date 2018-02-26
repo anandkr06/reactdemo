@@ -1,3 +1,5 @@
-.hide-child-option{
+/* .hide-child-option{
     display: none;
-}
+} */
+.sidebar{position: fixed; top: 0; left: 0; bottom: 0; background: #1a1e29;}
+.sidebar-sticky{margin: 0 -15px;}

@@ -31,7 +31,7 @@ class UserForm extends Component{
             </div>
         );
         return(
-            <div>
+            <div className="col-md-9">
                 <label>Account Information</label>
             <form>
                 <Field name = "userName" type = "text" label = "User Name" component={renderField}
