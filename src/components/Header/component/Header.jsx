@@ -19,7 +19,7 @@ class Header extends Component{
             <div>
                 <span><img/>Back</span>
                 <button onClick = {this.resetForm}>Reset</button>
-                <button>Save {this.props.title}</button>
+                <button onClick = {() => dispatch(submit('remoteSubmit'))}>Save {this.props.title}</button>
             </div>
         )
     }

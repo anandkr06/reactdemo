@@ -6,4 +6,4 @@ const integratedReducer = combineReducers({
    options : getUserMenuOption,
    form : formReducer
 })
-export default integratedReducer
+export default integratedReducer;

@@ -4,7 +4,14 @@ import { reduxForm, Field} from 'redux-form';
 
 class UserForm extends Component{
 
+    handleSumit(data){
+        console.log(data);
+        //console.log(this.props);
+    }
+
     render(){
+        // const { fields:{ userName , firstName , lastName ,email , password , passwordConfirm }, handleSumit } = this.props;
+        // console.log('userForm',fields); 
         const required = value => (value ? undefined : 'Required')
         const email = value =>
             value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
@@ -30,10 +37,12 @@ class UserForm extends Component{
                 </div>
             </div>
         );
+        const { handleSumit } = this.props
         return(
+
             <div>
                 <label>Account Information</label>
-            <form>
+            <form onSubmit= {handleSumit(this.handleSumit)}>
                 <Field name = "userName" type = "text" label = "User Name" component={renderField}
                  validate={required}/>        
                 <Field name = "firstName" type = "text" label = "First Name" component={renderField}
@@ -72,6 +81,7 @@ class UserForm extends Component{
 
 export default reduxForm({
     form: 'userForm',
-    destroyOnUnmount : false
-                                            
+    fields: ['userName','firstName','lastName','email','password','passwordConfirm'], 
+    destroyOnUnmount : false,
+    onSubmit : this.handleSumit
   })(UserForm)
