@@ -16,7 +16,7 @@ class Header extends Component{
 
     render(){
         return (
-            <div>
+            <div className="col-md-12">
                 <span><img/>Back</span>
                 <button onClick = {this.resetForm}>Reset</button>
                 <button>Save {this.props.title}</button>
