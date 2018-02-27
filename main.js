@@ -5,13 +5,17 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 //import store, { history } from './src/store/index';
 import PreviledgeMenu from './src/components/PreviledgeMenu/component/PreviledgeMenu.jsx'
+import Login from './src/components/LoginScreen/component/Login.jsx'
 import integratedReducer from './src/reducers/reducers'
 
 class Main extends Component {
     render() {
         return (
             <div>
-                <Route path = '/' component={PreviledgeMenu}/>
+                
+                <Route exact path = '/' component={Login}/>
+                <Route path = '/home' component={PreviledgeMenu}/>
+                
             </div>
         );
     }
