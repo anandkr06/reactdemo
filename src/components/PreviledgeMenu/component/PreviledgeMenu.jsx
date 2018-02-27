@@ -63,7 +63,7 @@ class PreviledgeMenu extends Component{
           for(let i in obj){
               let heading = obj[i].privilNme;
               this.options.push(<li className="nav-item has-child-options" key={obj[i].privilId} onClick = {event => this.toggleChildMenu(heading, event)}>
-              <Link to={obj[i].refUrl} className = "nav-link menu-text">{heading} </Link> {(obj)[i].children.length !== 0 ? <NestedList list = {obj[i].children} heading = {(obj)[i].privilNme} subheading = {(obj)[i].sub_heading}/> : ''}
+              <Link to = {`${this.props.match.url}${obj[i].refUrl}`} className = "nav-link menu-text">{heading} </Link> {(obj)[i].children.length !== 0 ? <NestedList rooturl = {this.props.match.url} list = {obj[i].children} heading = {(obj)[i].privilNme} subheading = {(obj)[i].sub_heading}/> : ''}
               </li>);
           }
         };
@@ -84,7 +84,7 @@ class PreviledgeMenu extends Component{
         this.options.splice(0, this.options.length);
         this.prepareList(this.data);
         return (
-            <div className="container-fluid"><div className="row">
+          <div className="container-fluid"><div className="row">
             <div className="col-md-2 sidebar">
             <div className="sidebar-sticky">
                 <ul className = "nav flex-column">
@@ -92,11 +92,12 @@ class PreviledgeMenu extends Component{
                 </ul></div></div>
                 <div className="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
                 <Switch>
-                    <Route path='/system/:value' component={Navigation}/>
+                    <Route path={`${this.props.match.url}/system/:topicId`} component={Navigation}/>
                 </Switch>
-                </div>
             </div>
             </div>
+            </div>
+            
         )
     }
     
@@ -122,7 +123,7 @@ class NestedList extends Component{
     for(let i in obj){
       let heading = obj[i].privilNme;
       this.childOptions.push(<li className="menu-container has-child-options" onClick = {event => this.hideChildMenu(this.props.heading, event)}  key={obj[i].privilId}>
-      <Link to={obj[i].refUrl} className = "menu-text">{heading}</Link>
+      <Link to = {`${this.props.rooturl}${obj[i].refUrl}`} className = "menu-text">{heading}</Link>
       </li>);
     }
   }

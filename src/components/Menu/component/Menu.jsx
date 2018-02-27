@@ -30,10 +30,11 @@ class Navigation extends React.Component {
             <div className="row">
                 <Header title = "User"/>
                 <div className="col-md-3"><ul className="nav  md-pills pills-primary flex-column">
+                
                     {this.renderList()}
                 </ul></div>
-                <Route path='/system/UserInfo' component={UserForm}/>
-                <Route path='/system/UserRole' component={UserRole}/>
+                <Route path='/home/system/UserInfo' component={UserForm}/>
+                <Route path='/home/system/UserRole' component={UserRole}/>
             </div>
         );
     }
