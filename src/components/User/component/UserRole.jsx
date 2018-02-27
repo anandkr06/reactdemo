@@ -4,7 +4,7 @@ class UserRole extends Component{
     render(){
         return(
             <div className="col-md-9">
-                <div className="col-md-12 p-0">
+                <div className="col-md-12 pl-0 pr-0 pb-3">
                     <button>Search</button>
                     <span></span>
                     <span>2 records found</span>
@@ -13,8 +13,8 @@ class UserRole extends Component{
                     </select>
                     <button></button><span></span><button></button>
                 </div>
-                <table>
-                    <thead>
+                <table className="table table-striped table-sm">
+                    <thead className="thead-dark">
                 <tr>
                   <th>Assigned</th>
                   <th>Role</th> 
