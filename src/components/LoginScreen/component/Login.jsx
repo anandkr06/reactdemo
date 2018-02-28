@@ -45,11 +45,9 @@ class Login extends Component{
                         </div>
                     </div>
                     <div className="right-side">
-
-                    
                             
                         <form className="md-float-material" onSubmit={handleSubmit(this.handleSubmit)}>
-                        <h3 className="text-center">
+                        <h3>
                                 Login to your account
                         </h3>
                             <Field className="md-form-control icofont input-font-color" name = "userName" type = "text" label = "User Name" component={renderField}
@@ -58,7 +56,7 @@ class Login extends Component{
                             validate={required}/> 
                             
 
-                            <div className="row">
+                            <div className="row mt2">
                                 <div className="col-sm-6 col-xs-12">
                                     <input type="submit" disabled={pristine || submitting} value="LOGIN" className="text-center m-b-20" />
                                 </div>
