@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import { reduxForm, Field} from 'redux-form';
 import '../styles/LoginScreen.css';
 import { withRouter } from 'react-router';
+import LoginApiService from '../api';
+var md5 = require('md5');
+var CryptoJS = require("crypto-js");
 
 const required = value => (value ? undefined : 'Required');
         const renderField = ({
@@ -29,7 +32,19 @@ class Login extends Component{
        }
    
     handleSubmit(data) {
-     this.props.history.push("/home");
+    console.log(data);
+    // var hashedUsername = md5(data.userName);
+    data.userName = 'rohit.bagjani@nagarro.com';
+    data.password = 'Test123';
+    var ciphertext = CryptoJS.AES.encrypt(data.userName, 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC99DXcslmk2VY3q9pNyudRBES1azvBEl054kTxjJJHan7QJedWgoDhHKQcUnnsQvOtnxALWKQ02hpFWmMhfKd93HbzqX/msAJ+bpzXJVwKNBRRydW21p4TzVl5PciglseEcIVJxNcq7MqWJPSpm2At8ap1lSOSZlvt7KLtJK6sYwIDAQAB');
+    var hashedPassword = md5(data.password);
+    LoginApiService.getLogin({ useremail:ciphertext,password:hashedPassword}).then((response) => {
+        console.log('login api call requested with response',response);
+    })
+    var bytes  = CryptoJS.AES.decrypt(ciphertext.toString(), 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC99DXcslmk2VY3q9pNyudRBES1azvBEl054kTxjJJHan7QJedWgoDhHKQcUnnsQvOtnxALWKQ02hpFWmMhfKd93HbzqX/msAJ+bpzXJVwKNBRRydW21p4TzVl5PciglseEcIVJxNcq7MqWJPSpm2At8ap1lSOSZlvt7KLtJK6sYwIDAQAB');
+    var plaintext = bytes.toString(CryptoJS.enc.Utf8);
+    console.log('plaintext',plaintext);
+    this.props.history.push("/home");
    }
    
     render(){
