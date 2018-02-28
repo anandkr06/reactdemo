@@ -1,5 +1,5 @@
 import axios from 'axios';
-import Setting from '../dev-setting/dev-config';
+import Setting from '../../dev-setting/dev-config';
 
 class LoginApiService {
     constructor(){

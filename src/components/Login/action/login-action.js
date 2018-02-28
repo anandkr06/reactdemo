@@ -1,14 +1,13 @@
 import { LOGIN_REQUESTED, LOGIN_FAILED, LOGIN_SUCCESS } from '../constant/action-type';
 import LoginApiService from '../api';
-import { push } from 'react-router-redux';
-import { loaderOn , loaderOff  } from '../../shared-utilities/loader/action/loader-action';
+import { loaderOn , loaderOff  } from '../../../utilities/loader/action/loader-action';
 
-export function login(loginCredentialObject) {
+export function login(loginCredentialObject, rout) {
     return (dispatch,getState) => {
         dispatch(loaderOn()); 
         makeLoginRequest(loginCredentialObject)
         .then(respnse => {
-            afterLoginSuccess(respnse)(dispatch);
+            afterLoginSuccess(respnse, rout)(dispatch);
         })
         .catch(e => {
             afterLoginFailure(e)(dispatch);
@@ -16,11 +15,11 @@ export function login(loginCredentialObject) {
     }
 }
 
-export const afterLoginSuccess = (response) => {
+export const afterLoginSuccess = (response, rout) => {
     return dispatch => {
         dispatch({ type: LOGIN_SUCCESS, payload: { loginUser: { email: response.email }, navigationMenu: response.privil } })
-        dispatch(push('/view'));
         dispatch(loaderOff()); 
+        rout.push('/home');
     }
 }
 
