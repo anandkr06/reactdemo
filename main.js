@@ -3,21 +3,24 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { render } from 'react-dom'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-//import store, { history } from './src/store/index';
+import store, { history } from './src/store/index';
 import PreviledgeMenu from './src/components/PreviledgeMenu/component/PreviledgeMenu.jsx'
+import Login from './src/components/LoginScreen/component/Login.jsx'
 import integratedReducer from './src/reducers/reducers'
+import View from './src/view/view'
 
 class Main extends Component {
     render() {
         return (
             <div>
-                <Route path = '/' component={PreviledgeMenu}/>
+                <Route exact path = '/' component={Login}/>
+                <Route path = '/home' component={View}/>
             </div>
         );
     }
 }
 
-let store = createStore(integratedReducer)
+//let store = createStore(integratedReducer)
 let rootElement = document.getElementById('app')
 
 render(
