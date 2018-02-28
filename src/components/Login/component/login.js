@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import { connect , withRouter} from 'react-redux';
 import '../login.css';
-import { push } from 'react-router-redux';
 
 //import utilities
-import Loader from '../../utilities/loader/Loader';
+import Loader from '../../../utilities/loader/Loader';
 
 //importing actions
 import { login } from '../action/login-action';
@@ -23,7 +22,7 @@ class Login extends Component {
 
     submitLogin = (event) => {
         event.preventDefault();
-        this.props.requestLogin({...this.state});
+        this.props.requestLogin({...this.state}, this.props.router);
     }  
 
     setEmailInput(event) {
@@ -44,7 +43,7 @@ class Login extends Component {
                 <section className="login-container">
                     <div className="left-side">
                         <div className="content-block">
-                            <h1><img src={require("../../images/logo-black.png")} alt="Admin Login" /></h1>
+                            <h1><img src={require("../../../images/logo-black.png")} alt="Admin Login" /></h1>
                             <h2>Welcome to the Boutiqaat new admin panel</h2>
                         </div>
                     </div>
@@ -81,8 +80,7 @@ class Login extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    changePage: () => push('/view'),
     requestLogin : login
 }, dispatch)
 
-export default connect()(Login)
+export default withRouter(connect()(Login))

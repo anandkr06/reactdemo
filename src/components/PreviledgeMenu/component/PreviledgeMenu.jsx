@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {withRouter, Switch, Route, Link } from 'react-router-dom';
 import '../styles/PreviledgeMenu.css';
-import Navigation from '../../Menu/component/Menu.jsx'
+import Navigation from '../../Menu/component/Menu.jsx'; 
 
 
 class PreviledgeMenu extends Component{
@@ -63,7 +63,7 @@ class PreviledgeMenu extends Component{
           for(let i in obj){
               let heading = obj[i].privilNme;
               this.options.push(<li className="nav-item has-child-options" key={obj[i].privilId} onClick = {event => this.toggleChildMenu(heading, event)}>
-              <Link to = {`${this.props.match.url}${obj[i].refUrl}`} className = "nav-link menu-text">{heading} </Link> {(obj)[i].children.length !== 0 ? <NestedList rooturl = {this.props.match.url} list = {obj[i].children} heading = {(obj)[i].privilNme} subheading = {(obj)[i].sub_heading}/> : ''}
+              <Link to = {`${this.props.url}${obj[i].refUrl}`} className = "nav-link menu-text">{heading} </Link> {(obj)[i].children.length !== 0 ? <NestedList rooturl = {this.props.url} list = {obj[i].children} heading = {(obj)[i].privilNme} subheading = {(obj)[i].sub_heading}/> : ''}
               </li>);
           }
         };
@@ -90,11 +90,6 @@ class PreviledgeMenu extends Component{
                 <ul className = "nav flex-column">
                     {this.options}
                 </ul></div></div>
-                <div className="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-                <Switch>
-                    <Route path={`${this.props.match.url}/system/:topicId`} component={Navigation}/>
-                </Switch>
-            </div>
             </div>
             </div>
             
