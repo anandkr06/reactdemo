@@ -12,7 +12,7 @@ import View from './src/view/view'
 class Main extends Component {
     render() {
         return (
-            <div>
+            <div className="container-fluid">
                 <Route exact path = '/' component={Login}/>
                 <Route path = '/home' component={View}/>
             </div>
