@@ -17,8 +17,7 @@ class PreviledgeMenu extends Component{
                 "subHeading": "",
                 "refUrl": "/dashboard",
                 "children": []
-              },
-              
+            },
             {
               "privilId": 14,
               "privilNme": "System",

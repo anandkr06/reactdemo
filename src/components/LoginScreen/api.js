@@ -14,62 +14,80 @@ class LoginApiService {
         obj.useremail = obj.useremail.toString();
         console.log('axios',axios);
         
-        return axios.post(`${Setting.dev.url}bq/v1/login/${obj.useremail}/${obj.password}`,
-         { 
-            headers: { 
-                        'Access-Control-Allow-Origin': '*' ,
-                        'Authorization' : 'Basic bXktY2xpZW50OmZvb2Jhcg==',
-                        'Content-Type' : 'application/x-www-form-urlencoded' 
-                    },
-            body: {
-                'grant_type': "client-credentials"
-            }
-        }
-    );
-    //     return   new Promise((resolve, reject) => resolve(
-    //         { 
-    //           "data" : {
-    //             "status": {
-    //               "httpStatusCode": 200,
-    //               "success": true,
-    //               "errors": null
-    //             },
-    //             "data":   {
-    //               "email": "davis.john@gmail.com",
-    //               "privil": [
-    //                 {
-    //                   "privil_id": 11,
-    //                   "privil_Names": "Dashboard",
-    //                   "sub_heading": "Permissions",
-    //                   "refUrl": "/dashboard",
-    //                   "children": []
+    //     return axios.post(`${Setting.dev.url}bq/v1/login/${obj.useremail}/${obj.password}`,
+    //      { 
+    //         headers: { 
+    //                     'Access-Control-Allow-Origin': '*' ,
+    //                     'Authorization' : 'Basic bXktY2xpZW50OmZvb2Jhcg==',
+    //                     'Content-Type' : 'application/x-www-form-urlencoded' 
     //                 },
-    //                 {
-    //                   "privil_id": 12,
-    //                   "privil_Names": "System",
-    //                   "sub_heading": "Permissions",
-    //                   "refUrl": "/system",
-    //                   "children": [
-    //                     {
-    //                       "privil_id": 121,
-    //                       "privil_Names": "Create Roles",
-    //                       "refUrl": "/system/createRole",
-    //                       "children": []
-    //                     },
-    //                     {
-    //                       "privil_id": 122,
-    //                       "privil_Names": "View Roles",
-    //                       "refUrl": "/system/viewRole",
-    //                       "children": []
-    //                     }
-    //                   ]
-    //                 }
-    //               ]
-    //             }
-    //           } 
-    //      }
-    //     )
-    //   );  
+    //         body: {
+    //             'grant_type': "client-credentials"
+    //         }
+    //     }
+    // );
+        return   new Promise((resolve, reject) => resolve(
+            { 
+              "data" : {
+                "status": {
+                  "httpStatusCode": 200,
+                  "success": true,
+                  "errors": null
+                },
+                "data":   {
+                  "email": "davis.john@gmail.com",
+                    "fstNme": "david",
+                    "lstNme": "john",
+                  "langPref": "English",
+                  "privil":[
+            {
+                "privilId": 11,
+                "privilNme": "Dashboard",
+                "subHeading": "",
+                "refUrl": "/dashboard",
+                "children": []
+            },
+            {
+              "privilId": 14,
+              "privilNme": "System",
+              "subHeading": "Permissions",
+              "refUrl": "/system",
+              "children": [
+                {
+                  "privilId": 141,
+                  "privilNme": "Create User",
+                  "refUrl": "/system/createRole",
+                  "children": []
+                },
+                {
+                  "privilId": 142,
+                  "privilNme": "View User",
+                  "refUrl": "/system/viewRole",
+                  "children": []
+                }
+              ]
+            },
+            {
+                "privilId": 12,
+                "privilNme": "Sales",
+                "subHeading": "",
+                "refUrl": "/sales",
+                "children": []
+              },
+            {
+              "privilId": 13,
+              "privilNme": "Product",
+              "subHeading": "",
+              "refUrl": "/product",
+              "children": []
+            }
+
+          ]    
+                }
+              } 
+         }
+        )
+      );  
     }
 
 }

@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-
+import {withRouter, Switch, Route, Link } from 'react-router-dom';
 import './menu-list.css';
+import Navigation from '../../../../../../components/Menu/component/Menu.jsx'; 
 
-class MenuList extends Component{
+
+class PreviledgeMenu extends Component{
     constructor(props){
         super(props);
+        this.state = {
+            
+        }
         this.data = props.menuList;
         this.prepareList = this.prepareList.bind(this);
         this.options = []; 
@@ -14,9 +17,9 @@ class MenuList extends Component{
 
         prepareList(obj){
           for(let i in obj){
-              let heading = obj[i].privil_Names;
-              this.options.push(<li className="has-child-options" key={heading} onClick = {event => this.toggleChildMenu(heading, event)}>
-              <Link to={heading.split(" ").join("_")} className = "menu-text">{heading} </Link> {(obj)[i].children.length !== 0 ? <NestedList list = {obj[i].children} heading = {(obj)[i].privil_Names} subheading = {(obj)[i].sub_heading}/> : ''}
+              let heading = obj[i].privilNme;
+              this.options.push(<li className="nav-item has-child-options" key={obj[i].privilId} onClick = {event => this.toggleChildMenu(heading, event)}>
+              <Link to = {`${this.props.url}${obj[i].refUrl}`} className = "nav-link menu-text">{heading} </Link> {(obj)[i].children.length !== 0 ? <NestedList rooturl = {this.props.url} list = {obj[i].children} heading = {(obj)[i].privilNme} subheading = {(obj)[i].sub_heading}/> : ''}
               </li>);
           }
         };
@@ -25,7 +28,7 @@ class MenuList extends Component{
           event.preventDefault();
           let allChilds = document.getElementsByClassName("hide-child-option");
           for (let i = 0; i < allChilds.length ; i++){
-           allChilds[i].style.display = 'none';
+            allChilds[i].style.display = 'none';
           }
           let cols = document.getElementsByClassName(item);
           if(cols.length > 0){
@@ -37,9 +40,15 @@ class MenuList extends Component{
         this.options.splice(0, this.options.length);
         this.prepareList(this.data);
         return (
-            <ul className = "nav nav-sidebar">
-                {this.options}
-            </ul>
+          <div className="container-fluid"><div className="row">
+            <div className="col-md-2 sidebar">
+            <div className="sidebar-sticky">
+                <ul className = "nav flex-column">
+                    {this.options}
+                </ul></div></div>
+            </div>
+            </div>
+            
         )
     }
     
@@ -63,9 +72,9 @@ class NestedList extends Component{
 
   renderChildMenu(obj){
     for(let i in obj){
-      let heading = obj[i].privil_Names;
-      this.childOptions.push(<li className="menu-container has-child-options" onClick = {event => this.hideChildMenu(this.props.heading, event)}  key={heading+this.count++}>
-      <Link to={ heading.split(" ").join("_")} className = "menu-text">{heading}</Link>
+      let heading = obj[i].privilNme;
+      this.childOptions.push(<li className="menu-container has-child-options" onClick = {event => this.hideChildMenu(this.props.heading, event)}  key={obj[i].privilId}>
+      <Link to = {`${this.props.rooturl}${obj[i].refUrl}`} className = "menu-text">{heading}</Link>
       </li>);
     }
   }
@@ -76,10 +85,10 @@ class NestedList extends Component{
       <div className = {`hide-child-option ${this.props.heading}`}>
         <h3>{this.props.heading}<span>*</span></h3>
         <p>{this.props.subheading}</p>
-        <ul key = {`${this.props.heading}${this.count++}`}>{this.childOptions}</ul>
+        <ul>{this.childOptions}</ul>
       </div>
     )
   }
 }
 
-export default connect()(MenuList);
+export default PreviledgeMenu;
