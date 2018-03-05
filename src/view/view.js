@@ -11,7 +11,7 @@ import Screen from './screen/Screen';
 //import for routings
 import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import Dashboard from './screen/Dashboard/Dashboard';
-import PreviledgeMenu from '../components/PreviledgeMenu/component/PreviledgeMenu.jsx'
+// import PreviledgeMenu from '../components/PreviledgeMenu/component/PreviledgeMenu.jsx'
 
 
 //import actions
@@ -25,9 +25,15 @@ class View extends React.Component {
 
     render(){
         return (
+<<<<<<< HEAD
             <div className="row">
                 <div className="col-2 sidebar" > 
                     <PreviledgeMenu url = {this.props.match.url}/>    
+=======
+            <div className="container-fluid"><div className="row">
+                <div className="col-sm-3 col-md-2 sidebar" >
+                    <Navigation url = {this.props.match.url}/>    
+>>>>>>> 5f129db8a17d3e9d50119f48d65d4e9e93520c3e
                 </div>
                 <div className="col-10 offset-2 main" > 
                      <Header/>
@@ -39,10 +45,13 @@ class View extends React.Component {
     }
 }
 
-const mapStateToProps = state => ({
-    userProfile : state.userLoginInfo.loginUser,
-    navigationMenu : state.userLoginInfo.navigationMenu
-});
+const mapStateToProps = state => {
+    debugger;
+    return {
+      userProfile : state.userLoginInfo.loginUser,
+      navigationMenu : state.userLoginInfo.navigationMenu
+     }
+};
 
 const mapDispatchToProps = dispatch => bindActionCreators({
     setHeaderTitle : setHeader

@@ -10,6 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.17.1",
+    "crypto-js": "^3.1.9-1",
+    "md5": "^2.2.1",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^6.4.1",
@@ -33,7 +35,17 @@
     "style-loader": "^0.20.1",
     "url-loader": "^0.6.2",
     "webpack": "^1.14.0",
+    "react-router-redux": "next",
     "webpack-combine-loaders": "2.0.0",
     "webpack-dev-server": "^1.16.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^6.4.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.9",
+    "resolve-url-loader": "^2.2.1",
+    "url-loader": "^0.6.2"
   }
 }

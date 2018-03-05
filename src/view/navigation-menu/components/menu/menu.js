@@ -15,6 +15,6 @@ const Menu = props => {
 
 const mapStateToProps = state => ({
     menuList : state.userLoginInfo.navigationMenu
-})
+});
 
 export default connect(mapStateToProps)(Menu);

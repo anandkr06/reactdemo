@@ -6,12 +6,14 @@ const UserProfile = props => {
        <div>
            <text>UserProfile Pic</text>
            <text>{props.userLoginId}</text>
+           <text>Welcome {props.userLoginName} </text>
         </div>
     )
 }
 
 const mapStateToProps = state => ({
-    userLoginId : state.userLoginInfo.loginUser.email
+    userLoginId : state.userLoginInfo.loginUser.email,
+    userLoginName : state.userLoginInfo.loginUser.name
 });
 
 export default connect(mapStateToProps)(UserProfile);
