@@ -25,19 +25,14 @@ class TableView extends Component {
   render() {
     return (
       <div id="table-container">
-        <div className="container-fluid">
           <div className="row">
             <div className="col-md-12">
               <TableHeader></TableHeader>
             </div>
             <div className="col-md-12">
-              <hr />
-            </div>
-            <div className="col-md-12">
               <TableBody ></TableBody>
             </div>
           </div>
-        </div>
       </div>
     );
   }

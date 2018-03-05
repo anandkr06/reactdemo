@@ -12,13 +12,13 @@ class SearchHeader extends Component {
     render() {
         return (
             <div className="row">
-                <div className="col-md-3">
+                <div className="col">
                     <button className="btn btn-primary btn-sm" onClick={() => this.handleClick()}> Search </button>
                 </div>
-                <div className="col-md-4">
+                <div className="col-md-auto">
                     <p> Reset Filters </p>
                 </div>
-                <div className="col-md-5 view">
+                <div className="col-md-auto view">
                     <p> 2 Records found </p>
                 </div>
             </div>

@@ -11,7 +11,7 @@ class TableBody extends Component {
         let usersList = this.props.usersList || [];
         return (
             <table className="table table-striped">
-                <thead>
+                <thead className="thead-dark">
                     <tr>
                         <th>ID</th>
                         <th>Firstname</th>
@@ -22,12 +22,12 @@ class TableBody extends Component {
                 </thead>
                 <tbody>
                     <tr>
-                        <td><input type="text" placeholder="Search Id" className="form-control" /></td>
-                        <td><input type="text" placeholder="Search first name" className="form-control" /></td>
-                        <td><input type="text" placeholder="Search last name" className="form-control" /></td>
-                        <td><input type="text" placeholder="Search email" className="form-control" /></td>
+                        <td><input className="form-control" type="text" placeholder="Search Id" className="form-control" /></td>
+                        <td><input className="form-control" type="text" placeholder="Search first name" className="form-control" /></td>
+                        <td><input className="form-control" type="text" placeholder="Search last name" className="form-control" /></td>
+                        <td><input className="form-control" type="text" placeholder="Search email" className="form-control" /></td>
                         <td>
-                            <select>
+                            <select className="form-control">
                                 <option>Active</option>
                                 <option>InActive</option>
                             </select>

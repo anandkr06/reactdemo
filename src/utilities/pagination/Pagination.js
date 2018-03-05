@@ -7,7 +7,7 @@ class Pagination extends Component {
                 <div className="col-md-3"></div>
                 <div className="col-md-4 row">
                     <div className="col-md-4">
-                        <select>
+                        <select className="form-control">
                             <option>10</option>
                             <option>20</option>
                             <option>30</option>
