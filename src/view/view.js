@@ -41,7 +41,6 @@ class View extends React.Component {
 }
 
 const mapStateToProps = state => {
-    debugger;
     return {
       userProfile : state.userLoginInfo.loginUser,
       navigationMenu : state.userLoginInfo.navigationMenu

@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-import getUserMenuOption from './navigationList';
 import {reducer as formReducer } from 'redux-form';
 import { loginReducer } from '../components/LoginScreen/reducer/login-reducer';
 import { loaderReducer } from '../utilities/loader/reducer/loader-reducer';
 import { headerReducer } from '../view/header/reducer/header-action-reducer';
-import { userListReducer,saveFiltersTagsOnGridReducer } from '../view/screen/User/reducer/user-reducer';
+import { createUserReducer, getCelebrityListReducer, getAllUserListReducer, getViewUserColumnsReducer, getAllLocaleListReducer } from '../components/User/reducer/UserReducer';
+import  getUserMenuOption  from './userMenuOptions';
 
 const integratedReducer = combineReducers({
    options : getUserMenuOption,
@@ -12,7 +12,10 @@ const integratedReducer = combineReducers({
    userLoginInfo : loginReducer,
    loader : loaderReducer,
    header: headerReducer,
-   user : userListReducer,
-  viewUserSearchFilterTags : saveFiltersTagsOnGridReducer
+   createUserReducer : createUserReducer,
+   celebrityList : getCelebrityListReducer,
+   allUserList : getAllUserListReducer,
+   viewUserColumns : getViewUserColumnsReducer,
+   allLocaleList : getAllLocaleListReducer
 });
 export default integratedReducer;
