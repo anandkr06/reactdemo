@@ -27,19 +27,20 @@ class LoginApiService {
     //     }
     // );
         return   new Promise((resolve, reject) => resolve(
-            { 
-              "data" : {
-                "status": {
-                  "httpStatusCode": 200,
-                  "success": true,
-                  "errors": null
-                },
-                "data":   {
-                  "email": "davis.john@gmail.com",
-                    "fstNme": "david",
-                    "lstNme": "john",
-                  "langPref": "English",
-                  "privil":[
+          { 
+            "data" : {
+              "status": {
+                "httpStatusCode": 200,
+                "success": true,
+                "errors": null
+              },
+              "data":   {
+                "email": "davis.john@gmail.com",
+                  "fstNme": "david",
+                  "lstNme": "john",
+                "langPref": "English",
+                "privil":
+          [
             {
                 "privilId": 11,
                 "privilNme": "Dashboard",
@@ -82,12 +83,12 @@ class LoginApiService {
               "children": []
             }
 
-          ]    
-                }
-              } 
-         }
-        )
-      );  
+          ]
+        }
+      }
+    }
+        ));
+        
     }
 
 }

@@ -41,14 +41,11 @@ const renderField = ({
     className,
     meta: { touched, error, warning }
             }) => (
-        <div>
-            <label>{label}</label>
-            <div className="md-input-wrapper">
+        <div className="md-input-wrapper">
                 <input {...input} placeholder={label} type={type} className={className} />
                 {touched &&
                     ((error && <span className="input-font-validation-message-color">{error}</span>) ||
                         (warning && <span className="input-font-validation-message-color">{warning}</span>))}
-            </div>
         </div>
     );
 
@@ -78,27 +75,19 @@ class Login extends Component {
     render() {
         const { handleSubmit, pristine, submitting } = this.props
         return (
-                <section className="login-container">
+            <div className="login-container">
                     <div className="left-side">
                         <div className="content-block">
-                            <h1><img src={require("../../../images/logo-black.png")} alt="Admin Login" /></h1>
+                            <h1><img src={require("../../../images/logo-black.png")} alt="Boutiqaat Logo" /></h1>
                             <h2>Welcome to the Boutiqaat new admin panel</h2>
                         </div>
                     </div>
                     <div className="right-side">
-<<<<<<< HEAD
-                            
-                        <form className="md-float-material" onSubmit={handleSubmit(this.handleSubmit)}>
-                        <h3>
-=======
 
 
 
                         <form className="md-float-material" onSubmit={handleSubmit(this.handleSubmit)}>
-                            <h3 className="text-center">
->>>>>>> 5f129db8a17d3e9d50119f48d65d4e9e93520c3e
-                                Login to your account
-                        </h3>
+                            <h3>Login to your account</h3>
                             <Field className="md-form-control icofont input-font-color-shiv"
                                 name="userName"
                                 type="email"
@@ -135,7 +124,7 @@ class Login extends Component {
 
                     </div>
                     <Loader></Loader>
-                </section>
+            </div>
         )
     }
 }

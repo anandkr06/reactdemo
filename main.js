@@ -14,20 +14,16 @@ import store, { history } from './src/store/index';
 
 //redux router related libaray 
 // import { ConnectedRouter } from 'react-router-redux';
-import { BrowserRouter as Router } from 'react-router-dom';
+
+import 'react-widgets/dist/css/react-widgets.css';
+import 'react-table/react-table.css';
 
 class Main extends Component {
     render() {
         return (
-<<<<<<< HEAD
-            <div className="container-fluid">
-                <Route exact path = '/' component={Login}/>
-                <Route path = '/home' component={View}/>
-=======
             <div>
                 <Route exact path='/' component={Login} />
                 <Route path='/home' component={View} />
->>>>>>> 5f129db8a17d3e9d50119f48d65d4e9e93520c3e
             </div>
         );
     }
@@ -37,9 +33,9 @@ let rootElement = document.getElementById('app')
 
 render(
     <Provider store={store}>
-        <Router history={history}>
+        <BrowserRouter>
             <Main />
-        </Router>
+        </BrowserRouter>
     </Provider>
     ,
     rootElement

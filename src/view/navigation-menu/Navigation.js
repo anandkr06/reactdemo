@@ -16,7 +16,7 @@ class Navigation extends Component {
         return (
             <div>
                 <UserProfile />
-                <Menu />
+                <Menu url={this.props.url}/>
             </div>
         )
     }

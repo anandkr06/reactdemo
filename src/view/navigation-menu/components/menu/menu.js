@@ -8,7 +8,7 @@ const Menu = props => {
     return (
        <div>
            <text>Navigation Menu</text>
-           <MenuList menuList={props.menuList} />
+           <MenuList url={props.url} menuList={props.menuList} />
        </div>
     )
 }
