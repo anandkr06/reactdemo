@@ -39,3 +39,12 @@ box-sizing: border-box; color: #979aa0;}
     display:block;
 }
 
+.input-font-color-shiv{
+    color:blue;
+}
+
+.input-font-validation-message-color{
+    color:white;
+    padding: 10px;
+}
+
