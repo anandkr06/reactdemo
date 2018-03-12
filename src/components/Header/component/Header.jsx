@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect, dispatch} from 'react-redux';
 import { combineReducers } from 'redux'
 import { reset, submit } from 'redux-form';
+import { editUserFormAction } from '../../User/action/UserAction';
 
 class Header extends Component{
 
@@ -13,7 +14,15 @@ class Header extends Component{
 
     resetForm(event){
         event.preventDefault();
-        this.props.reset("userForm");
+        if(typeof this.props.userForm.initial.userId === "undefined")
+            {
+                this.props.reset("userForm");
+            } 
+            else{
+                this.props.editUserFormAction([]);
+            }
+        
+
     }
 
     submitForm(event){
@@ -33,6 +42,7 @@ class Header extends Component{
 
 }
 
+
 function mapStateToProps(state) {
         return {
             userForm: state.form.userForm,
@@ -40,4 +50,4 @@ function mapStateToProps(state) {
     };
 
 
-export default connect(mapStateToProps, {reset, submit})(Header);
+export default connect(mapStateToProps, {reset, submit, editUserFormAction})(Header);

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { reduxForm, Field} from 'redux-form';
 import axios from 'axios';
 import {Multiselect, DropdownList} from 'react-widgets';
-import { createUserAction, fetchCelebrityListAction, fetchAllLocaleListAction } from '../action/UserAction';
+import { createUserAction, fetchCelebrityListAction, fetchAllLocaleListAction, editUserFormAction, updateUserAction } from '../action/UserAction';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -10,13 +10,18 @@ class UserForm extends Component{
 
     constructor(props){
         super(props);
-        //fetching celebrity data
-        props.fetchCelebrityListAction();
-        props.fetchAllLocaleListAction();
+    }
+
+    componentDidMount(){
+        (this.props.location.state) && this.props.editUserFormAction(this.props.location.state.data);
+        this.props.fetchCelebrityListAction();
+        this.props.fetchAllLocaleListAction();
+        
     }
 
     render(){
         const { handleSubmit } = this.props 
+
         return(
             <div className="col-md-9">
                 <label>Account Information</label>
@@ -27,17 +32,20 @@ class UserForm extends Component{
                  validate = {[required, isAlphabet]}  />        
                 <Field name = "email" type = "email" label = "Email" component={renderField}
                  validate = {[required, isValidEmail]}    />        
+                {typeof this.props.initialValues === 'undefined' ?
+                    (<div>
                 <Field name = "pwd" type = "password" label = "Password" component={renderField}
-                 validate = {required}    />        
+                 validate = {required} />        
                 <Field name = "passwordConfirm" type = "email" label = "Confirm Password" component={renderField}
-                    validate={[required,doPasswordMatch]}/>  
+                    validate={[required,doPasswordMatch]}/> 
+                    </div>)
+                : ('')}
                 <div>
                      <label>Map Celebrity</label>
                      <Field
                         placeholder = "Select Celebrity"
                         name="mapCelebs"
                         component={renderMultiselect}
-                        defaultValue={[]}
                         valueField='celebId'
                         textField='celebNme'
                         data={this.props.celebrityList}
@@ -84,26 +92,34 @@ class UserForm extends Component{
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
-    createUserAction, fetchCelebrityListAction, fetchAllLocaleListAction
+    createUserAction, fetchCelebrityListAction, fetchAllLocaleListAction, editUserFormAction, updateUserAction
 }, dispatch)
 }
 
 const mapStateToProps = (state) => {
   return {
       celebrityList : state.celebrityList.celebrityList,
-      allLocaleList : state.allLocaleList.allLocaleList
+      allLocaleList : state.allLocaleList.allLocaleList,
+      initialValues : state.editFormData.editFormData
   };
 }
 
-UserForm = connect(mapStateToProps, mapDispatchToProps)(UserForm);
 
-export default reduxForm({
+
+
+UserForm = reduxForm({
         form: 'userForm',
         destroyOnUnmount : false,
-        onSubmit: (data, dispatch) => {
-            dispatch(createUserAction(data));
+        keepDirtyOnReinitialize  : true,
+        enableReinitialize: true,
+        onSubmit: (data, dispatch, props) => {
+            !data.userId && dispatch(createUserAction(data));
+            data.userId && dispatch(updateUserAction(data));
         }
     })(UserForm)
+
+    UserForm = connect(mapStateToProps, mapDispatchToProps)(UserForm);
+    export default UserForm;
 
         const required = value => (value ? undefined : 'Required')
         const isValidEmail = value =>
@@ -124,12 +140,13 @@ export default reduxForm({
             input,
             label,
             type,
+            style,
             meta: { touched, error, warning }
             }) => (
-            <div>
+            <div style = {style}>
                 <label>{label}</label>
                 <div>
-                <input {...input} placeholder={label} type={type} />
+                <input {...input} placeholder={label} type={type} style = {style} />
                 {touched &&
                     ((error && <span>{error}</span>) ||
                     (warning && <span>{warning}</span>))}
@@ -160,20 +177,6 @@ export default reduxForm({
                     (warning && <span>{warning}</span>))}
                 </div>
                 );
-
-
-        const  locale = [
-            {
-                "langId":1,
-                "i18Lang": "English",
-                "locale": "avchad"
-            },
-            {
-                "langId":2,
-                "i18Lang": "Arab",
-                "locale": "Arabi"
-            }
-        ];
 
         const  accountStatus = [
             {
