@@ -29,7 +29,7 @@ class View extends React.Component {
                 <div className="col-sm-3 col-md-2 sidebar" >
                     <Navigation url = {this.props.match.url}/>    
                 </div>
-                <div className="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" > 
+                <div className="col-10 offset-2 main"> 
                      <Header/>
                      <Screen url = {this.props.match.url}/> 
                 </div>

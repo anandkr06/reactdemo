@@ -79,10 +79,10 @@ class Login extends Component {
         const { handleSubmit, pristine, submitting } = this.props
         return (
             <div>
-                <section className="login-container">
+            <section className="login-container">
                     <div className="left-side">
                         <div className="content-block">
-                            <h1><img src={require("../../../images/logo-black.png")} alt="Admin Login" /></h1>
+                            <h1><img src={require("../../../images/logo-black.png")} alt="Boutiqaat Logo" /></h1>
                             <h2>Welcome to the Boutiqaat new admin panel</h2>
                         </div>
                     </div>
@@ -111,7 +111,7 @@ class Login extends Component {
                             />
 
 
-                            <div className="row">
+                            <div className="row mt2">
                                 <div className="col-sm-6 col-xs-12">
                                     <input
                                         type="submit"
