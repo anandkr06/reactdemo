@@ -24,7 +24,7 @@ class ViewUser extends Component{
                     return {
                     onClick: e =>
                         {
-                            this.props.history.push({
+                            this.props.url.history.push({
                             pathname: '/home/system/UserInfo',
                             state: {
                                 data : rowInfo.original

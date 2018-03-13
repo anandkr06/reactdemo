@@ -14,20 +14,19 @@ class Header extends Component{
 
     resetForm(event){
         event.preventDefault();
-        if(typeof this.props.userForm.initial.userId === "undefined")
-            {
-                this.props.reset("userForm");
-            } 
-            else{
-                this.props.editUserFormAction([]);
-            }
         
-
+        if(this.props.userForm  && typeof this.props.userForm.initial.userId === "undefined")
+        {
+            this.props.reset(this.props.currentView);
+        } 
+        else{
+            this.props.editUserFormAction([]);
+        }
     }
 
     submitForm(event){
         event.preventDefault();
-        this.props.submit("userForm");
+        this.props.submit(this.props.currentView);
     }
 
     render(){
@@ -46,6 +45,8 @@ class Header extends Component{
 function mapStateToProps(state) {
         return {
             userForm: state.form.userForm,
+            roleForm: state.form.roleForm,
+            currentView : state.activeViewInfo.activeViewObject
         };
     };
 

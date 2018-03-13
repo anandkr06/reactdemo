@@ -14,6 +14,7 @@ import Loader from '../../../utilities/loader/Loader';
 //importing actions
 import { login } from '../action/login-action';
 
+//importing encryption 
 var md5 = require('md5');
 var CryptoJS = require("crypto-js");
 
@@ -63,15 +64,16 @@ class Login extends Component {
         event.preventDefault();
         data.userName = 'rohit.bagjani@nagarro.com';
         data.password = 'Test123';
-        var ciphertext = CryptoJS.AES.encrypt(data.userName, '6368616e676520746869732070617373');
+        var ciphertext = CryptoJS.AES.encrypt(data.userName, '0123456789012345');
+        console.log('ciphertext',ciphertext.toString());
         var hashedPassword = md5(data.password);
         this.props.requestLogin({ useremail: ciphertext, password: hashedPassword },this.props.history);
         // LoginApiService.getLogin({ }).then((response) => {
         //     console.log('login api call requested with response', response);
         // });
-        // var bytes = CryptoJS.AES.decrypt(ciphertext.toString(), '6368616e676520746869732070617373');
-        // var plaintext = bytes.toString(CryptoJS.enc.Utf8);
-        // console.log('plaintext', plaintext);
+        var bytes = CryptoJS.AES.decrypt(ciphertext.toString(), '0123456789012345');
+        var plaintext = bytes.toString(CryptoJS.enc.Utf8);
+        console.log('plaintext', plaintext);
         // this.props.history.push("/home");
     }
 
