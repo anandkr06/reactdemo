@@ -40,6 +40,16 @@ export const afterLoginFailure = (error) => {
 
 export const makeLoginRequest = (obj) => {
     return LoginApiService.getLogin(obj).then(response => {
-        return response.data.data;
+        return { 
+            
+                            "email": "davis.john@gmail.com",
+                              "fstNme": "david",
+                              "lstNme": "john",
+                            "langPref": "English",
+                            "privil": response.data.data
+                            
+                    
+                  
+                }
     });
 }
