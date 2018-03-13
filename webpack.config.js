@@ -26,7 +26,6 @@ var config = {
              }
           },
           { test: /\.css$/, loader: "style-loader!css-loader" },
-          {test: /\.(jpg?g|png|gif|svg)$/i, loader: "url-loader?name=src/images/[name].[ext]"},
           { 
             test: /\.(jpe?g|png|gif)$/, 
             loaders: ["file"] 

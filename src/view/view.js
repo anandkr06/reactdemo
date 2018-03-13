@@ -26,7 +26,7 @@ class View extends React.Component {
     render(){
         return (
             <div className="container-fluid"><div className="row">
-                <div className="col-2 sidebar" >
+                <div className="col-sm-3 col-md-2 sidebar" >
                     <Navigation url = {this.props.match.url}/>    
                 </div>
                 <div className="col-10 offset-2 main"> 

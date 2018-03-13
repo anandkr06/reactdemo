@@ -15,6 +15,18 @@ class Service {
       );
     }
 
+    updateUser(obj){
+        obj.userId = 15;
+        return axios.put(`${Setting.dev2.url}bq/v1/user/update/${obj.userId}`,
+           
+              obj,
+          
+          {
+            headers: { 'Content-Type': 'application/json' }
+          }
+      );
+    }
+
     getCelebrityList(){
         return axios.get(`${Setting.dev2.url}bq/v1/celebs/fetch/`
       );

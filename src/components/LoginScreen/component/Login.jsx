@@ -41,11 +41,14 @@ const renderField = ({
     className,
     meta: { touched, error, warning }
             }) => (
-        <div className="md-input-wrapper">
+        <div>
+            <label>{label}</label>
+            <div className="md-input-wrapper">
                 <input {...input} placeholder={label} type={type} className={className} />
                 {touched &&
                     ((error && <span className="input-font-validation-message-color">{error}</span>) ||
                         (warning && <span className="input-font-validation-message-color">{warning}</span>))}
+            </div>
         </div>
     );
 
@@ -75,10 +78,11 @@ class Login extends Component {
     render() {
         const { handleSubmit, pristine, submitting } = this.props
         return (
-            <div className="login-container">
+            <div>
+            <section className="login-container">
                     <div className="left-side">
                         <div className="content-block">
-                            <h1><img src={"../../../src/images/logo-black.png"} alt="Boutiqaat Logo" /></h1>
+                            <h1><img src={"../../src/images/logo-black.png"} alt="Boutiqaat Logo" /></h1>
                             <h2>Welcome to the Boutiqaat new admin panel</h2>
                         </div>
                     </div>
@@ -87,7 +91,9 @@ class Login extends Component {
 
 
                         <form className="md-float-material" onSubmit={handleSubmit(this.handleSubmit)}>
-                            <h3>Login to your account</h3>
+                            <h3 className="text-center">
+                                Login to your account
+                        </h3>
                             <Field className="md-form-control icofont input-font-color-shiv"
                                 name="userName"
                                 type="email"
@@ -124,6 +130,7 @@ class Login extends Component {
 
                     </div>
                     <Loader></Loader>
+                </section>
             </div>
         )
     }
