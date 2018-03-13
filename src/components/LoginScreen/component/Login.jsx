@@ -82,7 +82,7 @@ class Login extends Component {
             <section className="login-container">
                     <div className="left-side">
                         <div className="content-block">
-                            <h1><img src={require("../../../images/logo-black.png")} alt="Boutiqaat Logo" /></h1>
+                            <h1><img src={"../../src/images/logo-black.png"} alt="Boutiqaat Logo" /></h1>
                             <h2>Welcome to the Boutiqaat new admin panel</h2>
                         </div>
                     </div>
