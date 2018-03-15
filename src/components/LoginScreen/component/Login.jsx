@@ -88,9 +88,6 @@ class Login extends Component {
                         </div>
                     </div>
                     <div className="right-side">
-
-
-
                         <form className="md-float-material" onSubmit={handleSubmit(this.handleSubmit)}>
                             <h3 className="text-center">
                                 Login to your account

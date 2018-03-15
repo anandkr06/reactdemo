@@ -35,7 +35,7 @@ export const afterAllRolesRecordsSuccess = (response) => {
     return dispatch => {
         console.log('afterAllRolesRecordsSuccess',response);
         dispatch(loaderOff()); 
-        dispatch({ type:  GET_ROLES_RECORDS_SUCCESS, payload: { roles : response.data } }); 
+        dispatch({ type:  GET_ROLES_RECORDS_SUCCESS, payload: { roles : response.data.data } }); 
     }
 }
 

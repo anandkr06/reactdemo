@@ -18,6 +18,7 @@ import {
 
     } from '../constant/action-type';
 import RoleApi from '../api';
+import { alertHide , alertShow } from '../../../utilities/alert/action/alert-action';
 import { reset } from 'redux-form';
 
 
@@ -32,13 +33,7 @@ export function createRoleInfoAction(data) {
     return (dispatch,getState) => {
         console.log('create getState data ',getState().userLoginInfo);
         dispatch(loaderOn()); 
-        // let objectToSend = {
-        //     "roleNme": data.roleName,
-        //     "createdBy":  getState().userLoginInfo.loginUser.id || 1
-        //   };
-        let objectToSend = prepareRoleObject(data,getState);
-        console.log('create role',objectToSend);
-        makeRoleCreationRequest(objectToSend)
+        makeRoleCreationRequest(prepareRoleObject(data,getState))
         .then(respnse => {
             afterRoleCreationSuccess(respnse)(dispatch);
             resetSelectedResources()(dispatch);
@@ -51,10 +46,11 @@ export function createRoleInfoAction(data) {
 }
 
 const prepareRoleObject = (data,getState) => {
+    console.log('prepareRoleObject',getState().selectedRoleScopes,getState().selectedRoleResources);
     let obj = { 
         'roleNme' : data.roleName,
-        'store':  getState().selectedRoleScopes.selectedScopes || [],
-        'privilege':  getState().selectedRoleResources.selectedResources || [],
+        'store': getState().selectedRoleScopes.selectedScopes.length > 0 ? getState().selectedRoleScopes.selectedScopes : [{ 'children' : [ { 'storeId' : -1 } ] }],
+        'privilege':  getState().selectedRoleResources.selectedResources.length > 0 ? getState().selectedRoleResources.selectedResources : [{ 'privilId' :-1 }] ,
         'createdBy' : getState().userLoginInfo.loginUser.id || 15,
         'updatedBy' : 0
     };
@@ -83,6 +79,7 @@ const prepareRoleObject = (data,getState) => {
     //     "createdBy": 15,
     //     "updatedBy": 0
     //   } 
+    console.log('create role sending json',obj);
     return obj;
 }
 
@@ -98,16 +95,28 @@ export const afterRoleCreationSuccess = (response, route) => {
     return dispatch => {
         console.log('afterRoleCreationSuccess',response);
         dispatch(reset('roleInfo'));
+        dispatch(alertShow({messageType:'Success',content:'Role created successfully.'}));
         dispatch(loaderOff()); 
+        setTimeout(
+            function(){ 
+                dispatch(alertHide());
+            }, 3000
+        )
     }
 }
 
 export const afterRoleCreationFailure = (error) => {
-    console.log('Error in role creation action');
+    console.log('Error in role creation action',error);
     return dispatch => { 
         dispatch(reset('roleInfo'));
+        dispatch(alertShow({messageType:'Error',content:'Error in role creation action'}));
         dispatch(loaderOff());
-        dispatch({ type: CREATE_ROLE_FAILURE, payload: { error } }); 
+        dispatch({ type: CREATE_ROLE_FAILURE, payload: { error } });
+        setTimeout(
+            function(){ 
+                dispatch(alertHide());
+            }, 3000
+        ) 
     }
 }
 
@@ -141,7 +150,7 @@ export const afterRoleResourcesSuccess = (response) => {
     return dispatch => {
         console.log('afterRoleResourcesSuccess',response);
         dispatch(loaderOff()); 
-        dispatch({ type: ROLE_RESOURCES_SUCCESS, payload: { resources : response.data } }); 
+        dispatch({ type: ROLE_RESOURCES_SUCCESS, payload: { resources : response.data.data } }); 
     }
 }
 
@@ -183,7 +192,7 @@ export const afterScopesSuccess = (response) => {
     return dispatch => {
         console.log('afterScopesSuccess',response);
         dispatch(loaderOff()); 
-        dispatch({ type: ROLE_SCOPES_SUCCESS, payload: { scopes : response.data } }); 
+        dispatch({ type: ROLE_SCOPES_SUCCESS, payload: { scopes : response.data.data } }); 
     }
 }
 
@@ -239,6 +248,17 @@ export function resetSelectedScopes() {
     }
 }
 
+/**
+ * @author:shivangi upadhyay
+ * @description:reset alert messages and loaders.
+ */
+
+export function initAction() {
+    return (dispatch) => {
+        dispatch(alertHide());
+        dispatch(loaderOff());          
+    }
+}
 
  
 
