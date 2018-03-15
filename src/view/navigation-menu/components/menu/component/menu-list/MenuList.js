@@ -37,13 +37,10 @@ class PreviledgeMenu extends Component {
     render(){
         this.options.splice(0, this.options.length);
         this.prepareList(this.data);
-        return (
-          
-            
+        return (            
                 <ul className = "nav flex-column">
                     {this.options}
                 </ul>
-            
         )
     }
     
