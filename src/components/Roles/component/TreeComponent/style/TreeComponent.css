@@ -1,0 +1,11 @@
+.hide{
+    display: none;
+}
+
+.child-option-checkbox, .parent-option-checkbox{
+    pointer-events: none;
+}
+
+.show{
+    display: inline-block;
+}

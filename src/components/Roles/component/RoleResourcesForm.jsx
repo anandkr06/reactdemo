@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 //include nestedMultiSelect
-import NestedMultiSelectList from './NestedMultiSelectList.jsx';
+import TreeComponent from './TreeComponent/component/TreeComponent.jsx';
 
 //include actions
 import { nestedResourcesData, nestedScopesData } from '../action/role-action';
@@ -67,8 +67,7 @@ class RoleResources extends Component {
     }
 
     render() {
-        // const { handleSubmit } = this.props;
-       
+
         return (
             <div className="col-md-9">
                 <label>Role Scope</label>
@@ -86,7 +85,7 @@ class RoleResources extends Component {
                             </Field>
                         </div>
                         {this.state.scopeTree ? <div>
-                            <NestedMultiSelectList scopesList={this.props.scopes} />
+                            <TreeComponent data = {this.props.scopes} responseFormat = {responseFormat} responseKey = {"store"} parentLabel = {"cntryNme"} childLabel = {"storeNme"} parentId = {"cntryId"} childId = {"storeId"}></TreeComponent>
                         </div> : <span></span>}
                     </div>
 
@@ -111,7 +110,7 @@ class RoleResources extends Component {
                          <div>
                              <label>Resources</label>
                              <div>
-                                <NestedMultiSelectList resourcesList={this.props.resources} />
+                                <TreeComponent data = {this.props.resources} responseFormat = {responseFormat} responseKey = {"privilege"} parentLabel = {"privilNme"} childLabel = {"privilNme"} parentId = {"privilId"} childId = {"privilId"}></TreeComponent>
                              </div> 
                          </div> : 
                          <span></span>
@@ -133,6 +132,10 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
     nestedResourcesData, nestedScopesData
 }, dispatch);
 
+const  responseFormat = {
+    "store" : [],
+    "privilege": []
+  };
 
 export default connect(mapStateToProps, mapDispatchToProps)(RoleResources);
 
@@ -141,3 +144,5 @@ export default connect(mapStateToProps, mapDispatchToProps)(RoleResources);
 //     form: 'roleResources',
 //     destroyOnUnmount: false,   // ??? why do we use it?
 // })(RoleResources);
+
+

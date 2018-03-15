@@ -23,6 +23,8 @@ import {
     alertReducer
  } from '../utilities/alert/reducer/alert-reducer';
 
+ import {checkedOptionsReducer} from '../components/Roles/component/TreeComponent/reducer/tree-reducer';
+
 const integratedReducer = combineReducers({
    userOptions : userMenuOptionReducer,
    roleOptions : roleMenuOptionReducer,
@@ -44,6 +46,7 @@ const integratedReducer = combineReducers({
    allUserList : getAllUserListReducer,
    viewUserColumns : getViewUserColumnsReducer,
    allLocaleList : getAllLocaleListReducer,
-   editFormData : loadEditUserDataReducer
+   editFormData : loadEditUserDataReducer,
+   checkedOptions : checkedOptionsReducer
 });
 export default integratedReducer;

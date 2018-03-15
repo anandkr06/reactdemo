@@ -46,10 +46,11 @@ export function createRoleInfoAction(data) {
 }
 
 const prepareRoleObject = (data,getState) => {
+    console.log('prepareRoleObject',getState().selectedRoleScopes,getState().selectedRoleResources);
     let obj = { 
         'roleNme' : data.roleName,
         'store': getState().selectedRoleScopes.selectedScopes.length > 0 ? getState().selectedRoleScopes.selectedScopes : [{ 'children' : [ { 'storeId' : -1 } ] }],
-        'privilege':  getState().selectedRoleResources.selectedResources > 0 ? getState().selectedRoleResources.selectedResources : [{ 'privilId' :-1 }] ,
+        'privilege':  getState().selectedRoleResources.selectedResources.length > 0 ? getState().selectedRoleResources.selectedResources : [{ 'privilId' :-1 }] ,
         'createdBy' : getState().userLoginInfo.loginUser.id || 15,
         'updatedBy' : 0
     };
@@ -78,7 +79,7 @@ const prepareRoleObject = (data,getState) => {
     //     "createdBy": 15,
     //     "updatedBy": 0
     //   } 
-    console.log('create role sending json',Jobj);
+    console.log('create role sending json',obj);
     return obj;
 }
 
