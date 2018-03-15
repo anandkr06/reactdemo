@@ -29,7 +29,6 @@ class Navigation extends React.Component {
         super(props);
         let keyWord = props.match.params.topicId.search('User') === -1 ? 'roleInfo' :  'userForm';
         props.setActiveView(keyWord);
-        console.log('current url' , );
     }
 
     renderList() {
@@ -58,11 +57,11 @@ class Navigation extends React.Component {
                     <Route path='/home/system/UserInfo' component={UserForm}/>
                     <Route path='/home/system/UserRole' component={UserRole}/>
                     <Route path='/home/system/RoleInfo' component={RoleInfo}/>
-                    <Route path='/home/system/RoleResources' component={RoleResources}/>
+                    {/* <Route path='/home/system/RoleResources' component={RoleResources}/> */}
                 </div>
             );
         }else if(this.props.match.params.topicId === 'viewRole') {
-        return ( <RolesRecordGrid /> )
+        return ( <RolesRecordGrid url = {this.props} /> )
         }else if(this.props.match.params.topicId === 'viewUser') {
         return ( <ViewUser url = {this.props}/> )
         } 

@@ -32,7 +32,7 @@ class UserForm extends Component{
                  validate = {[required, isAlphabet]}  />        
                 <Field name = "email" type = "email" label = "Email" component={renderField}
                  validate = {[required, isValidEmail]}    />        
-                {typeof this.props.initialValues === 'undefined' ?
+                {(this.props.initialValues instanceof Array || typeof this.props.initialValues === 'undefined') ? 
                     (<div>
                 <Field name = "pwd" type = "password" label = "Password" component={renderField}
                  validate = {required} />        
@@ -92,7 +92,11 @@ class UserForm extends Component{
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
-    createUserAction, fetchCelebrityListAction, fetchAllLocaleListAction, editUserFormAction, updateUserAction
+    createUserAction, 
+    fetchCelebrityListAction, 
+    fetchAllLocaleListAction, 
+    editUserFormAction,
+    updateUserAction
 }, dispatch)
 }
 

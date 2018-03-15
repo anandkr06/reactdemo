@@ -25,10 +25,15 @@ export const minLength6 = minLength(6);
 const isAlphabet = (value) => value && /[^a-zA-Z]/i.test(value) ? 'Only alphanumeric characters' : undefined;
 
 //import actions for create calls
-import { createRoleInfoAction } from "../action/role-action";
+import { createRoleInfoAction, initAction } from "../action/role-action";
+//import actions for update calls.
+import { editRoleForm, updateRoleAction } from '../action/update-role-action';
+//forms role segment 
+import RoleResources from './RoleResourcesForm.jsx';
 
-
-import  RoleResources  from './RoleResourcesForm.jsx'; 
+//import form utilities
+import Alert from '../../../utilities/alert/Alert';
+import Loader from '../../../utilities/loader/Loader';
 
 const renderField = ({
     input,
@@ -55,10 +60,17 @@ const renderField = ({
 class RoleInfo extends Component {
     constructor(props) {
         super(props);
+        console.log('roleinfo props', props);
+    }
+
+    componentDidMount() {
+        this.props.initAction();
+        (this.props.location.state) && this.props.editRoleForm([]);
+        (this.props.location.state) && this.props.editRoleForm(this.props.location.state.data);
     }
 
     render() {
-        const { handleSubmit } = this.props;
+        const { handleSubmit, pristine, submitting } = this.props;
         return (
             <div className="col-md-9">
                 <label>Role Information</label>
@@ -67,7 +79,6 @@ class RoleInfo extends Component {
                         label="Role Information *"
                         component={renderField}
                         validate={[required, isAlphabet, maxLength256]} />
-
                     <div>
                         <label>Current User Identity Verification</label>
                         <Field name="userPassword" type="password"
@@ -75,33 +86,40 @@ class RoleInfo extends Component {
                             component={renderField}
                             validate={[required, maxLength15, minLength6]} />
                     </div>
-                    
                     <div>
                         <RoleResources />
                     </div>
-
                 </form>
+                <Alert />
+                <Loader />
             </div>
         )
     }
 }
 
-// const mapStateToProps = state => ({
-//     loginInfo: state.userLoginInfo
-// });
+const mapStateToProps = state => ({
+    initialValues: state.setRoleForm.editRoleFormData
+});
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    createRoleInfoAction
+    createRoleInfoAction,
+    initAction,
+    editRoleForm,
+    updateRoleAction
 }, dispatch);
 
 
-RoleInfo = connect(null, mapDispatchToProps)(RoleInfo);
-
-
-export default reduxForm({
+RoleInfo = reduxForm({
     form: 'roleInfo',
     destroyOnUnmount: false,   // ??? why do we use it?
-    onSubmit: (data, dispatch,props) => {
-        dispatch(createRoleInfoAction(data));
+    keepDirtyOnReinitialize: true,
+    enableReinitialize: true,
+    onSubmit: (data, dispatch, props) => {
+        !data.roleId && dispatch(createRoleInfoAction(data));
+        data.roleId && dispatch(updateRoleAction(data));
     }
 })(RoleInfo);
+
+RoleInfo = connect(mapStateToProps, mapDispatchToProps)(RoleInfo);
+
+export default RoleInfo;

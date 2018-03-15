@@ -31,16 +31,17 @@ class RolesRecordGrid extends Component {
                 getTrProps={(state, rowInfo, column, instance) => {
                     return {
                         onClick: e =>
-                            console.log("Cell - onMouseEnter", {
-                                state,
-                                rowInfo,
-                                column,
-                                instance,
-                                event: e
-                            })
+                        {
+                            this.props.url.history.push({
+                            pathname: '/home/system/RoleInfo',
+                            state: {
+                                data : rowInfo.original
+                            }
+                        })
+                        }
                     };
                 }}
-                defaultPageSize={10}
+                defaultPageSize={5}
                 className="-striped -highlight"
                 noDataText="No Record Found!"
                 showPaginationTop

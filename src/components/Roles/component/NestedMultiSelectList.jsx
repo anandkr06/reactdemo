@@ -13,13 +13,7 @@ import { saveSelectedScopes,saveSelectedResources } from '../action/role-action'
 class NestedMultiSelect extends Component{
     constructor(props){
         super(props);
-        console.log(props);
-        this.state = {
-            
-        }
-        this.data = props.resourcesList ? props.resourcesList: props.scopesList;
-        this.prepareList = this.prepareList.bind(this);
-        this.options = []; 
+        console.log('NestedMultiSelect',props);
     }
 
     prepareList(obj){

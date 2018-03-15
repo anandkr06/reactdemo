@@ -14,6 +14,14 @@ import {
  } from '../components/Roles/reducer/create-role-reducer';
 
  import { roleRecordsReducer } from '../components/Roles/reducer/view-roles-reducer';
+ import {
+    setEditRoleFormReducer,
+    updateRoleReducer
+ } from '../components/Roles/reducer/update-role-reducer';
+
+ import {
+    alertReducer
+ } from '../utilities/alert/reducer/alert-reducer';
 
 const integratedReducer = combineReducers({
    userOptions : userMenuOptionReducer,
@@ -24,6 +32,9 @@ const integratedReducer = combineReducers({
    selectedRoleScopes : selectedRoleScopesReducer,
    selectedRoleResources : selectedRoleResourcesReducer,
    allRoleRecords : roleRecordsReducer,
+   setRoleForm : setEditRoleFormReducer,
+   updateRole  : updateRoleReducer,
+   alertState : alertReducer,
    form : formReducer,
    userLoginInfo : loginReducer,
    loader : loaderReducer,
