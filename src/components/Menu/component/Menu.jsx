@@ -1,17 +1,40 @@
 import React from 'react';
 import render from 'react-dom';
 import '../styles/Menu.css';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import Header from '../../Header/component/Header.jsx'
+import Header from '../../Header/component/Header.jsx';
 import {withRouter, Switch, Route, Link } from 'react-router-dom';
-import UserForm from '../../User/component/UserForm.jsx'
-import UserRole from '../../User/component/UserRole.jsx'
+
+//redux and react-redux.
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
+//include actions 
+import { setActiveView } from '../action/menu-list-action';
+
+//import components for actions on menu.
+import UserForm from '../../User/component/UserForm.jsx';   // include create user form 
+import UserRole from '../../User/component/UserRole.jsx';  // include create user role assign form
+import RoleInfo from '../../Roles/component/RoleInfoForm.jsx'; // include create role form 
+import RoleResources  from '../../Roles/component/RoleResourcesForm.jsx'; // include create role resources form
+
+// include view all roles.
+import RolesRecordGrid from '../../Roles/component/ViewRole.jsx';
+
+//import user grid
+import ViewUser from '../../User/component/ViewUser.jsx';
 
 class Navigation extends React.Component {
 
+    constructor(props){
+        super(props);
+        let keyWord = props.match.params.topicId.search('User') === -1 ? 'roleInfo' :  'userForm';
+        props.setActiveView(keyWord);
+        console.log('current url' , );
+    }
+
     renderList() {
-        return this.props.options.map(
+        let arrayModel = this.props.match.params.topicId.search('User') === -1 ? this.props.roleOptions : this.props.userOptions;     
+        return arrayModel.map(
             (option) => {
                 return (
                     option.isHeading ?
@@ -25,29 +48,37 @@ class Navigation extends React.Component {
     }
 
     render() {
-
-        return (
-            <div className="row">
-                <Header title = "User"/>
-                <div className="col-md-3"><ul className="nav  md-pills pills-primary flex-column">
-                
-                    {this.renderList()}
-                </ul></div>
-                <Route path='/home/system/UserInfo' component={UserForm}/>
-                <Route path='/home/system/UserRole' component={UserRole}/>
-            </div>
-        );
+        if(this.props.match.params.topicId !== 'viewRole' && this.props.match.params.topicId !== 'viewUser'){
+            return (
+                <div className="row">
+                    <Header title = "User"/>
+                    <div className="col-md-3"><ul className="nav  md-pills pills-primary flex-column">
+                        {this.renderList()}
+                    </ul></div>
+                    <Route path='/home/system/UserInfo' component={UserForm}/>
+                    <Route path='/home/system/UserRole' component={UserRole}/>
+                    <Route path='/home/system/RoleInfo' component={RoleInfo}/>
+                    <Route path='/home/system/RoleResources' component={RoleResources}/>
+                </div>
+            );
+        }else if(this.props.match.params.topicId === 'viewRole') {
+        return ( <RolesRecordGrid /> )
+        }else if(this.props.match.params.topicId === 'viewUser') {
+        return ( <ViewUser url = {this.props}/> )
+        } 
+       
     }
     }
 
 function mapStateToProps(state) {
   return {
-      options: state.options
+      userOptions: state.userOptions,
+      roleOptions: state.roleOptions
   };
 }
 
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators({ setOptionClicked: Events.CREATE_USER_NAVIGATION_MENU }, dispatch);
-// }
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ setActiveView }, dispatch);
+}
 
-export default connect(mapStateToProps)(Navigation);
+export default connect(mapStateToProps,mapDispatchToProps)(Navigation);

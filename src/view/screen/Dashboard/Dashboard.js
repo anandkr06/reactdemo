@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import { connect } from 'react-redux';
 
-export default () => (<div><label>Hi there !,it's dashboard...</label></div>);
+export default () => (<div><label>Hi there !,it's a dashboard...</label></div>);
 
 
 // const mapStateToProps = state => ({
