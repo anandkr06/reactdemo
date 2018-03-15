@@ -14,6 +14,7 @@ import Loader from '../../../utilities/loader/Loader';
 //importing actions
 import { login } from '../action/login-action';
 
+//importing encryption 
 var md5 = require('md5');
 var CryptoJS = require("crypto-js");
 
@@ -41,11 +42,14 @@ const renderField = ({
     className,
     meta: { touched, error, warning }
             }) => (
-        <div className="md-input-wrapper">
+        <div>
+            <label>{label}</label>
+            <div className="md-input-wrapper">
                 <input {...input} placeholder={label} type={type} className={className} />
                 {touched &&
                     ((error && <span className="input-font-validation-message-color">{error}</span>) ||
                         (warning && <span className="input-font-validation-message-color">{warning}</span>))}
+            </div>
         </div>
     );
 
@@ -60,25 +64,26 @@ class Login extends Component {
         event.preventDefault();
         data.userName = 'rohit.bagjani@nagarro.com';
         data.password = 'Test123';
-        var ciphertext = CryptoJS.AES.encrypt(data.userName, '6368616e676520746869732070617373');
+        var ciphertext = CryptoJS.AES.encrypt(data.userName, '0123456789012345');
+        console.log('ciphertext',ciphertext.toString());
         var hashedPassword = md5(data.password);
         this.props.requestLogin({ useremail: ciphertext, password: hashedPassword },this.props.history);
         // LoginApiService.getLogin({ }).then((response) => {
         //     console.log('login api call requested with response', response);
         // });
-        // var bytes = CryptoJS.AES.decrypt(ciphertext.toString(), '6368616e676520746869732070617373');
-        // var plaintext = bytes.toString(CryptoJS.enc.Utf8);
-        // console.log('plaintext', plaintext);
+        var bytes = CryptoJS.AES.decrypt(ciphertext.toString(), '0123456789012345');
+        var plaintext = bytes.toString(CryptoJS.enc.Utf8);
+        console.log('plaintext', plaintext);
         // this.props.history.push("/home");
     }
 
     render() {
         const { handleSubmit, pristine, submitting } = this.props
         return (
-            <div className="login-container">
+            <section className="login-container">
                     <div className="left-side">
                         <div className="content-block">
-                            <h1><img src={require("../../../images/logo-black.png")} alt="Boutiqaat Logo" /></h1>
+                            <h1><img src={"../../src/images/logo-black.png"} alt="Boutiqaat Logo" /></h1>
                             <h2>Welcome to the Boutiqaat new admin panel</h2>
                         </div>
                     </div>
@@ -87,7 +92,9 @@ class Login extends Component {
 
 
                         <form className="md-float-material" onSubmit={handleSubmit(this.handleSubmit)}>
-                            <h3>Login to your account</h3>
+                            <h3 className="text-center">
+                                Login to your account
+                        </h3>
                             <Field className="md-form-control icofont input-font-color-shiv"
                                 name="userName"
                                 type="email"
@@ -124,7 +131,7 @@ class Login extends Component {
 
                     </div>
                     <Loader></Loader>
-            </div>
+                </section>
         )
     }
 }

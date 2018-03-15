@@ -7,7 +7,6 @@ import { bindActionCreators } from 'redux';
 import {DropdownList} from 'react-widgets';
 import ReactTable from 'react-table';
 import matchSorter from 'match-sorter';
-import { withRouter } from 'react-router-dom';
 
 class ViewUser extends Component{
     constructor(props){
@@ -24,13 +23,15 @@ class ViewUser extends Component{
                 getTrProps={(state, rowInfo, column, instance) => {
                     return {
                     onClick: e =>
-                        console.log("Cell - onMouseEnter", {
-                        state,
-                        rowInfo,
-                        column,
-                        instance,
-                        event: e
+                        {
+                            this.props.url.history.push({
+                            pathname: '/home/system/UserInfo',
+                            state: {
+                                data : rowInfo.original
+                            }
                         })
+                        
+                        }
                     };
                 }}
                 defaultPageSize = {10}

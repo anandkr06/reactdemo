@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import {withRouter, Switch, Route, Link } from 'react-router-dom';
 import './menu-list.css';
-import Navigation from '../../../../../../components/Menu/component/Menu.jsx'; 
 
-
-class PreviledgeMenu extends Component{
+class PreviledgeMenu extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -40,14 +38,11 @@ class PreviledgeMenu extends Component{
         this.options.splice(0, this.options.length);
         this.prepareList(this.data);
         return (
-          <div className="container-fluid"><div className="row">
-            <div className="col-md-2 sidebar">
+          
             <div className="sidebar-sticky">
                 <ul className = "nav flex-column">
                     {this.options}
-                </ul></div></div>
-            </div>
-            </div>
+                </ul></div>
             
         )
     }
@@ -74,7 +69,7 @@ class NestedList extends Component{
     for(let i in obj){
       let heading = obj[i].privilNme;
       this.childOptions.push(<li className="menu-container has-child-options" onClick = {event => this.hideChildMenu(this.props.heading, event)}  key={obj[i].privilId}>
-      <Link to = {`${this.props.rooturl}${obj[i].refUrl}`} className = "menu-text">{heading}</Link>
+      <Link to = {`${this.props.rooturl}${obj[i].refUrl}`} className = "menu-text" >{heading}</Link>
       </li>);
     }
   }

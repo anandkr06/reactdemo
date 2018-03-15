@@ -1,4 +1,4 @@
-import {USER_CREATE_SUCCESS, USER_CREATE_FAILED, FETCH_LIST_SUCCESS, FETCH_LIST_FAILED, FETCH_USER_LIST_SUCCESS, FETCH_USER_LIST_FAILED, FETCH_LOCALE_LIST_SUCCESS, FETCH_LOCALE_LIST_FAILED, FETCH_TABLE_COLUMNS_SUCCESS, FETCH_TABLE_COLUMNS_FAILED} from '../constant/constants';
+import {USER_CREATE_SUCCESS, USER_CREATE_FAILED, FETCH_LIST_SUCCESS, FETCH_LIST_FAILED, FETCH_USER_LIST_SUCCESS, FETCH_USER_LIST_FAILED, FETCH_LOCALE_LIST_SUCCESS, FETCH_LOCALE_LIST_FAILED, FETCH_TABLE_COLUMNS_SUCCESS, FETCH_TABLE_COLUMNS_FAILED, RELOAD_FORM_FOR_EDIT} from '../constant/constants';
 
 
 const initialState = {
@@ -26,7 +26,8 @@ const initialState = {
       Header: 'Status',
       accessor: 'status' // String-based value accessors!
     }],
-    allLocaleList : []
+    allLocaleList : [],
+
   }
 
 export const createUserReducer = (state = initialState, action) => {
@@ -124,6 +125,15 @@ export const createUserReducer = (state = initialState, action) => {
         return state
       }
     }
-  
-  
 
+    export const loadEditUserDataReducer = (state = initialState, action) => {
+      switch (action.type) {
+        case RELOAD_FORM_FOR_EDIT:
+          return {
+            ...state,
+            editFormData : action.payload.editFormData
+          }
+        default:
+          return state
+        }
+      }
