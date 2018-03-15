@@ -48,9 +48,10 @@ class Navigation extends React.Component {
 
     render() {
         if(this.props.match.params.topicId !== 'viewRole' && this.props.match.params.topicId !== 'viewUser'){
+         let title = (this.props.match.params.topicId.indexOf('User') !== -1) ? 'User' : 'Role';
             return (
                 <div className="row">
-                    <Header title = "User"/>
+                    <Header title = {title} history={this.props.history} />
                     <div className="col-md-3"><ul className="nav  md-pills pills-primary flex-column">
                         {this.renderList()}
                     </ul></div>
