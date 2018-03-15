@@ -38,14 +38,11 @@ class PreviledgeMenu extends Component {
         this.options.splice(0, this.options.length);
         this.prepareList(this.data);
         return (
-          <div className="container-fluid"><div className="row">
-            <div className="col-md-2 sidebar">
+          
             <div className="sidebar-sticky">
                 <ul className = "nav flex-column">
                     {this.options}
-                </ul></div></div>
-            </div>
-            </div>
+                </ul></div>
             
         )
     }

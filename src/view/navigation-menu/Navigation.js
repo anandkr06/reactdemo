@@ -14,7 +14,7 @@ class Navigation extends Component {
 
     render(){
         return (
-            <div>
+            <div className="col-2 sidebar">
                 <UserProfile />
                 <Menu url={this.props.url}/>
             </div>

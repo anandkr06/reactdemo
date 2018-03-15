@@ -7,7 +7,6 @@ import MenuList from './component/menu-list/MenuList';
 const Menu = props => {
     return (
        <div>
-           <label>Navigation Menu</label>
            <MenuList url={props.url} menuList={props.menuList} />
        </div>
     )

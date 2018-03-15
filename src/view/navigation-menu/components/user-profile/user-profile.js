@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 const UserProfile = props => {
     return (
-       <div>
+       <div id="user-profile">
            <label>UserProfile Pic</label>
            <label>{props.userLoginId}</label>
            <label>Welcome {props.userLoginName} </label>
