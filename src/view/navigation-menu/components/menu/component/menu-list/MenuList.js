@@ -39,10 +39,10 @@ class PreviledgeMenu extends Component {
         this.prepareList(this.data);
         return (
           
-            <div className="sidebar-sticky">
+            
                 <ul className = "nav flex-column">
                     {this.options}
-                </ul></div>
+                </ul>
             
         )
     }
