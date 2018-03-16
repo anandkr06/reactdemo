@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import './user-profile.css'
 
 const UserProfile = props => {
     return (
-       <div id="user-profile">
-           <label>UserProfile Pic</label>
-           <label>{props.userLoginId}</label>
-           <label>Welcome {props.userLoginName} </label>
+       <div id="user-profile" class="py-4">
+           <div class="user">UserProfile Pic</div>
+           <span class="name">{props.userLoginName}</span>
+           <span class="mailid">{props.userLoginId}</span>
         </div>
     )
 }

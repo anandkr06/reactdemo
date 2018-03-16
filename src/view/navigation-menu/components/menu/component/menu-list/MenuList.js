@@ -37,13 +37,10 @@ class PreviledgeMenu extends Component {
     render(){
         this.options.splice(0, this.options.length);
         this.prepareList(this.data);
-        return (
-          
-            <div className="sidebar-sticky">
+        return (            
                 <ul className = "nav flex-column">
                     {this.options}
-                </ul></div>
-            
+                </ul>
         )
     }
     
@@ -77,10 +74,10 @@ class NestedList extends Component{
     this.childOptions = [];
     this.renderChildMenu(this.props.list);
     return(
-      <div className = {`hide-child-option ${this.props.heading}`}>
-        <h3>{this.props.heading}<span>*</span></h3>
+      <div className = {`hide-child-option col-2 pt-3 ${this.props.heading}`}>
+        <h3>{this.props.heading}<span>x</span></h3>
         <p>{this.props.subheading}</p>
-        <ul>{this.childOptions}</ul>
+        <ul className="has-child">{this.childOptions}</ul>
       </div>
     )
   }

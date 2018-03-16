@@ -16,7 +16,7 @@ const initialState = {
       },{
         id : 'allowedScope',
         Header: 'Allowed Scope',
-        accessor: b => b.store[0].mapChilds[0].storeId ? 'All' : 'Custom' // String-based value accessors!
+        accessor: b => (b.store[0].children[0] && b.store[0].children[0].storeId === -1) ? 'All' : 'Custom' // String-based value accessors!
       }]
 }
 

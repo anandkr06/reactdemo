@@ -5,11 +5,11 @@
  .navbar-fixed-top {
     border: 0;
   }
-  
-  /*
-   * Sidebar
-   */
-  
+.has-child{padding-left: 0; color: #ddd; list-style: none;}
+.hide-child-option{position: fixed; top: 0; left: 16.66%; height: 100%; background: #212934;}
+.hide-child-option a{color: #ddd;}
+.hide-child-option h3{color: #ddd; font-size: 30px; position: relative;}
+.hide-child-option h3 span{position: absolute; top: 0; right: 0; font-weight: 100; cursor: pointer; }
   /* Hide for mobile, show later */
   .sidebar {
     display: none;
@@ -23,8 +23,8 @@
       z-index: 1000;
       display: block;
       padding:0 15px 15px;
-      overflow-x: hidden;
-      overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+      /*overflow-x: hidden;
+      overflow-y: auto;  Scrollable contents if viewport is shorter than content. */
       background-color: #1a1f2a;
     }
   }
@@ -36,7 +36,6 @@
   .nav > li > a {
     padding-left: 20px;
     color: #96989a;
-    background:url(../../../../../../images/d-nav-bg.jpg) repeat-y 0 0;
   }
   .nav > li > a:hover,
   .nav > .active > a,
