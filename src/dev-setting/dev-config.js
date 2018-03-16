@@ -8,6 +8,9 @@ const Setting = {
     dev3:{
         url : "http://10.175.173.221:8080/"
     },
+    dev4:{
+        url : "http://10.175.172.221:8080/"
+    },
     prod : {
         url: ""
     }

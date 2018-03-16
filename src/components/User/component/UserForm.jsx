@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { reduxForm, Field} from 'redux-form';
 import axios from 'axios';
 import {Multiselect, DropdownList} from 'react-widgets';
-import { createUserAction, fetchCelebrityListAction, fetchAllLocaleListAction, editUserFormAction, updateUserAction } from '../action/UserAction';
+import { createUserAction, fetchCelebrityListAction, fetchAllLocaleListAction, editUserFormAction, updateUserAction, fetchAllRoleListAction } from '../action/UserAction';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -16,10 +16,16 @@ class UserForm extends Component{
         (this.props.location.state) && this.props.editUserFormAction(this.props.location.state.data);
         this.props.fetchCelebrityListAction();
         this.props.fetchAllLocaleListAction();
-        
+        this.props.fetchAllRoleListAction();
     }
 
     render(){
+        let data = [];
+		for (let i = 0; i < this.props.allRoleList.length; i++){
+			let roleId = this.props.allRoleList[i].roleId;
+			let roleName = this.props.allRoleList[i].roleNme;
+    		data.push({["label"] : roleName, ["val"] : roleId});
+        }
         const { handleSubmit } = this.props 
 
         return(
@@ -79,6 +85,20 @@ class UserForm extends Component{
                         />
                     </div>
                 </div>
+                <div>
+                    <label>User Role</label>
+                    <div>
+                    <Field
+                        placeholder = "Select Role"
+						textField = {"label"}
+						valueField = {"val"}
+                        name="role"
+                        component={renderDropdownList}
+                        data={data}
+                        validate = {required}
+                        />
+                    </div>
+                </div>
             </form>
             <div>
                 <label>Current User Identity Verification</label>                    
@@ -96,7 +116,8 @@ const mapDispatchToProps = (dispatch) => {
     fetchCelebrityListAction, 
     fetchAllLocaleListAction, 
     editUserFormAction,
-    updateUserAction
+    updateUserAction,
+    fetchAllRoleListAction
 }, dispatch)
 }
 
@@ -104,7 +125,8 @@ const mapStateToProps = (state) => {
   return {
       celebrityList : state.celebrityList.celebrityList,
       allLocaleList : state.allLocaleList.allLocaleList,
-      initialValues : state.editFormData.editFormData
+      initialValues : state.editFormData.editFormData,
+      allRoleList  : state.allRoleList.allRoleList
   };
 }
 
