@@ -70,9 +70,7 @@ class Login extends Component {
         // LoginApiService.getLogin({ }).then((response) => {
         //     console.log('login api call requested with response', response);
         // });
-        var bytes = CryptoJS.AES.decrypt(ciphertext.toString(), '0123456789012345');
-        var plaintext = bytes.toString(CryptoJS.enc.Utf8);
-        console.log('plaintext', plaintext);
+       
         // this.props.history.push("/home");
     }
 

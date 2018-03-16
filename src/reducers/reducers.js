@@ -3,7 +3,7 @@ import {reducer as formReducer } from 'redux-form';
 import { loginReducer } from '../components/LoginScreen/reducer/login-reducer';
 import { loaderReducer } from '../utilities/loader/reducer/loader-reducer';
 import { headerReducer } from '../view/header/reducer/header-action-reducer';
-import { createUserReducer, getCelebrityListReducer, getAllUserListReducer, getViewUserColumnsReducer, getAllLocaleListReducer, loadEditUserDataReducer } from '../components/User/reducer/UserReducer';
+import { createUserReducer, getCelebrityListReducer, getAllUserListReducer, getViewUserColumnsReducer, getAllLocaleListReducer, loadEditUserDataReducer, fetchAllRoleListReducer } from '../components/User/reducer/UserReducer';
 import {  userMenuOptionReducer , roleMenuOptionReducer } from './screenMenuOptions';
 import { activeViewReducer } from '../components/Menu/reducer/menu-list-reducer';
 import { 
@@ -47,6 +47,7 @@ const integratedReducer = combineReducers({
    viewUserColumns : getViewUserColumnsReducer,
    allLocaleList : getAllLocaleListReducer,
    editFormData : loadEditUserDataReducer,
-   checkedOptions : checkedOptionsReducer
+   checkedOptions : checkedOptionsReducer,
+   allRoleList : fetchAllRoleListReducer
 });
 export default integratedReducer;
