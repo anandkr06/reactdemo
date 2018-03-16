@@ -32,9 +32,6 @@ const maxLength15 = maxLength(15);
 export const minLength = min => value => value && value.length < min ? `Must be ${min} characters or more` : undefined
 export const minLength6 = minLength(6);
 
-
-
-
 const renderField = ({
     input,
     label,
@@ -42,15 +39,12 @@ const renderField = ({
     className,
     meta: { touched, error, warning }
             }) => (
-        <div>
-            <label>{label}</label>
             <div className="md-input-wrapper">
                 <input {...input} placeholder={label} type={type} className={className} />
                 {touched &&
                     ((error && <span className="input-font-validation-message-color">{error}</span>) ||
                         (warning && <span className="input-font-validation-message-color">{warning}</span>))}
             </div>
-        </div>
     );
 
 class Login extends Component {
@@ -89,9 +83,7 @@ class Login extends Component {
                     </div>
                     <div className="right-side">
                         <form className="md-float-material" onSubmit={handleSubmit(this.handleSubmit)}>
-                            <h3 className="text-center">
-                                Login to your account
-                        </h3>
+                            <h3>Login to your account</h3>
                             <Field className="md-form-control icofont input-font-color-shiv"
                                 name="userName"
                                 type="email"
