@@ -80,7 +80,6 @@ class Login extends Component {
     render() {
         const { handleSubmit, pristine, submitting } = this.props
         return (
-            <div>
             <section className="login-container">
                     <div className="left-side">
                         <div className="content-block">
@@ -130,7 +129,6 @@ class Login extends Component {
                     </div>
                     <Loader></Loader>
                 </section>
-            </div>
         )
     }
 }
