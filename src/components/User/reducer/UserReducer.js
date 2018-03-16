@@ -27,6 +27,7 @@ const initialState = {
       accessor: 'status' // String-based value accessors!
     }],
     allLocaleList : [],
+    allRoleList : []
 
   }
 
@@ -132,6 +133,18 @@ export const createUserReducer = (state = initialState, action) => {
           return {
             ...state,
             editFormData : action.payload.editFormData
+          }
+        default:
+          return state
+        }
+      }
+
+      export const fetchAllRoleListReducer = (state = initialState, action) => {
+      switch (action.type) {
+        case "FETCH_ROLE_LIST_SUCCESS":
+          return {
+            ...state,
+            allRoleList : action.payload.allRoleList
           }
         default:
           return state
