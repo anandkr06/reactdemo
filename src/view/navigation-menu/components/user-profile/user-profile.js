@@ -4,10 +4,10 @@ import './user-profile.css'
 
 const UserProfile = props => {
     return (
-       <div id="user-profile">
+       <div id="user-profile" class="py-4">
            <div class="user">UserProfile Pic</div>
-           <Strong class="name"> props.userLoginName}</Strong>
-           <span>{props.userLoginId}</span>
+           <span class="name">{props.userLoginName}</span>
+           <span class="mailid">{props.userLoginId}</span>
         </div>
     )
 }
