@@ -21,7 +21,7 @@ export function editRoleForm(data) {
 }
 
 const prepareRoleObject = (data,getState) => {
-    let obj = { 
+    let obj = data.roleId ? { 
         'roleId' : data.roleId,
         'roleName' : (data.roleId) ? data.roleNme : '',
         'store' :  data.store,
@@ -30,7 +30,7 @@ const prepareRoleObject = (data,getState) => {
         'privileges' :  data.privilege,        
         'resourceAccess': (data.roleId) ? 
          (data.privilege[0].children[0] && data.privilege[0].children[0].privilId === -1) ? 'All'  : 'Custom' : 'All'
-    };
+    } : {};
     return obj;
 }
 
@@ -66,8 +66,8 @@ const prepareRoleUpdateObject = (data,getState) => {
     let obj = {
             "roleId" : data.roleId,
             "roleNme": data.roleName || "Super Admin 2",
-            "store": data.roleScopes === 'All' ? allStore : data.store,
-            "privilege": data.resourceAccess === 'All' ? allPriviledges : data.privileges,
+            "store": data.roleScopes === 'All' ? allStore : getState().selectedRoleScopes.selectedScopes,
+            "privilege": data.resourceAccess === 'All' ? allPriviledges : getState().selectedRoleResources.selectedResources,
             "createdBy": 0,
             "updatedBy":  getState().userLoginInfo.loginUser.id || 15
           } 

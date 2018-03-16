@@ -6,6 +6,10 @@ import { createUserAction, fetchCelebrityListAction, fetchAllLocaleListAction, e
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+//import form utilities
+import Alert from '../../../utilities/alert/Alert';
+import Loader from '../../../utilities/loader/Loader';
+
 class UserForm extends Component{
 
     constructor(props){
@@ -85,6 +89,8 @@ class UserForm extends Component{
                     <Field name = "userPassword" type = "password" label = "Your Password" component={renderField}
                     /> 
                 </div>
+                <Alert />
+                <Loader />
             </div>
         )
     }

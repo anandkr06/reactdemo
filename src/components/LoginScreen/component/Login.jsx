@@ -14,6 +14,9 @@ import Loader from '../../../utilities/loader/Loader';
 //importing actions
 import { login } from '../action/login-action';
 
+//importig alert
+import  Alert from '../../../utilities/alert/Alert';
+
 //importing encryption 
 var md5 = require('md5');
 var CryptoJS = require("crypto-js");
@@ -31,9 +34,6 @@ const maxLength15 = maxLength(15);
 //check for minlength field.
 export const minLength = min => value => value && value.length < min ? `Must be ${min} characters or more` : undefined
 export const minLength6 = minLength(6);
-
-
-
 
 const renderField = ({
     input,
@@ -65,7 +65,6 @@ class Login extends Component {
         data.userName = 'rohit.bagjani@nagarro.com';
         data.password = 'Test123';
         var ciphertext = CryptoJS.AES.encrypt(data.userName, '0123456789012345');
-        console.log('ciphertext',ciphertext.toString());
         var hashedPassword = md5(data.password);
         this.props.requestLogin({ useremail: ciphertext, password: hashedPassword },this.props.history);
         // LoginApiService.getLogin({ }).then((response) => {
@@ -126,9 +125,10 @@ class Login extends Component {
                             </div>
 
                         </form>
-
-                    </div>
+                        <Alert />
                     <Loader></Loader>
+                    </div>
+                  
                 </section>
             </div>
         )

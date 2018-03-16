@@ -9,8 +9,15 @@ class RoleApiService {
         return RoleApiService.instance;
     }
 
+    // { headers : { 
+            
+    //     'token': loginUserObject.loginUser.token.access_token,
+    //     'scope': 'Create Roles'
+    // }
 
-    addNewRole(obj) {
+
+    addNewRole(obj,loginUserObject) {
+        console.log('loginUserObject',loginUserObject);
         return axios.post(`${Setting.dev2.url}bq/v1/role/create`,obj);
         // return new Promise((resolve, reject) => resolve(
         //     {
