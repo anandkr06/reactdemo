@@ -70,9 +70,10 @@ class RoleInfo extends Component {
     }
 
     render() {
-        const { handleSubmit, pristine, submitting } = this.props;
+        const { handleSubmit, pristine, submitting } = this.props;        
         return (
             <div className="col-md-9">
+                <Alert />            
                 <label>Role Information</label>
                 <form onSubmit={handleSubmit} >
                     <Field name="roleName" type="text"
@@ -81,7 +82,7 @@ class RoleInfo extends Component {
                         validate={[required, isAlphabet, maxLength256]} />
                     <div>
                         <label>Current User Identity Verification</label>
-                        <Field name="userPassword" type="password"
+                        <Field name="userPassword" type="password" id='password'
                             label="Your Password *"
                             component={renderField}
                             validate={[required, maxLength15, minLength6]} />
@@ -90,7 +91,6 @@ class RoleInfo extends Component {
                         <RoleResources />
                     </div>
                 </form>
-                <Alert />
                 <Loader />
             </div>
         )
@@ -111,7 +111,7 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
 
 RoleInfo = reduxForm({
     form: 'roleInfo',
-    destroyOnUnmount: false,   // ??? why do we use it?
+    destroyOnUnmount: false,  
     keepDirtyOnReinitialize: true,
     enableReinitialize: true,
     onSubmit: (data, dispatch, props) => {
