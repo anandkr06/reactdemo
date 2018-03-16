@@ -74,8 +74,8 @@ class NestedList extends Component{
     this.childOptions = [];
     this.renderChildMenu(this.props.list);
     return(
-      <div className = {`hide-child-option ${this.props.heading}`}>
-        <h3>{this.props.heading}<span>*</span></h3>
+      <div className = {`hide-child-option col-2 ${this.props.heading}`}>
+        <h3>{this.props.heading}<span>x</span></h3>
         <p>{this.props.subheading}</p>
         <ul>{this.childOptions}</ul>
       </div>
