@@ -9,7 +9,7 @@ class Loader extends Component {
 
     render() {
         return (
-            this.props.showLoader ?<div id="loader-bg"> <svg className="loader" version="1.1" id="L6" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+            this.props.showLoader ?<div> <svg className="loader" version="1.1" id="L6" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                 viewBox="0 0 100 100" enableBackground="new 0 0 100 100" space="preserve">
                 <rect fill="none" stroke="#bea349" strokeWidth="4" x="25" y="25" width="50" height="50">
                     <animateTransform attributeName="transform" dur="0.5s" from="0 50 50" to="180 50 50" type="rotate" id="strokeBox" attributeType="XML"

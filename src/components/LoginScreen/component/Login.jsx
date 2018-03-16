@@ -14,9 +14,6 @@ import Loader from '../../../utilities/loader/Loader';
 //importing actions
 import { login } from '../action/login-action';
 
-//importig alert
-import  Alert from '../../../utilities/alert/Alert';
-
 //importing encryption 
 var md5 = require('md5');
 var CryptoJS = require("crypto-js");
@@ -35,6 +32,9 @@ const maxLength15 = maxLength(15);
 export const minLength = min => value => value && value.length < min ? `Must be ${min} characters or more` : undefined
 export const minLength6 = minLength(6);
 
+
+
+
 const renderField = ({
     input,
     label,
@@ -42,12 +42,15 @@ const renderField = ({
     className,
     meta: { touched, error, warning }
             }) => (
+        <div>
+            <label>{label}</label>
             <div className="md-input-wrapper">
                 <input {...input} placeholder={label} type={type} className={className} />
                 {touched &&
                     ((error && <span className="input-font-validation-message-color">{error}</span>) ||
                         (warning && <span className="input-font-validation-message-color">{warning}</span>))}
             </div>
+        </div>
     );
 
 class Login extends Component {
@@ -62,19 +65,21 @@ class Login extends Component {
         data.userName = 'rohit.bagjani@nagarro.com';
         data.password = 'Test123';
         var ciphertext = CryptoJS.AES.encrypt(data.userName, '0123456789012345');
+        console.log('ciphertext',ciphertext.toString());
         var hashedPassword = md5(data.password);
         this.props.requestLogin({ useremail: ciphertext, password: hashedPassword },this.props.history);
         // LoginApiService.getLogin({ }).then((response) => {
         //     console.log('login api call requested with response', response);
         // });
-       
+        var bytes = CryptoJS.AES.decrypt(ciphertext.toString(), '0123456789012345');
+        var plaintext = bytes.toString(CryptoJS.enc.Utf8);
+        console.log('plaintext', plaintext);
         // this.props.history.push("/home");
     }
 
     render() {
         const { handleSubmit, pristine, submitting } = this.props
         return (
-            <div>
             <section className="login-container">
                     <div className="left-side">
                         <div className="content-block">
@@ -84,7 +89,9 @@ class Login extends Component {
                     </div>
                     <div className="right-side">
                         <form className="md-float-material" onSubmit={handleSubmit(this.handleSubmit)}>
-                            <h3>Login to your account</h3>
+                            <h3 className="text-center">
+                                Login to your account
+                        </h3>
                             <Field className="md-form-control icofont input-font-color-shiv"
                                 name="userName"
                                 type="email"
@@ -118,12 +125,10 @@ class Login extends Component {
                             </div>
 
                         </form>
-                        <Alert />
-                    <Loader></Loader>
+
                     </div>
-                  
+                    <Loader></Loader>
                 </section>
-            </div>
         )
     }
 }
