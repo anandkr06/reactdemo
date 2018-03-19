@@ -37,9 +37,9 @@ class Navigation extends React.Component {
             (option) => {
                 return (
                     option.isHeading ?
-                    <li key = {option.heading}>{option.title}</li>
+                    <li className = "parent-heading" key = {option.heading}>{option.title}</li>
                     :
-                    <li key={option.title}><Link to = {option.title.split(" ").join("")}>{option.title}</Link>
+                    <li className = "option-heading" key={option.title}><Link to = {option.title.split(" ").join("")}>{option.title}</Link>
                     </li>
                 );
             }
@@ -52,7 +52,7 @@ class Navigation extends React.Component {
             return (
                 <div className="row">
                     <Header title = {title} history={this.props.history} />
-                    <div className="col-md-3"><ul className="nav  md-pills pills-primary flex-column">
+                    <div className="col-md-3"><ul className="nav  md-pills pills-primary flex-column parent-container">
                         {this.renderList()}
                     </ul></div>
                     <Route path='/home/system/UserInfo' component={UserForm}/>

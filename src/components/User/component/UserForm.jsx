@@ -46,7 +46,7 @@ class UserForm extends Component{
                     (<div>
                 <Field name = "pwd" type = "password" label = "Password" component={renderField}
                  validate = {required} />        
-                <Field name = "passwordConfirm" type = "email" label = "Confirm Password" component={renderField}
+                <Field name = "passwordConfirm" type = "password" label = "Confirm Password" component={renderField}
                     validate={[required,doPasswordMatch]}/> 
                     </div>)
                 : ('')}
@@ -104,11 +104,11 @@ class UserForm extends Component{
                     </div>
                 </div>
             </form>
-            <div>
+            {/* <div>
                 <label>Current User Identity Verification</label>                    
                     <Field name = "userPassword" type = "password" label = "Your Password" component={renderField}
                     /> 
-                </div>
+                </div> */}
                 <Alert />
                 <Loader />
             </div>

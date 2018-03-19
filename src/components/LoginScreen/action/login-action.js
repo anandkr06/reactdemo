@@ -29,12 +29,12 @@ export const afterLoginSuccess = (response, route) => {
             payload: 
                    { 
                        loginUser: {  
-                                    email: response.email,
+                                    email: response.unencryptedemail,
                                     name: `${response.fstNme}  ${response.lstNme}`,
                                     id:  response.userId,
                                     token : response.token 
                                   } ,
-                       navigationMenu: response.privil 
+                       navigationMenu: response.privilege 
                    } 
             })
         // dispatch(push('/home'));
@@ -65,16 +65,18 @@ export const afterLoginFailure = (error) => {
 
 export const makeLoginRequest = (obj) => {
     return LoginApiService.getLogin(obj).then(response => {
-        return { 
+        response.data.data['unencryptedemail'] = obj.unencryptedemail; 
+        // return { 
             
-                            "email": "davis.john@gmail.com",
-                              "fstNme": "david",
-                              "lstNme": "john",
-                            "langPref": "English",
-                            "privil": response.data.data
+        //                     "email": "davis.john@gmail.com",
+        //                       "fstNme": "david",
+        //                       "lstNme": "john",
+        //                     "langPref": "English",
+        //                     "privilege": response.data.data
                             
                     
                   
-                }
+        //         }
+        return response.data.data
     });
 }

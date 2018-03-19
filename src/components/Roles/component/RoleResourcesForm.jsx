@@ -67,7 +67,10 @@ class RoleResources extends Component {
     }
 
     render() {
-
+        if(this.props.scopeResourceData){
+            this.props.initScopes = this.props.scopeResourceData.store;
+            this.props.initResource  =  this.props.scopeResourceData.privilege;
+        }
         return (
             <div className="col-md-9">
                 <label>Role Scope</label>

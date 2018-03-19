@@ -59,11 +59,10 @@ class Login extends Component {
     handleSubmit(data) {
         console.log(data);
         event.preventDefault();
-        data.userName = 'rohit.bagjani@nagarro.com';
-        data.password = 'Test123';
-        var ciphertext = CryptoJS.AES.encrypt(data.userName, '0123456789012345');
+        var ciphertext = md5(data.userName);
         var hashedPassword = md5(data.password);
-        this.props.requestLogin({ useremail: ciphertext, password: hashedPassword },this.props.history);
+        //this.props.requestLogin({ useremail: ciphertext, password: hashedPassword },this.props.history);
+        this.props.requestLogin({ useremail: ciphertext, password: hashedPassword , unencryptedemail : data.userName },this.props.history); 
         // LoginApiService.getLogin({ }).then((response) => {
         //     console.log('login api call requested with response', response);
         // });

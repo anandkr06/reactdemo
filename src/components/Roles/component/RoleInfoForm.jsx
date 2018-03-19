@@ -70,6 +70,10 @@ class RoleInfo extends Component {
     }
 
     render() {
+        let scopeResourceData = null;
+        if(this.props.location.state){
+            scopeResourceData = this.props.location.state.data;
+        }
         const { handleSubmit, pristine, submitting } = this.props;        
         return (
             <div className="col-md-9">
@@ -80,15 +84,15 @@ class RoleInfo extends Component {
                         label="Role Information *"
                         component={renderField}
                         validate={[required, isAlphabet, maxLength256]} />
-                    <div>
+                    {/* <div>
                         <label>Current User Identity Verification</label>
                         <Field name="userPassword" type="password" id='password'
                             label="Your Password *"
                             component={renderField}
                             validate={[required, maxLength15, minLength6]} />
-                    </div>
+                    </div> */}
                     <div>
-                        <RoleResources />
+                        <RoleResources/>
                     </div>
                 </form>
                 <Loader />

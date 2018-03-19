@@ -28,7 +28,7 @@ class TreeComponent extends Component{
           for(let i in obj){
               let label = obj[i].label;
               let id = obj[i].id;
-              this.options.push(<div className = {`${label.split(" ").join("-")}-container`}><button className = {(obj)[i].children.length === 0 ? 'hide' : 'show' } onClick = {event => this.toggleChildMenu(`${label.split(" ").join("-")}-container`, event)}>Expand</button>
+              this.options.push(<div className = {`${label.split(" ").join("-")}-container`}><span className = {(obj)[i].children.length === 0 ? 'hide' : 'show expander' } onClick = {event => this.toggleChildMenu(`${label.split(" ").join("-")}-container`, event)}></span>
               <input className="parent-option-checkbox" type="checkbox" id = {label.split(" ").join("-")} value={`${label}-${id}`} key = {label} 
                 />
               <span onClick = {event => this.selectAllChildOptions(`${label.split(" ").join("-")}-container`, event)}>{label}</span>{(obj)[i].children.length !== 0 ? <NestedOptions labels = {obj[i].children} selectParentOption = {event => this.selectParentOption(`${label.split(" ").join("-")}-container`, event)}/> : ''}
