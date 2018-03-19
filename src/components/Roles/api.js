@@ -18,7 +18,7 @@ class RoleApiService {
 
     addNewRole(obj,loginUserObject) {
         console.log('loginUserObject',loginUserObject);
-        return axios.post(`${Setting.dev2.url}bq/v1/role/create`,obj);
+        return axios.post(`${Setting.dev.url}bq/v1/role/create`,obj);
         // return new Promise((resolve, reject) => resolve(
         //     {
         //         "status": {
@@ -31,7 +31,7 @@ class RoleApiService {
     }
 
     getResourceData() {
-        return axios.get(`${Setting.dev2.url}bq/v1/privil/fetch/`);
+        return axios.get(`${Setting.dev.url}bq/v1/privil/fetch/`);
         // return new Promise((resolve, reject) => resolve(
         //     {
         //         "status": {
@@ -108,7 +108,7 @@ class RoleApiService {
     }
 
     getScopeData() {
-        return axios.get(`${Setting.dev2.url}bq/v1/store/fetch/`);
+        return axios.get(`${Setting.dev.url}bq/v1/store/fetch/`);
         // return new Promise((resolve, reject) => resolve(
         //     {
         //         "status": {
@@ -144,7 +144,7 @@ class RoleApiService {
     }
 
     getAllRolesRecords() {
-        return axios.get(`${Setting.dev2.url}bq/v1/role/fetch/`);
+        return axios.get(`${Setting.dev.url}bq/v1/role/fetch/`);
         // return new Promise((resolve, reject) => resolve(
         //     {
         //         "status": {
@@ -219,7 +219,7 @@ class RoleApiService {
         let objectToSend =  Object.assign({}, data);
         console.log(data);
         delete objectToSend['roleId'];
-        return axios.put(`${Setting.dev2.url}bq/v1/role/update/${data.roleId}`,objectToSend,{ headers: { 'Content-Type': 'application/json' }} );
+        return axios.put(`${Setting.dev.url}bq/v1/role/update/${data.roleId}`,objectToSend,{ headers: { 'Content-Type': 'application/json' }} );
         // return new Promise((resolve, reject) => resolve({
         //     "status": {
         //       "httpStatusCode": 200,

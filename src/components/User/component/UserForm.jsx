@@ -41,7 +41,7 @@ class UserForm extends Component{
                 <Field name = "lstNme" type = "text" label = "Last Name" component={renderField}
                  validate = {[required, isAlphabet]}  />        
                 <Field name = "email" type = "email" label = "Email" component={renderField}
-                 validate = {[required, isValidEmail]}    />        
+                 validate = {[required, isValidEmail]} disabled = {!(this.props.initialValues instanceof Array || typeof this.props.initialValues === 'undefined')}    />        
                 {(this.props.initialValues instanceof Array || typeof this.props.initialValues === 'undefined') ? 
                     (<div>
                 <Field name = "pwd" type = "password" label = "Password" component={renderField}
@@ -173,12 +173,13 @@ UserForm = reduxForm({
             label,
             type,
             style,
+            disabled,
             meta: { touched, error, warning }
             }) => (
             <div style = {style}>
                 <label>{label}</label>
                 <div>
-                <input {...input} placeholder={label} type={type} style = {style} />
+                <input {...input} placeholder={label} type={type} style = {style} disabled = {disabled}/>
                 {touched &&
                     ((error && <span>{error}</span>) ||
                     (warning && <span>{warning}</span>))}

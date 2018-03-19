@@ -12,9 +12,10 @@ class LoginApiService {
       
     getLogin(obj){
         obj.useremail = obj.useremail.toString();
-        let loginCredential = 'Rom@gmail.com/30wereadf2324';
-        // let loginCredential = `${obj.useremail}/${obj.password}`;
-        return axios.post(`${Setting.dev3.url}bq/v1/login/${loginCredential}`);
+        return axios.get(`${Setting.dev.url}bq/v1/privil/fetch/`)
+        // let loginCredential = 'Rom@gmail.com/30wereadf2324';
+        // // let loginCredential = `${obj.useremail}/${obj.password}`;
+        // return axios.post(`${Setting.dev.url}bq/v1/login/${loginCredential}`);
       //   .then(res =>
       //      { 
       //       return { 

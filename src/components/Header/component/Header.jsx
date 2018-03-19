@@ -15,7 +15,7 @@ class Header extends Component {
 
     resetForm(event) {
         event ? event.preventDefault() : '';
-        if (this.props.userForm && typeof this.props.userForm.initial.userId === "undefined") {
+        if (this.props.userForm && this.props.userForm.initial && typeof this.props.userForm.initial.userId === "undefined") {
             this.props.reset(this.props.currentView);
         }
         else {
