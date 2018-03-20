@@ -22,3 +22,29 @@
 .show-child{
     display : none;
 }
+
+/* changes for demo */
+
+.parent-container{
+    padding-top: 5px;
+    border: 1px #000;
+}
+
+.parent-heading{
+    background-color: #000;
+    color: #fff;
+}
+
+.option-heading{
+    padding: 10px;
+    border-left: 2px solid #999900;
+}
+
+.option-heading > a{
+    text-decoration: none;
+    padding-left: 0px;
+}
+
+.option-heading:hover{
+    background-color: #000;
+}

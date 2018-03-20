@@ -17,6 +17,8 @@ import Dashboard from './screen/Dashboard/Dashboard';
 //import actions
 import { setHeader } from './header/action/header-action';
 
+import './view.css';
+
 class View extends React.Component {
     constructor(props){
         super(props);

@@ -5,7 +5,7 @@ class Service {
       
     createUser(obj){
         
-        return axios.post(`${Setting.dev2.url}bq/v1/user/create`,
+        return axios.post(`${Setting.dev.url}bq/v1/user/create`,
            
               obj,
           
@@ -16,8 +16,8 @@ class Service {
     }
 
     updateUser(obj){
-        obj.userId = 15;
-        return axios.put(`${Setting.dev2.url}bq/v1/user/update/${obj.userId}`,
+        
+        return axios.put(`${Setting.dev.url}bq/v1/user/update/${obj.userId}`,
            
               obj,
           
@@ -28,17 +28,17 @@ class Service {
     }
 
     getCelebrityList(){
-        return axios.get(`${Setting.dev2.url}bq/v1/celebs/fetch/`
+        return axios.get(`${Setting.dev.url}bq/v1/celebs/fetch/`
       );
     }
 
     getAllLocaleList(){
-        return axios.get(`${Setting.dev4.url}bq/v1/lang/fetch/`
+        return axios.get(`${Setting.dev.url}bq/v1/lang/fetch/`
       );
     }
 
     getAllUserList(){
-        return axios.get(`${Setting.dev4.url}bq/v1/user/fetch/`
+        return axios.get(`${Setting.dev.url}bq/v1/user/fetch/`
     //     return   new Promise((resolve, reject) => resolve(
     //      [{
     //         "userId": 111,
@@ -174,7 +174,7 @@ class Service {
         )}
 
             getAllRoleList(){
-                 return axios.get(`${Setting.dev4.url}bq/v1/role/fetch/`)
+                 return axios.get(`${Setting.dev.url}bq/v1/role/fetch/`)
             }
             //      return   new Promise((resolve, reject) => resolve(
             //         [{

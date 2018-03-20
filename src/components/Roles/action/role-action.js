@@ -33,7 +33,8 @@ export function createRoleInfoAction(data) {
     return (dispatch,getState) => {
         console.log('create getState data ',getState().userLoginInfo);
         dispatch(loaderOn()); 
-        makeRoleCreationRequest(prepareRoleObject(data,getState))
+        makeRoleCreationRequest(prepareRoleObject(data,getState),
+        { loginUser : getState().userLoginInfo.loginUser, privilege : getState().userLoginInfo.navigationMenu })
         .then(respnse => {
             afterRoleCreationSuccess(respnse)(dispatch);
             resetSelectedResources()(dispatch);
@@ -51,41 +52,16 @@ const prepareRoleObject = (data,getState) => {
         'roleNme' : data.roleName,
         'store': getState().selectedRoleScopes.selectedScopes.length > 0 ? getState().selectedRoleScopes.selectedScopes : [{ 'children' : [ { 'storeId' : -1 } ] }],
         'privilege':  getState().selectedRoleResources.selectedResources.length > 0 ? getState().selectedRoleResources.selectedResources : [{ 'privilId' :-1 }] ,
-        'createdBy' : getState().userLoginInfo.loginUser.id || 15,
+        'createdBy' : getState().userLoginInfo.loginUser.id,
         'updatedBy' : 0
     };
-    // let obj =  {
-    //     "roleNme": data.roleName,
-    //     "store": [
-    //       {
-    //         "cntryId": 1,
-    //         "children": [
-    //           {
-    //             "storeId": 1
-    //           }
-    //         ]
-    //       }
-    //     ],
-    //     "privilege": [
-    //            {
-    //               "privilId": 3,
-    //               "children": []
-    //           },
-    //           {
-    //               "privilId": 4,
-    //               "children": []
-    //           }
-    //       ],
-    //     "createdBy": 15,
-    //     "updatedBy": 0
-    //   } 
     console.log('create role sending json',obj);
     return obj;
 }
 
 
-export const makeRoleCreationRequest = (obj) => {
-    return RoleApi.addNewRole(obj).then(response => {
+export const makeRoleCreationRequest = (obj,loginUserObject) => {
+    return RoleApi.addNewRole(obj,loginUserObject).then(response => {
         return response;
     });
 }
@@ -255,6 +231,7 @@ export function resetSelectedScopes() {
 
 export function initAction() {
     return (dispatch) => {
+        dispatch(reset('roleInfo'));
         dispatch(alertHide());
         dispatch(loaderOff());          
     }

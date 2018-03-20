@@ -6,6 +6,10 @@ import { createUserAction, fetchCelebrityListAction, fetchAllLocaleListAction, e
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+//import form utilities
+import Alert from '../../../utilities/alert/Alert';
+import Loader from '../../../utilities/loader/Loader';
+
 class UserForm extends Component{
 
     constructor(props){
@@ -43,12 +47,12 @@ class UserForm extends Component{
                  validate = {[required, isAlphabet]}  />
                  </div>    
                 <Field name = "email" type = "email" label = "Email" component={renderField}
-                 validate = {[required, isValidEmail]}    />        
+                 validate = {[required, isValidEmail]} disabled = {!(this.props.initialValues instanceof Array || typeof this.props.initialValues === 'undefined')}    />        
                 {(this.props.initialValues instanceof Array || typeof this.props.initialValues === 'undefined') ? 
                     (<div>
                 <Field name = "pwd" type = "password" label = "Password" component={renderField}
                  validate = {required} />        
-                <Field name = "passwordConfirm" type = "email" label = "Confirm Password" component={renderField}
+                <Field name = "passwordConfirm" type = "password" label = "Confirm Password" component={renderField}
                     validate={[required,doPasswordMatch]}/> 
                     </div>)
                 : ('')}
@@ -106,11 +110,13 @@ class UserForm extends Component{
                     </div>
                 </div>
             </form>
-            <div>
+            {/* <div>
                 <label>Current User Identity Verification</label>                    
                     <Field name = "userPassword" type = "password" label = "Your Password" component={renderField}
                     /> 
-                </div>
+                </div> */}
+                <Alert />
+                <Loader />
             </div>
         )
     }
@@ -173,13 +179,13 @@ UserForm = reduxForm({
             label,
             type,
             style,
-            className,
+            disabled,
             meta: { touched, error, warning }
             }) => (
             <div style = {style}>
                 <label>{label}</label>
-                <div className = {className}>
-                <input {...input} placeholder={label} type={type} style = {style} />
+                <div>
+                <input {...input} placeholder={label} type={type} style = {style} disabled = {disabled}/>
                 {touched &&
                     ((error && <span>{error}</span>) ||
                     (warning && <span>{warning}</span>))}
