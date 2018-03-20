@@ -34,9 +34,8 @@ class UserForm extends Component{
             <form onSubmit={handleSubmit}>
                 <div className="form-group row">
                 <label className="col-3 col-form-label">First Name</label>
-                <div className="col-9">
                 <Field name = "fstNme" className = "form-control" type = "text" component={renderField}
-                 validate = {[required, isAlphabet]}/></div>
+                 validate = {[required, isAlphabet]}/>
                  </div>
                  <div className="form-group row">
                 <label className="col-3 col-form-label">Last Name</label>       
