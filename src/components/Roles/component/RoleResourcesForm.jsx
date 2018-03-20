@@ -68,7 +68,7 @@ class RoleResources extends Component {
 
     render() {
         return (
-            <div className="col-md-9">
+            <div className="col-9">
                 <label>Role Scope</label>
                 <div >
                     <div>

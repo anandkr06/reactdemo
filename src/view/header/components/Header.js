@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import '../header.css';
 
 const Header = props => (
-    <div className="title-border">
+    <div className="title-border px-3 py-2">
       <h1>{props.screenTitle}</h1>
       {/* <div>
           <span className="glyphicon glyphicon-search">searchicon</span>

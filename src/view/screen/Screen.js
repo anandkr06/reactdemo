@@ -11,7 +11,7 @@ class Screen extends Component {
   render() {
     return (
         <div>
-          <div className="col pt-3 px-0">
+          <div className="col pt-3">
                 <Switch>
                     <Route path={`${this.props.url}/system/:topicId`} component={Navigation}/>
                     <Route path={`${this.props.url}`} component={Dashboard}/>
