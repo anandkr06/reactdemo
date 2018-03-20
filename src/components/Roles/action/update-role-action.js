@@ -43,7 +43,7 @@ const prepareRoleObject = (data,getState) => {
 export function updateRoleAction(data) {
     return (dispatch,getState) => {
              dispatch(loaderOn()); 
-             updateRole(prepareRoleUpdateObject(data,getState))
+             updateRole(prepareRoleUpdateObject(data,getState),getState().userLoginInfo)
              .then(respnse => {
                   afterUpdateRoleSuccess(respnse)(dispatch);
              })
@@ -53,8 +53,8 @@ export function updateRoleAction(data) {
     }
 }
 
-export const  updateRole = (data) => {
-    return RoleApi.updateRole(data).then(response => {
+export const  updateRole = (data,obj) => {
+    return RoleApi.updateRole(data, obj).then(response => {
         return response;
     });
 }

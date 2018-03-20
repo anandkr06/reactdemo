@@ -3,42 +3,70 @@ import Setting from '../../dev-setting/dev-config';
 
 class Service {
       
-    createUser(obj){
+    createUser(obj, loginUserObject){
         
         return axios.post(`${Setting.dev.url}bq/v1/user/create`,
            
               obj,
           
+        //   {
+        //     headers: { 'Content-Type': 'application/json' }
+        //   }
+
           {
-            headers: { 'Content-Type': 'application/json' }
-          }
+            headers: {
+                token: loginUserObject.loginUser.token.access_token,
+                scope: 'Create-User'
+            } 
+        }
       );
     }
 
-    updateUser(obj){
+    updateUser(obj, loginUserObject){
         
         return axios.put(`${Setting.dev.url}bq/v1/user/update/${obj.userId}`,
            
               obj,
+              {
+              headers: {
+                token: loginUserObject.loginUser.token.access_token,
+                scope: 'Dashboard'
+              }
+            } 
           
-          {
-            headers: { 'Content-Type': 'application/json' }
-          }
+        //   {
+        //     headers: { 'Content-Type': 'application/json' }
+        //   }
       );
     }
 
-    getCelebrityList(){
-        return axios.get(`${Setting.dev.url}bq/v1/celebs/fetch/`
+    getCelebrityList(loginUserObject){
+        return axios.get(`${Setting.dev.url}bq/v1/celebs/fetch/`, {
+              headers: {
+                token: loginUserObject.loginUser.token.access_token,
+                scope: 'Dashboard'
+              }
+            }
       );
     }
 
-    getAllLocaleList(){
-        return axios.get(`${Setting.dev.url}bq/v1/lang/fetch/`
+    getAllLocaleList(loginUserObject){
+        return axios.get(`${Setting.dev.url}bq/v1/lang/fetch/`, {
+              headers: {
+                token: loginUserObject.loginUser.token.access_token,
+                scope: 'Dashboard'
+              }
+            }
       );
     }
 
-    getAllUserList(){
-        return axios.get(`${Setting.dev.url}bq/v1/user/fetch/`
+    getAllUserList(loginUserObject){
+        return axios.get(`${Setting.dev.url}bq/v1/user/fetch/`, {
+            headers: {
+                token: loginUserObject.loginUser.token.access_token,
+                scope: 'View-User'
+                } 
+            }
     //     return   new Promise((resolve, reject) => resolve(
     //      [{
     //         "userId": 111,
@@ -173,8 +201,13 @@ class Service {
     // ));
         )}
 
-            getAllRoleList(){
-                 return axios.get(`${Setting.dev.url}bq/v1/role/fetch/`)
+            getAllRoleList(loginUserObject){
+                 return axios.get(`${Setting.dev.url}bq/v1/role/fetch/`,{
+                    headers: {
+                    token: loginUserObject.loginUser.token.access_token,
+                    scope: 'Fetch-Roles'
+                    } 
+                 })
             }
             //      return   new Promise((resolve, reject) => resolve(
             //         [{

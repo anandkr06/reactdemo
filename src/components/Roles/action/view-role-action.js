@@ -15,7 +15,7 @@ import RoleApi from '../api';
 export function allRolesRecords() {
     return (dispatch,getState) => {
         dispatch(loaderOn()); 
-        getAllRolesRecords()
+        getAllRolesRecords(getState().userLoginInfo)
         .then(respnse => {
             afterAllRolesRecordsSuccess(respnse)(dispatch);
         })
@@ -25,8 +25,8 @@ export function allRolesRecords() {
     }
 }
 
-export const getAllRolesRecords = () => {
-    return RoleApi.getAllRolesRecords().then(response => {
+export const getAllRolesRecords = (obj) => {
+    return RoleApi.getAllRolesRecords(obj).then(response => {
         return response;
     });
 }

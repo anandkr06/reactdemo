@@ -106,7 +106,7 @@ export const afterRoleCreationFailure = (error) => {
 export function nestedResourcesData() {
     return (dispatch,getState) => {
         dispatch(loaderOn()); 
-        getResourceData()
+        getResourceData(getState().userLoginInfo)
         .then(respnse => {
             afterRoleResourcesSuccess(respnse)(dispatch);
         })
@@ -116,8 +116,8 @@ export function nestedResourcesData() {
     }
 }
 
-export const getResourceData = () => {
-    return RoleApi.getResourceData().then(response => {
+export const getResourceData = (obj) => {
+    return RoleApi.getResourceData(obj).then(response => {
         return response;
     });
 }
@@ -148,7 +148,7 @@ export const afterRoleResourcesFailure = (error) => {
 export function nestedScopesData() {
     return (dispatch,getState) => {
         dispatch(loaderOn()); 
-        getScopeData()
+        getScopeData(getState().userLoginInfo)
         .then(respnse => {
             afterScopesSuccess(respnse)(dispatch);
         })
@@ -158,8 +158,8 @@ export function nestedScopesData() {
     }
 }
 
-export const getScopeData = () => {
-    return RoleApi.getScopeData().then(response => {
+export const getScopeData = (obj) => {
+    return RoleApi.getScopeData(obj).then(response => {
         return response;
     });
 }

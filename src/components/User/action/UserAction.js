@@ -18,7 +18,7 @@ export function createUserAction(data) {
     
     return (dispatch, getState) => {
         //dispatch(loaderOn());
-        new Service().createUser(data).then(response => {
+        new Service().createUser(data, getState().userLoginInfo).then(response => {
             console.log(response.data);
             dispatch(alertShow({messageType:'Success',content:"User created successfully."}));
             dispatch(reset('userForm'));
@@ -45,9 +45,9 @@ export function updateUserAction(data){
 //    delete data["userPassword"];
     data["role"] = (data.role.val) ? parseInt(data.role.val) : parseInt(data.role);
     data["status"] = (data.status.id) ? parseInt(data.status.id) : parseInt(data.status);
-    return (dispatch) => {
+    return (dispatch, getState) => {
         //dispatch(loaderOn());
-        new Service().updateUser(data).then(response => {
+        new Service().updateUser(data, getState().userLoginInfo).then(response => {
             console.log(response.data);
             dispatch(alertShow({messageType:'Success',content:'User updated successfully'}));
             dispatch(editUserFormAction([]))
@@ -70,9 +70,9 @@ export function updateUserAction(data){
 }
 
 export function fetchCelebrityListAction() {
-    return (dispatch) => {
+    return (dispatch, getState) => {
         //dispatch(loaderOn());
-        new Service().getCelebrityList().then(response => {
+        new Service().getCelebrityList(getState().userLoginInfo).then(response => {
             dispatch({ type: FETCH_LIST_SUCCESS, payload: { celebrityList : response.data.data} });
             console.log(response.data);
         })
@@ -83,9 +83,9 @@ export function fetchCelebrityListAction() {
 }
 
 export function fetchAllLocaleListAction() {
-    return (dispatch) => {
+    return (dispatch, getState) => {
         //dispatch(loaderOn());
-        new Service().getAllLocaleList().then(response => {
+        new Service().getAllLocaleList(getState().userLoginInfo).then(response => {
             dispatch({ type: FETCH_LOCALE_LIST_SUCCESS, payload: { localeList : response.data.data} });
             console.log(response.data);
         })
@@ -97,9 +97,9 @@ export function fetchAllLocaleListAction() {
 
 
 export function viewAllUsersAction() {
-    return (dispatch) => {
+    return (dispatch, getState) => {
         //dispatch(loaderOn());
-        new Service().getAllUserList().then(response => {
+        new Service().getAllUserList(getState().userLoginInfo).then(response => {
             dispatch({ type: FETCH_USER_LIST_SUCCESS, payload: { allUserList : response.data.data} });
             console.log(response);
         })
@@ -117,9 +117,9 @@ export function editUserFormAction(data) {
 }
 
 export function fetchAllRoleListAction() {
-    return (dispatch) => {
+    return (dispatch, getState) => {
         //dispatch(loaderOn());
-        new Service().getAllRoleList().then(response => {
+        new Service().getAllRoleList(getState().userLoginInfo).then(response => {
             dispatch({ type: "FETCH_ROLE_LIST_SUCCESS", payload: { allRoleList : response.data.data} });
             console.log(response.data);
         })
