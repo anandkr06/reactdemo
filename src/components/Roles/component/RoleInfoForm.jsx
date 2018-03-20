@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 //include redux-form
-import { reduxForm, Field } from 'redux-form';
+import { reduxForm, Field, reset } from 'redux-form';
 
 //include connection to redux 
 import { connect } from 'react-redux';
@@ -121,6 +121,7 @@ RoleInfo = reduxForm({
     onSubmit: (data, dispatch, props) => {
         !data.roleId && dispatch(createRoleInfoAction(data));
         data.roleId && dispatch(updateRoleAction(data));
+        dispatch(reset('roleInfo'));
     }
 })(RoleInfo);
 

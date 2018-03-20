@@ -3,6 +3,8 @@ import { connect, dispatch } from 'react-redux';
 import { combineReducers } from 'redux'
 import { reset, submit } from 'redux-form';
 import { editUserFormAction } from '../../User/action/UserAction';
+import { editRoleForm } from "../../Roles/action/update-role-action";
+
 
 class Header extends Component {
 
@@ -15,11 +17,12 @@ class Header extends Component {
 
     resetForm(event) {
         event ? event.preventDefault() : '';
-        if (this.props.userForm && this.props.userForm.initial && typeof this.props.userForm.initial.userId === "undefined") {
-            this.props.reset(this.props.currentView);
-        }
-        else {
+        this.props.reset(this.props.currentView);
+        if(this.props.currentView === 'userForm') {
             this.props.editUserFormAction([]);
+        }
+        else{
+            this.props.editRoleForm([]);
         }
     }
 
@@ -56,4 +59,4 @@ function mapStateToProps(state) {
 };
 
 
-export default connect(mapStateToProps, { reset, submit, editUserFormAction })(Header);
+export default connect(mapStateToProps, { reset, submit, editUserFormAction, editRoleForm })(Header);
