@@ -4,6 +4,7 @@ import { combineReducers } from 'redux'
 import { reset, submit } from 'redux-form';
 import { editUserFormAction } from '../../User/action/UserAction';
 import { editRoleForm } from "../../Roles/action/update-role-action";
+import '../styles/Header.css'
 
 
 class Header extends Component {

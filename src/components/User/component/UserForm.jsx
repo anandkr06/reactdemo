@@ -34,30 +34,25 @@ class UserForm extends Component{
 
         return(
             <div className="col-9 tab-content">
-                <label>Account Information</label>
+                <h3 className="pb-3">Account Information</h3>
+                <hr/>
             <form onSubmit={handleSubmit}>
-                <div className="form-group row">
-                <label className="col-3 col-form-label">First Name</label>
-                <Field name = "fstNme" className = "form-control" type = "text" component={renderField}
+                <Field name = "fstNme" label = "First Name" className = "form-control" type = "text" component={renderField}
                  validate = {[required, isAlphabet]}/>
-                 </div>
-                 <div className="form-group row">
-                <label className="col-3 col-form-label">Last Name</label>       
-                <Field name = "lstNme" type = "text" component={renderField}
+               <Field name = "lstNme" label = "Last Name" className = "form-control" type = "text" component={renderField}
                  validate = {[required, isAlphabet]}  />
-                 </div>    
-                <Field name = "email" type = "email" label = "Email" component={renderField}
+               <Field name = "email" type = "email" className = "form-control" label = "Email" component={renderField}
                  validate = {[required, isValidEmail]} disabled = {!(this.props.initialValues instanceof Array || typeof this.props.initialValues === 'undefined')}    />        
                 {(this.props.initialValues instanceof Array || typeof this.props.initialValues === 'undefined') ? 
                     (<div>
-                <Field name = "pwd" type = "password" label = "Password" component={renderField}
+                <Field name = "pwd" type = "password" className = "form-control" label = "Password" component={renderField}
                  validate = {required} />        
-                <Field name = "passwordConfirm" type = "password" label = "Confirm Password" component={renderField}
+                <Field name = "passwordConfirm" type = "password" className = "form-control" label = "Confirm Password" component={renderField}
                     validate={[required,doPasswordMatch]}/> 
                     </div>)
                 : ('')}
-                <div>
-                     <label>Map Celebrity</label>
+                {/* <div>
+                     <label className="col-4">Map Celebrity</label> */}
                      <Field
                         placeholder = "Select Celebrity"
                         name="mapCelebs"
@@ -65,11 +60,13 @@ class UserForm extends Component{
                         valueField='celebId'
                         textField='celebNme'
                         data={this.props.celebrityList}
+                        className = "col-8"
+                        label = "Map Celebrity"
                         />
-                </div>           
-                <div>
-                    <label>Interface Locale</label>
-                    <div>
+                {/* </div>            */}
+                {/* <div>
+                    <label className="col-4">Interface Locale</label>
+                    <div> */}
                     <Field
                         placeholder = "Select Locale"
                         name="languagePref"
@@ -78,12 +75,14 @@ class UserForm extends Component{
                         component={renderDropdownList}
                         data={this.props.allLocaleList}
                         validate = {required}
+                        className = "col-8"
+                        label = "Interface Locale"
                         />
-                    </div>
-                </div>
-                <div>
-                    <label>This Account is</label>
-                    <div>
+                    {/* </div>
+                </div> */}
+                {/* <div>
+                    <label className="col-4">This Account is</label>
+                    <div> */}
                     <Field
                         placeholder = "Select Account Status"
                         name="status"
@@ -92,12 +91,14 @@ class UserForm extends Component{
                         component={renderDropdownList}
                         data={accountStatus}
                         validate = {required}
+                        className = "col-8"
+                        label = "This Account is"
                         />
-                    </div>
-                </div>
-                <div>
-                    <label>User Role</label>
-                    <div>
+                    {/* </div>
+                </div> */}
+                {/* <div>
+                    <label className="col-4">User Role</label>
+                    <div> */}
                     <Field
                         placeholder = "Select Role"
 						textField = {"label"}
@@ -106,9 +107,11 @@ class UserForm extends Component{
                         component={renderDropdownList}
                         data={data}
                         validate = {required}
+                        className = "col-8"
+                        label = "User Role"
                         />
-                    </div>
-                </div>
+                    {/* </div>
+                </div> */}
             </form>
             {/* <div>
                 <label>Current User Identity Verification</label>                    
@@ -181,12 +184,13 @@ UserForm = reduxForm({
             type,
             style,
             disabled,
+            className,
             meta: { touched, error, warning }
             }) => (
-            <div style = {style}>
-                <label>{label}</label>
-                <div>
-                <input {...input} placeholder={label} type={type} style = {style} disabled = {disabled}/>
+            <div className="form-group row" style = {style}>
+                <label className = "col-4">{label}</label>
+                <div className = "col-8">
+                <input {...input} className = {className} placeholder={label} type={type} style = {style} disabled = {disabled}/>
                 {touched &&
                     ((error && <span>{error}</span>) ||
                     (warning && <span>{warning}</span>))}
@@ -194,7 +198,9 @@ UserForm = reduxForm({
             </div>
         );
 
-        const renderMultiselect = ({ input, data, valueField, textField, placeholder }) =>
+        const renderMultiselect = ({ input, data, valueField, textField, placeholder, className, label }) =>
+        <div className="form-group row">
+                <label className = "col-4">{label}</label>
             <Multiselect {...input}
                 onBlur={() => input.onBlur()}
                 value={input.value || []} // requires value to be an array
@@ -202,15 +208,19 @@ UserForm = reduxForm({
                 valueField={valueField}
                 textField={textField}
                 placeholder = {placeholder}
+                className = {className}
             />
+            </div>
         
-        const renderDropdownList = ({ input, data, valueField, textField, placeholder,  meta: { touched, error, warning }
+        const renderDropdownList = ({ input, data, valueField, textField, placeholder, className, label,  meta: { touched, error, warning }
          }) =>
-                (<div>
+                (<div className="form-group row">
+                <label className = "col-4">{label}</label>
                 <DropdownList {...input}
                     data={data}
                     valueField={valueField}
                     textField={textField}
+                    className = {className}
                     placeholder={placeholder || null} />
                     {touched &&
                     ((error && <span>{error}</span>) ||
