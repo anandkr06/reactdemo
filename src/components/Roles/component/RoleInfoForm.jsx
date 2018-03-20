@@ -70,7 +70,7 @@ class RoleInfo extends Component {
     }
 
     render() {
-        let scopeResourceData = null;
+        let scopeResourceData;
         if(this.props.location.state){
             scopeResourceData = this.props.location.state.data;
         }
@@ -92,7 +92,7 @@ class RoleInfo extends Component {
                             validate={[required, maxLength15, minLength6]} />
                     </div> */}
                     <div>
-                        <RoleResources/>
+                        <RoleResources scopeResourceData = {scopeResourceData}/>
                     </div>
                 </form>
                 <Loader />

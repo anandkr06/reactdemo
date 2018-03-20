@@ -2,7 +2,7 @@
     display: none;
 }
 
-.child-option-checkbox, .parent-option-checkbox{
+.child-option-checkbox, .parent-option{
     pointer-events: none;
 }
 
@@ -10,11 +10,20 @@
     display: inline-block;
 }
 
-.expander{
+.expander-right{
     padding-right: 5px;
     width: 0;
     height: 0;
     border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-left: 6px solid grey;
+}
+
+.expander-bottom{
+    padding-right: 5px;
+    width: 0;
+    height: 0;
+    border-right: 6px solid transparent;
     border-bottom: 6px solid transparent;
     border-left: 6px solid grey;
 }

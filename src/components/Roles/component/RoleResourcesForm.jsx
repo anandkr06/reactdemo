@@ -67,10 +67,6 @@ class RoleResources extends Component {
     }
 
     render() {
-        if(this.props.scopeResourceData){
-            this.props.initScopes = this.props.scopeResourceData.store;
-            this.props.initResource  =  this.props.scopeResourceData.privilege;
-        }
         return (
             <div className="col-md-9">
                 <label>Role Scope</label>
@@ -88,7 +84,7 @@ class RoleResources extends Component {
                             </Field>
                         </div>
                         {this.state.scopeTree ? <div>
-                            <TreeComponent data = {this.props.scopes} responseFormat = {responseFormat} responseKey = {"store"} parentLabel = {"cntryNme"} childLabel = {"storeNme"} parentId = {"cntryId"} childId = {"storeId"}></TreeComponent>
+                            <TreeComponent preSelectedData = {this.props.scopeResourceData ? this.props.scopeResourceData.store : ''} data = {this.props.scopes} responseFormat = {responseFormat} responseKey = {"store"} parentLabel = {"cntryNme"} childLabel = {"storeNme"} parentId = {"cntryId"} childId = {"storeId"}></TreeComponent>
                         </div> : <span></span>}
                     </div>
 
@@ -113,7 +109,7 @@ class RoleResources extends Component {
                          <div>
                              <label>Resources</label>
                              <div>
-                                <TreeComponent data = {this.props.resources} responseFormat = {responseFormat} responseKey = {"privilege"} parentLabel = {"privilNme"} childLabel = {"privilNme"} parentId = {"privilId"} childId = {"privilId"}></TreeComponent>
+                                <TreeComponent preSelectedData = {this.props.scopeResourceData ? this.props.scopeResourceData.privilege : ''} data = {this.props.resources} responseFormat = {responseFormat} responseKey = {"privilege"} parentLabel = {"privilNme"} childLabel = {"privilNme"} parentId = {"privilId"} childId = {"privilId"}></TreeComponent>
                              </div> 
                          </div> : 
                          <span></span>

@@ -39,65 +39,65 @@ class RoleApiService {
         //             "success": true,
         //             "errors": null
         //         },
-        //         "data": [
-        //             {
-        //                 "privilId": 1,
-        //                 "privilNme": "Dashboard",
-        //                 "subHeading": "Permissions",
-        //                 "refUrl": "/dashboard",
-        //                 "children": []
-        //             },
-        //             {
-        //                 "privilId": 2,
-        //                 "privilNme": "System",
-        //                 "subHeading": "Permissions",
-        //                 "refUrl": "/system",
-        //                 "children": [
-        //                     {
-        //                         "privilId": 3,
-        //                         "privilNme": "Create Roles",
-        //                         "subHeading": "Create role",
-        //                         "refUrl": "/system/createRole",
-        //                         "children": []
-        //                     },
-        //                     {
-        //                         "privilId": 4,
-        //                         "privilNme": "Fetch Roles",
-        //                         "subHeading": "View all roles",
-        //                         "refUrl": "/system/viewRole",
-        //                         "children": []
-        //                     },
-        //                     {
-        //                         "privilId": 6,
-        //                         "privilNme": "Create User",
-        //                         "subHeading": "",
-        //                         "refUrl": "/system/createUser",
-        //                         "children": []
-        //                     },
-        //                     {
-        //                         "privilId": 7,
-        //                         "privilNme": "View User",
-        //                         "subHeading": "",
-        //                         "refUrl": "/system/viewUser",
-        //                         "children": []
-        //                     }
-        //                 ]
-        //             },
-        //             {
-        //                 "privilId": 8,
-        //                 "privilNme": "Sales",
-        //                 "subHeading": "Sales page",
-        //                 "refUrl": "/sales",
-        //                 "children": []
-        //             },
-        //             {
-        //                 "privilId": 9,
-        //                 "privilNme": "Product",
-        //                 "subHeading": "Product page",
-        //                 "refUrl": "/prodict",
-        //                 "children": []
-        //             }
-        //         ],
+                // "data": [
+                //     {
+                //         "privilId": 1,
+                //         "privilNme": "Dashboard",
+                //         "subHeading": "Permissions",
+                //         "refUrl": "/dashboard",
+                //         "children": []
+                //     },
+                //     {
+                //         "privilId": 2,
+                //         "privilNme": "System",
+                //         "subHeading": "Permissions",
+                //         "refUrl": "/system",
+                //         "children": [
+                //             {
+                //                 "privilId": 3,
+                //                 "privilNme": "Create Roles",
+                //                 "subHeading": "Create role",
+                //                 "refUrl": "/system/createRole",
+                //                 "children": []
+                //             },
+                //             {
+                //                 "privilId": 4,
+                //                 "privilNme": "Fetch Roles",
+                //                 "subHeading": "View all roles",
+                //                 "refUrl": "/system/viewRole",
+                //                 "children": []
+                //             },
+                //             {
+                //                 "privilId": 6,
+                //                 "privilNme": "Create User",
+                //                 "subHeading": "",
+                //                 "refUrl": "/system/createUser",
+                //                 "children": []
+                //             },
+                //             {
+                //                 "privilId": 7,
+                //                 "privilNme": "View User",
+                //                 "subHeading": "",
+                //                 "refUrl": "/system/viewUser",
+                //                 "children": []
+                //             }
+                //         ]
+                //     },
+                //     {
+                //         "privilId": 8,
+                //         "privilNme": "Sales",
+                //         "subHeading": "Sales page",
+                //         "refUrl": "/sales",
+                //         "children": []
+                //     },
+                //     {
+                //         "privilId": 9,
+                //         "privilNme": "Product",
+                //         "subHeading": "Product page",
+                //         "refUrl": "/prodict",
+                //         "children": []
+                //     }
+                // ],
         //         "_metaData": {
         //             "urlParams": {},
         //             "apiMetaData": {}
@@ -116,28 +116,28 @@ class RoleApiService {
         //             "success": true,
         //             "errors": null
         //         },
-        //         "data": [
-        //             {
-        //                 "cntryId": 11,
-        //                 "cntryNme": "Kuwait",
-        //                 "children": [
-        //                     {
-        //                         "storeId": 121,
-        //                         "storeNme": "Main Website store"
-        //                     }
-        //                 ]
-        //             },
-        //             {
-        //                 "cntryId": 13,
-        //                 "cntryNme": "Qatar",
-        //                 "children": [
-        //                     {
-        //                         "storeId": 121,
-        //                         "storeNme": "Qatar store"
-        //                     }
-        //                 ]
-        //             }
-        //         ]
+                // "data": [
+                //     {
+                //         "cntryId": 11,
+                //         "cntryNme": "Kuwait",
+                //         "children": [
+                //             {
+                //                 "storeId": 121,
+                //                 "storeNme": "Main Website store"
+                //             }
+                //         ]
+                //     },
+                //     {
+                //         "cntryId": 13,
+                //         "cntryNme": "Qatar",
+                //         "children": [
+                //             {
+                //                 "storeId": 121,
+                //                 "storeNme": "Qatar store"
+                //             }
+                //         ]
+                //     }
+                // ]
         //     }
         // )
         // )
