@@ -3,6 +3,7 @@ import { connect, dispatch } from 'react-redux';
 import { combineReducers } from 'redux'
 import { reset, submit } from 'redux-form';
 import { editUserFormAction } from '../../User/action/UserAction';
+import '../styles/header.css';
 
 class Header extends Component {
 
@@ -36,10 +37,10 @@ class Header extends Component {
 
     render() {
         return (
-            <div className="col-12">
-                <button onClick={this.routeBackToDashboard}><img />Back</button>
-                <button onClick={this.resetForm}>Reset</button>
-                <button onClick={this.submitForm}>Save {this.props.title}</button>
+            <div className="col-12 py-4 text-right head-row mb-4">
+                <button className="btn back-btn mr-4" onClick={this.routeBackToDashboard}><img />Back</button>
+                <button className="btn btn-reset mx-4" onClick={this.resetForm}>Reset</button>
+                <button className="btn btn-btq ml-4" onClick={this.submitForm}>Save {this.props.title}</button>
             </div>
         )
     }

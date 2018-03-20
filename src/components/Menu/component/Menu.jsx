@@ -52,7 +52,7 @@ class Navigation extends React.Component {
             return (
                 <div className="row">
                     <Header title = {title} history={this.props.history} />
-                    <div className="col-3"><ul className="nav  md-pills pills-primary flex-column parent-container">
+                    <div className="col-3"><ul className="nav md-pills pills-primary flex-column parent-container">
                         {this.renderList()}
                     </ul></div>
                     <Route path='/home/system/UserInfo' component={UserForm}/>
