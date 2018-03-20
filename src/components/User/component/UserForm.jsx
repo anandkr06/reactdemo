@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { reduxForm, Field} from 'redux-form';
+import { reduxForm, Field, reset} from 'redux-form';
 import axios from 'axios';
 import {Multiselect, DropdownList} from 'react-widgets';
 import { createUserAction, fetchCelebrityListAction, fetchAllLocaleListAction, editUserFormAction, updateUserAction, fetchAllRoleListAction } from '../action/UserAction';
@@ -153,6 +153,7 @@ UserForm = reduxForm({
         onSubmit: (data, dispatch, props) => {
             !data.userId && dispatch(createUserAction(data));
             data.userId && dispatch(updateUserAction(data));
+            dispatch(reset('userForm'));
         }
     })(UserForm)
 

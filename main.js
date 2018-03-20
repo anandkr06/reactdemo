@@ -18,6 +18,8 @@ import store, { history } from './src/store/index';
 import 'react-widgets/dist/css/react-widgets.css';
 import 'react-table/react-table.css';
 
+import 'bootstrap/dist/css/bootstrap.css';
+
 class Main extends Component {
     render() {
         return (
