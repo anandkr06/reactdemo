@@ -5,10 +5,10 @@ import '../header.css';
 const Header = props => (
     <div className="title-border">
       <h1>{props.screenTitle}</h1>
-      <div>
+      {/* <div>
           <span className="glyphicon glyphicon-search">searchicon</span>
           <span className="glyphicon glyphicons-bell">notificationicon</span>
-      </div>
+      </div> */}
     </div>
   ) 
 
