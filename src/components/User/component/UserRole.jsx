@@ -25,9 +25,8 @@ class UserRole extends Component{
     		data.push({["label"] : roleName, ["val"] : roleId});
         }
         return(
-            <div>
-                    <label>User Role</label>
-                    <div>
+            <li className="nav-item">
+                    <a className="nav-link">User Role</a>
                     <Field
                         placeholder = "Select Role"
 						textField = {"label"}
@@ -37,8 +36,7 @@ class UserRole extends Component{
                         data={data}
                         validate = {required}
                         />
-                    </div>
-                </div>   
+                </li>   
         )
     }
 }

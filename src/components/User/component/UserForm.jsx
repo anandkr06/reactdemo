@@ -29,13 +29,20 @@ class UserForm extends Component{
         const { handleSubmit } = this.props 
 
         return(
-            <div className="col-md-9">
+            <div className="col-9 tab-content">
                 <label>Account Information</label>
             <form onSubmit={handleSubmit}>
-                <Field name = "fstNme" type = "text" label = "First Name" component={renderField}
-                 validate = {[required, isAlphabet]}/>        
-                <Field name = "lstNme" type = "text" label = "Last Name" component={renderField}
-                 validate = {[required, isAlphabet]}  />        
+                <div className="form-group row">
+                <label className="col-3 col-form-label">First Name</label>
+                <div className="col-9">
+                <Field name = "fstNme" className = "form-control" type = "text" component={renderField}
+                 validate = {[required, isAlphabet]}/></div>
+                 </div>
+                 <div className="form-group row">
+                <label className="col-3 col-form-label">Last Name</label>       
+                <Field name = "lstNme" type = "text" component={renderField}
+                 validate = {[required, isAlphabet]}  />
+                 </div>    
                 <Field name = "email" type = "email" label = "Email" component={renderField}
                  validate = {[required, isValidEmail]}    />        
                 {(this.props.initialValues instanceof Array || typeof this.props.initialValues === 'undefined') ? 
@@ -167,11 +174,12 @@ UserForm = reduxForm({
             label,
             type,
             style,
+            className,
             meta: { touched, error, warning }
             }) => (
             <div style = {style}>
                 <label>{label}</label>
-                <div>
+                <div className = {className}>
                 <input {...input} placeholder={label} type={type} style = {style} />
                 {touched &&
                     ((error && <span>{error}</span>) ||

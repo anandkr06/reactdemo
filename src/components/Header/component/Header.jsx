@@ -36,7 +36,7 @@ class Header extends Component {
 
     render() {
         return (
-            <div className="col-md-12">
+            <div className="col-12">
                 <button onClick={this.routeBackToDashboard}><img />Back</button>
                 <button onClick={this.resetForm}>Reset</button>
                 <button onClick={this.submitForm}>Save {this.props.title}</button>
