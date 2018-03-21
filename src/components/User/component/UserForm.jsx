@@ -46,9 +46,9 @@ class UserForm extends Component{
                 {(this.props.initialValues instanceof Array || typeof this.props.initialValues === 'undefined') ? 
                     (<div>
                 <Field name = "pwd" type = "password" className = "form-control" label = "Password" component={renderField}
-                 validate = {required} />        
+                 validate = {[required, maxLength15, minLength6]} />        
                 <Field name = "passwordConfirm" type = "password" className = "form-control" label = "Confirm Password" component={renderField}
-                    validate={[required,doPasswordMatch]}/> 
+                    validate={[required, maxLength15, minLength6,doPasswordMatch]}/> 
                     </div>)
                 : ('')}
                 {/* <div>
@@ -177,6 +177,14 @@ UserForm = reduxForm({
         (fieldValue != allFieldValues.pwd) 
         ? 'Password and confirm password does not match!!!'
         : undefined    
+
+        //check for max length field
+            const maxLength = max => value => value && value.length > max ? `Must be ${max} characters or less` : undefined
+            const maxLength15 = maxLength(15);
+
+            //check for minlength field.
+            export const minLength = min => value => value && value.length < min ? `Must be ${min} characters or more` : undefined
+            export const minLength6 = minLength(6);
             
         const renderField = ({
             input,

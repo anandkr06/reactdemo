@@ -31,6 +31,13 @@ class Navigation extends React.Component {
         props.setActiveView(keyWord);
     }
 
+    componentDidMount(){
+        if(document.getElementsByClassName("option-list").length)
+            {
+                document.getElementsByClassName("option-list")[0].click();
+            }
+    }
+
     renderList() {
         let arrayModel = this.props.match.params.topicId.search('User') === -1 ? this.props.roleOptions : this.props.userOptions;     
         return arrayModel.map(
@@ -39,7 +46,7 @@ class Navigation extends React.Component {
                     option.isHeading ?
                     <li className = "parent-heading" key = {option.heading}>{option.title}</li>
                     :
-                    <li className = "option-heading" key={option.title}><Link to = {option.title.split(" ").join("")}>{option.title}</Link>
+                    <li className = "option-heading" key={option.title}><Link className = "option-list" to = {option.title.split(" ").join("")}>{option.title}</Link>
                     </li>
                 );
             }
@@ -66,7 +73,6 @@ class Navigation extends React.Component {
         }else if(this.props.match.params.topicId === 'viewUser') {
         return ( <ViewUser url = {this.props}/> )
         } 
-       
     }
     }
 
