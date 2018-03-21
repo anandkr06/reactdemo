@@ -34,7 +34,7 @@ class UserForm extends Component{
 
         return(
             <div className="col-9 tab-content">
-                <h3 className="pb-3">Account Information</h3>
+                <h4>Account Information</h4>
                 <hr/>
             <form onSubmit={handleSubmit}>
                 <Field name = "fstNme" label = "First Name" className = "form-control" type = "text" component={renderField}

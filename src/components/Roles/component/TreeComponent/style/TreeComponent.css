@@ -1,7 +1,7 @@
 .hide{
     display: none;
 }
-
+.child-option{padding-left: 1.5rem;}
 .child-option-checkbox, .parent-option{
     pointer-events: none;
 }

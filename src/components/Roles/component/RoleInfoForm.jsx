@@ -76,9 +76,9 @@ class RoleInfo extends Component {
         }
         const { handleSubmit, pristine, submitting } = this.props;        
         return (
-            <div className="col-md-9">
+            <div className="col-9">
                 <Alert />            
-                <label>Role Information</label>
+                <h4>Role Information</h4><hr />
                 <form onSubmit={handleSubmit} >
                     <Field name="roleName" type="text"
                         label="Role Information *"
