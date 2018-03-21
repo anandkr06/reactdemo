@@ -64,8 +64,7 @@ class RoleInfo extends Component {
     }
 
     componentDidMount() {
-        this.props.initAction();
-        (this.props.location.state) && this.props.editRoleForm([]);
+        this.props.editRoleForm([]);
         (this.props.location.state) && this.props.editRoleForm(this.props.location.state.data);
     }
 

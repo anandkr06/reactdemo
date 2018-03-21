@@ -18,7 +18,12 @@ class RoleApiService {
 
     addNewRole(obj,loginUserObject) {
         console.log('loginUserObject',loginUserObject);
-        return axios.post(`${Setting.dev.url}bq/v1/role/create`,obj);
+        let headers = {
+        token: loginUserObject.loginUser.token.access_token,
+        scope: 'Create-Roles'
+        }
+        return axios.post(`${Setting.dev.url}bq/v1/role/create`, obj, { headers }); 
+        //return axios.post(`${Setting.dev.url}bq/v1/role/create`,obj);
         // return new Promise((resolve, reject) => resolve(
         //     {
         //         "status": {
@@ -30,8 +35,13 @@ class RoleApiService {
         // ));
     }
 
-    getResourceData() {
-        return axios.get(`${Setting.dev.url}bq/v1/privil/fetch/`);
+    getResourceData(loginUserObject) {
+        let headers = {
+        token: loginUserObject.loginUser.token.access_token,
+        scope: 'Dashboard'
+        }
+        return axios.get(`${Setting.dev.url}bq/v1/privil/fetch/`, { headers }); 
+        //return axios.get(`${Setting.dev.url}bq/v1/privil/fetch/`);
         // return new Promise((resolve, reject) => resolve(
         //     {
         //         "status": {
@@ -107,8 +117,13 @@ class RoleApiService {
         // ));
     }
 
-    getScopeData() {
-        return axios.get(`${Setting.dev.url}bq/v1/store/fetch/`);
+    getScopeData(loginUserObject) {
+        let headers = {
+            token: loginUserObject.loginUser.token.access_token,
+            scope: 'Dashboard'
+            }
+        return axios.get(`${Setting.dev.url}bq/v1/store/fetch/`, { headers } );
+        //return axios.get(`${Setting.dev.url}bq/v1/store/fetch/`);
         // return new Promise((resolve, reject) => resolve(
         //     {
         //         "status": {
@@ -143,8 +158,14 @@ class RoleApiService {
         // )
     }
 
-    getAllRolesRecords() {
-        return axios.get(`${Setting.dev.url}bq/v1/role/fetch/`);
+    getAllRolesRecords(loginUserObject) {
+        let headers = {
+        token: loginUserObject.loginUser.token.access_token,
+        scope: 'Fetch-Roles'
+        }
+        return axios.get(`${Setting.dev.url}bq/v1/role/fetch/`
+        , { headers });
+        //return axios.get(`${Setting.dev.url}bq/v1/role/fetch/`);
         // return new Promise((resolve, reject) => resolve(
         //     {
         //         "status": {
@@ -215,11 +236,19 @@ class RoleApiService {
 
     }
 
-    updateRole(data) {
-        let objectToSend =  Object.assign({}, data);
+    updateRole(data, loginUserObject) {
+        let headers = {
+        token: loginUserObject.loginUser.token.access_token,
+        scope: 'Dashboard'
+        }
+        let objectToSend = Object.assign({}, data);
         console.log(data);
-        delete objectToSend['roleId'];
-        return axios.put(`${Setting.dev.url}bq/v1/role/update/${data.roleId}`,objectToSend,{ headers: { 'Content-Type': 'application/json' }} );
+        delete objectToSend['roleId'];
+        return axios.put(`${Setting.dev.url}bq/v1/role/update/${data.roleId}`, objectToSend, { headers }); 
+        // let objectToSend =  Object.assign({}, data);
+        // console.log(data);
+        // delete objectToSend['roleId'];
+        // return axios.put(`${Setting.dev.url}bq/v1/role/update/${data.roleId}`,objectToSend,{ headers: { 'Content-Type': 'application/json' }} );
         // return new Promise((resolve, reject) => resolve({
         //     "status": {
         //       "httpStatusCode": 200,
