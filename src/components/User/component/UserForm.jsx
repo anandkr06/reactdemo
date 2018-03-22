@@ -52,7 +52,7 @@ class UserForm extends Component{
                     </div>)
                 : ('')}
                 {/* <div>
-                     <label className="col-4">Map Celebrity</label> */}
+                     <label className="col-3">Map Celebrity</label> */}
                      <Field
                         placeholder = "Select Celebrity"
                         name="mapCelebs"
@@ -60,12 +60,12 @@ class UserForm extends Component{
                         valueField='celebId'
                         textField='celebNme'
                         data={this.props.celebrityList}
-                        className = "col-8"
+                        className = "col-9"
                         label = "Map Celebrity"
                         />
                 {/* </div>            */}
                 {/* <div>
-                    <label className="col-4">Interface Locale</label>
+                    <label className="col-3">Interface Locale</label>
                     <div> */}
                     <Field
                         placeholder = "Select Locale"
@@ -75,13 +75,13 @@ class UserForm extends Component{
                         component={renderDropdownList}
                         data={this.props.allLocaleList}
                         validate = {required}
-                        className = "col-8"
+                        className = "col-9"
                         label = "Interface Locale"
                         />
                     {/* </div>
                 </div> */}
                 {/* <div>
-                    <label className="col-4">This Account is</label>
+                    <label className="col-3">This Account is</label>
                     <div> */}
                     <Field
                         placeholder = "Select Account Status"
@@ -91,7 +91,7 @@ class UserForm extends Component{
                         component={renderDropdownList}
                         data={accountStatus}
                         validate = {required}
-                        className = "col-8"
+                        className = "col-9"
                         label = "This Account is"
                         />
                     {/* </div>
@@ -107,7 +107,7 @@ class UserForm extends Component{
                         component={renderDropdownList}
                         data={data}
                         validate = {required}
-                        className = "col-8"
+                        className = "col-9"
                         label = "User Role"
                         />
                     {/* </div>
@@ -196,8 +196,8 @@ UserForm = reduxForm({
             meta: { touched, error, warning }
             }) => (
             <div className="form-group row" style = {style}>
-                <label className = "col-4">{label}</label>
-                <div className = "col-8">
+                <label className = "col-3">{label}</label>
+                <div className = "col-9">
                 <input {...input} className = {className} placeholder={label} type={type} style = {style} disabled = {disabled}/>
                 {touched &&
                     ((error && <span>{error}</span>) ||
@@ -208,7 +208,7 @@ UserForm = reduxForm({
 
         const renderMultiselect = ({ input, data, valueField, textField, placeholder, className, label }) =>
         <div className="form-group row">
-                <label className = "col-4">{label}</label>
+                <label className = "col-3">{label}</label>
             <Multiselect {...input}
                 onBlur={() => input.onBlur()}
                 value={input.value || []} // requires value to be an array
@@ -223,7 +223,7 @@ UserForm = reduxForm({
         const renderDropdownList = ({ input, data, valueField, textField, placeholder, className, label,  meta: { touched, error, warning }
          }) =>
                 (<div className="form-group row">
-                <label className = "col-4">{label}</label>
+                <label className = "col-3">{label}</label>
                 <DropdownList {...input}
                     data={data}
                     valueField={valueField}

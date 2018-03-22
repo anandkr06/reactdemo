@@ -65,7 +65,7 @@ export const afterLoginFailure = (error) => {
 
 export const makeLoginRequest = (obj) => {
     return LoginApiService.getLogin(obj).then(response => {
-        response.data.data['unencryptedemail'] = obj.unencryptedemail; 
+        //response.data.data['unencryptedemail'] = obj.unencryptedemail; 
         // return { 
             
         //                     "email": "davis.john@gmail.com",
@@ -77,6 +77,6 @@ export const makeLoginRequest = (obj) => {
                     
                   
         //         }
-        return response.data.data
+        return response.data;
     });
 }

@@ -42,9 +42,9 @@ const renderField = ({
     className,
     meta: { touched, error, warning }
             }) => (
-        <div>
-            <label>{label}</label>
-            <div className="md-input-wrapper">
+        <div className="form-group row">
+            <label className = "col-3">{label}</label>
+            <div className="col-9 md-input-wrapper">
                 <input {...input} placeholder={label} type={type} className={className} />
                 {
                     touched &&
@@ -80,9 +80,11 @@ class RoleInfo extends Component {
                 <h4>Role Information</h4><hr />
                 <form onSubmit={handleSubmit} >
                     <Field name="roleName" type="text"
-                        label="Role Information *"
+                        label="Role Information*"
                         component={renderField}
-                        validate={[required, isAlphabet, maxLength256]} />
+                        validate={[required, isAlphabet, maxLength256]}
+                        className = "form-control"
+                        label = "Interface Locale" />
                     {/* <div>
                         <label>Current User Identity Verification</label>
                         <Field name="userPassword" type="password" id='password'
@@ -90,7 +92,7 @@ class RoleInfo extends Component {
                             component={renderField}
                             validate={[required, maxLength15, minLength6]} />
                     </div> */}
-                    <div>
+                    <div className="row">
                         <RoleResources scopeResourceData = {scopeResourceData}/>
                     </div>
                 </form>
