@@ -29,7 +29,7 @@ export const afterLoginSuccess = (response, route) => {
             payload: 
                    { 
                        loginUser: {  
-                                    email: response.unencryptedemail,
+                                    email: response.email,
                                     name: `${response.fstNme}  ${response.lstNme}`,
                                     id:  response.userId,
                                     token : response.token 
