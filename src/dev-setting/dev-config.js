@@ -1,6 +1,6 @@
 const Setting = {
     dev:{ 
-        url : "http://54.245.24.99:8082/"
+        url : "http://10.175.173.200:8082/"
     },
     // dev2:{
     //     url : "http://10.175.174.0:8080/" 
@@ -21,6 +21,7 @@ const Setting = {
         url: ""
     }
 };
+
 
 
 export default Setting; 

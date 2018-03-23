@@ -87,14 +87,16 @@ class RoleResources extends Component {
 
     render() {
         return (
-            <div className="col-9">
-                <label>Role Scope</label>
-                <div >
-                    <div>
-                        <label>Role Scopes</label>
-                        <div>
+            <div className="container-fluid clearfix">
+                <h4 className="mt-4">Role Scope</h4>
+                <hr className="clearfix" />
+                <div className="col-12 px-0">
+                    <div className="form-group row">
+                        <label className="col-3">Role Scopes</label>
+                        <div className="col-9">
                             <Field name="roleScopes"
                                 component="select"
+                                className="form-control"
                                 onChange={this.setScopeTree}
                                 id='roleScopes'
                             >
@@ -107,13 +109,15 @@ class RoleResources extends Component {
                         </div> : <span></span>}
                     </div>
 
-                    <div>
-                        <label>Role Resources</label>
-                        <div>
-                            <label>Resource Access</label>
-                            <div>
+                    <div className="clearfix">
+                        <h4 className="mt-4">Role Resources</h4>
+                        <hr />
+                        <div className="form-group row">
+                            <label className="col-3">Resource Access</label>
+                            <div className="col-9">
                                 <Field name="resourceAccess"
                                     component="select"
+                                    className="form-control"
                                     onChange={this.setResourcesTree}
                                     id='resourceAccess'
                                 >
