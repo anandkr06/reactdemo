@@ -12,10 +12,17 @@ class ViewUser extends Component{
     constructor(props){
         super(props);
         props.viewAllUsersAction();
+        this.refactorDataModal = this.refactorDataModal.bind(this);
     }
 
+    refactorDataModal(){
+        for(let i=0 ; i < this.props.allUserList.length ; i++){
+            this.props.allUserList[i].status = (this.props.allUserList[i].status) ? "Active" : "Inactive";
+        }
+    }
 
     render(){
+        (typeof this.props.allUserList !== "undefined") ? this.refactorDataModal() : '';
         return(
             <ReactTable
                 data={this.props.allUserList}

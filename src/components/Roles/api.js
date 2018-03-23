@@ -22,8 +22,8 @@ class RoleApiService {
         token: loginUserObject.loginUser.token.access_token,
         scope: 'Create-Roles'
         }
-        return axios.post(`${Setting.dev6.url}bq/v1/role/create`, obj, { headers }); 
-        //return axios.post(`${Setting.dev6.url}bq/v1/role/create`,obj);
+        return axios.post(`${Setting.dev4.url}bq/v1/role/create`, obj, { headers }); 
+        //return axios.post(`${Setting.dev4.url}bq/v1/role/create`,obj);
         // return new Promise((resolve, reject) => resolve(
         //     {
         //         "status": {
@@ -40,8 +40,8 @@ class RoleApiService {
         token: loginUserObject.loginUser.token.access_token,
         scope: 'Dashboard'
         }
-        return axios.get(`${Setting.dev6.url}bq/v1/privil/fetch/`, { headers }); 
-        //return axios.get(`${Setting.dev6.url}bq/v1/privil/fetch/`);
+        return axios.get(`${Setting.dev4.url}bq/v1/privil/fetch/`, { headers }); 
+        //return axios.get(`${Setting.dev4.url}bq/v1/privil/fetch/`);
         // return new Promise((resolve, reject) => resolve(
         //     {
         //         "status": {
@@ -122,8 +122,8 @@ class RoleApiService {
             token: loginUserObject.loginUser.token.access_token,
             scope: 'Dashboard'
             }
-        return axios.get(`${Setting.dev6.url}bq/v1/store/fetch/`, { headers } );
-        //return axios.get(`${Setting.dev6.url}bq/v1/store/fetch/`);
+        return axios.get(`${Setting.dev4.url}bq/v1/store/fetch/`, { headers } );
+        //return axios.get(`${Setting.dev4.url}bq/v1/store/fetch/`);
         // return new Promise((resolve, reject) => resolve(
         //     {
         //         "status": {
@@ -163,9 +163,9 @@ class RoleApiService {
         token: loginUserObject.loginUser.token.access_token,
         scope: 'Fetch-Roles'
         }
-        return axios.get(`${Setting.dev6.url}bq/v1/role/fetch/`
+        return axios.get(`${Setting.dev4.url}bq/v1/role/fetch/`
         , { headers });
-        //return axios.get(`${Setting.dev6.url}bq/v1/role/fetch/`);
+        //return axios.get(`${Setting.dev4.url}bq/v1/role/fetch/`);
         // return new Promise((resolve, reject) => resolve(
         //     {
         //         "status": {
@@ -244,11 +244,11 @@ class RoleApiService {
         let objectToSend = Object.assign({}, data);
         console.log(data);
         delete objectToSend['roleId'];
-        return axios.put(`${Setting.dev6.url}bq/v1/role/update/${data.roleId}`, objectToSend, { headers }); 
+        return axios.put(`${Setting.dev4.url}bq/v1/role/update/${data.roleId}`, objectToSend, { headers }); 
         // let objectToSend =  Object.assign({}, data);
         // console.log(data);
         // delete objectToSend['roleId'];
-        // return axios.put(`${Setting.dev6.url}bq/v1/role/update/${data.roleId}`,objectToSend,{ headers: { 'Content-Type': 'application/json' }} );
+        // return axios.put(`${Setting.dev4.url}bq/v1/role/update/${data.roleId}`,objectToSend,{ headers: { 'Content-Type': 'application/json' }} );
         // return new Promise((resolve, reject) => resolve({
         //     "status": {
         //       "httpStatusCode": 200,
