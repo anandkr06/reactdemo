@@ -12,7 +12,7 @@ class LoginApiService {
       
     getLogin(obj){
         obj.useremail = obj.useremail.toString();
-        return axios.post(`${Setting.dev5.url}bq/v1/login`, { email : obj.useremail , password : obj.password }); 
+       return axios.post(`${Setting.dev5.url}bq/v1/login`, { email : obj.useremail , password : obj.password }); 
         //return axios.get(`${Setting.dev2.url}bq/v1/privil/fetch/`)
         // return  new Promise((resolve,reject) => {
         //     resolve(
@@ -103,8 +103,6 @@ class LoginApiService {
       }
 
 }
-
-
 const instance = new LoginApiService();
 Object.freeze(instance);
 

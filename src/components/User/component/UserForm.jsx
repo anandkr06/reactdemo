@@ -17,6 +17,19 @@ class UserForm extends Component{
     }
 
     componentDidMount(){
+        // this.props.editUserFormAction([{
+        //         "createdBy" : undefined,
+        //         "email" : undefined,
+        //         "fstNme" : undefined,
+        //         "languagePref" : undefined,
+        //         "lstNme" : undefined,
+        //         "mapCelebs" : undefined,
+        //         "role" : undefined,
+        //         "status" : undefined,
+        //         "updatedAt" : undefined,
+        //         "updatedBy" : undefined
+        //         }
+        //     ]);
         (this.props.location.state) && this.props.editUserFormAction(this.props.location.state.data);
         this.props.fetchCelebrityListAction();
         this.props.fetchAllLocaleListAction();
@@ -150,13 +163,25 @@ const mapStateToProps = (state) => {
 
 UserForm = reduxForm({
         form: 'userForm',
-        destroyOnUnmount : false,
+        destroyOnUnmount : true,
         keepDirtyOnReinitialize  : true,
         enableReinitialize: true,
         onSubmit: (data, dispatch, props) => {
             !data.userId && dispatch(createUserAction(data));
             data.userId && dispatch(updateUserAction(data));
-            dispatch(reset('userForm'));
+            props.editUserFormAction([{
+                "createdBy" : undefined,
+                "email" : undefined,
+                "fstNme" : undefined,
+                "languagePref" : undefined,
+                "lstNme" : undefined,
+                "mapCelebs" : undefined,
+                "role" : undefined,
+                "status" : undefined,
+                "updatedAt" : undefined,
+                "updatedBy" : undefined
+                }
+            ]);
         }
     })(UserForm)
 
@@ -170,7 +195,7 @@ UserForm = reduxForm({
             : undefined
         const isAlphabet = (value) =>
             value && /[^a-zA-Z]/i.test(value)
-            ? 'Only alphanumeric characters'
+            ? 'Only alphabets characters are allowed!!!'
             : undefined
         
         const doPasswordMatch = (fieldValue, allFieldValues) =>

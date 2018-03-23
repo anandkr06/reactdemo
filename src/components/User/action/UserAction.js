@@ -57,7 +57,8 @@ export function updateUserAction(data){
             console.log(response.data);
             dispatch(loaderOff());
             dispatch(alertShow({messageType:'Success',content:'User updated successfully'}));
-            dispatch(editUserFormAction([]))
+            //dispatch(reset('userForm'));
+            dispatch(editUserFormAction( []));
             setTimeout(
                 function(){ 
                     dispatch(alertHide());
