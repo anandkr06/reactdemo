@@ -19,7 +19,7 @@ export function createUserAction(data) {
 
     delete data["passwordConfirm"];
 //    delete data["userPassword"];
-    
+    console.log('create user data',data);
     return (dispatch, getState) => {
         dispatch(loaderOn());
         new Service().createUser(data, getState().userLoginInfo).then(response => {
@@ -34,9 +34,9 @@ export function createUserAction(data) {
             )
         })
         .catch(e => {
-            console.log("Error in creating user");
+            console.log("Error in creating user",e);
             dispatch(loaderOff());
-            dispatch(alertShow({messageType:'Error',content:'Error in creating user'}));
+            dispatch(alertShow({messageType:'Error',content:e['response']['data']['status']['errors'][0].developerMessage}));
             setTimeout(
                 function(){ 
                     dispatch(alertHide());

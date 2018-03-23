@@ -54,7 +54,7 @@ export const afterLoginFailure = (error) => {
     return dispatch => {
         dispatch({ type: LOGIN_FAILED, payload: { error } });
         dispatch(loaderOff()); 
-        dispatch(alertShow({messageType:'Error',content:'Error in loggin in.'}));
+        dispatch(alertShow({messageType:'Error',content:error['response']['data']['status']['errors'][0].message}));
         setTimeout(
             function(){ 
                 dispatch(alertHide());
@@ -65,7 +65,7 @@ export const afterLoginFailure = (error) => {
 
 export const makeLoginRequest = (obj) => {
     return LoginApiService.getLogin(obj).then(response => {
-        response.data.data['unencryptedemail'] = obj.unencryptedemail; 
+        // response.data.data['unencryptedemail'] = obj.unencryptedemail; 
         // return { 
             
         //                     "email": "davis.john@gmail.com",
@@ -77,6 +77,7 @@ export const makeLoginRequest = (obj) => {
                     
                   
         //         }
-        return response.data.data
+        return response.data.data;
+        // return response.data;
     });
 }
