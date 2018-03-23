@@ -1,12 +1,23 @@
+var webpack = require('webpack');
+var path = require('path');
+
+var BUILD_DIR = path.resolve(__dirname, 'src');
+// var APP_DIR = path.resolve(__dirname, 'src');
+
 var config = {
-    entry: './main.js',
+    entry: BUILD_DIR + './main.js',
      
     output: {
-       path:'./',
+       path: BUILD_DIR,
        filename: 'index.js',
     },
      
     devServer: {
+      //  host:'0.0.0.0'  deployment
+    //    disableHostCheck : true,  
+    //     
+    // 
+    // 
        inline: true,
        port: 8081,
        historyApiFallback: true
