@@ -23,7 +23,7 @@ class Navigation extends Component {
             <div className="col-2 sidebar">
                 <UserProfile />
                 <Menu url={this.props.url}/>
-                <button onClick={this.signOut}>Sign Out</button>
+                <button  className="signout" onClick={this.signOut}>Sign Out</button>
             </div>
         )
     }
