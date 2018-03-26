@@ -12,11 +12,11 @@ const Setting = {
         url : "http://10.175.172.243:8080/"
     },
     dev5:{
-        url : "http://10.175.174.55:8080/"
+        url : "http://10.175.174.55:8080/"   // login 
     },
     dev6:{
-        url : "http://10.175.174.55:8082/" 
-    },
+        url : "http://10.175.174.55:8082/"  // rest all services
+    }, 
     prod : {
         url: ""
     }
