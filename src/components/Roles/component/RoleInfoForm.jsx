@@ -96,6 +96,7 @@ class RoleInfo extends Component {
                         <RoleResources scopeResourceData = {scopeResourceData}/>
                     </div>
                 </form>
+                <Alert/>
                 <Loader />
             </div>
         )

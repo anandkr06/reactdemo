@@ -93,7 +93,7 @@ export const afterUpdateRoleFailure = (error) => {
     console.log('Error in role update action',error);
     return dispatch => { 
         dispatch(loaderOff());
-        dispatch(alertShow({messageType: 'Error',content:'Error in updating role.Please retry again.' }));
+        dispatch(alertShow({messageType: 'Error',content:`Error in role updatation action due to ${error['response']['data']['status']['errors'][0].message}`}));
         dispatch({ type: UPDATE_ROLE_FAILURE, payload: { error } });
         setTimeout(
             function(){ 

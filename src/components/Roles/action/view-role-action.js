@@ -4,6 +4,8 @@ import {
 } from '../constant/action-type';
 
 import { loaderOn , loaderOff  } from '../../../utilities/loader/action/loader-action';
+import { alertShow , alertHide  } from '../../../utilities/alert/action/alert-action';
+
 import RoleApi from '../api';
 
 /**
@@ -43,6 +45,12 @@ export const afterAllRolesRecordsFailure = (error) => {
     console.log('Error in get all Roles Records action');
     return dispatch => { 
         dispatch(loaderOff());
+        dispatch(alertShow({messageType:'Error',content:`Error in getting all Roles Records due to ${error['response']['data']['status']['errors'][0].message}`}));        
+        setTimeout(
+            function(){ 
+                dispatch(alertHide());
+            }, 5000
+        )
         dispatch({ type: GET_ROLES_RECORDS_FAILURE, payload: { error } }); 
     }
 }

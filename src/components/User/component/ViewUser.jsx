@@ -8,6 +8,10 @@ import {DropdownList} from 'react-widgets';
 import ReactTable from 'react-table';
 import matchSorter from 'match-sorter';
 
+//import form utilities
+import Alert from '../../../utilities/alert/Alert';
+import Loader from '../../../utilities/loader/Loader';
+
 class ViewUser extends Component{
     constructor(props){
         super(props);
@@ -24,6 +28,8 @@ class ViewUser extends Component{
     render(){
         (typeof this.props.allUserList !== "undefined") ? this.refactorDataModal() : '';
         return(
+            <div>
+            <Alert/>
             <ReactTable
                 data={this.props.allUserList}
                 columns={this.props.columns}
@@ -50,6 +56,8 @@ class ViewUser extends Component{
                 String(row[filter.id]) === filter.value}
                 
             />
+            <Loader/>
+            </div>
         )
     }
 }

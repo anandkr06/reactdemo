@@ -11,6 +11,10 @@ import { bindActionCreators } from 'redux';
 //include actions 
 import { allRolesRecords } from '../action/view-role-action';
 
+//import form utilities
+import Alert from '../../../utilities/alert/Alert';
+import Loader from '../../../utilities/loader/Loader';
+
 class RolesRecordGrid extends Component {
     constructor(props) {
         super(props);
@@ -25,6 +29,8 @@ class RolesRecordGrid extends Component {
     // }
     render() {
         return (
+            <div>
+            <Alert/>
             <ReactTable
                 data={this.props.roleRecords}
                 columns={this.props.columns}
@@ -50,6 +56,8 @@ class RolesRecordGrid extends Component {
                     String(row[filter.id]) === filter.value}
 
             />
+            <Loader/>
+            </div>
         )
     }
 }

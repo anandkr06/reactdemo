@@ -76,7 +76,7 @@ export const afterRoleCreationSuccess = (response, route) => {
         setTimeout(
             function(){ 
                 dispatch(alertHide());
-            }, 3000
+            }, 5000
         )
     }
 }
@@ -85,13 +85,13 @@ export const afterRoleCreationFailure = (error) => {
     console.log('Error in role creation action',error);
     return dispatch => { 
         dispatch(reset('roleInfo'));
-        dispatch(alertShow({messageType:'Error',content:'Error in role creation action'}));
+        dispatch(alertShow({messageType:'Error',content:`Error in role creation action due to ${error['response']['data']['status']['errors'][0].message}`}));
         dispatch(loaderOff());
         dispatch({ type: CREATE_ROLE_FAILURE, payload: { error } });
         setTimeout(
             function(){ 
                 dispatch(alertHide());
-            }, 3000
+            }, 5000
         ) 
     }
 }
@@ -134,7 +134,13 @@ export const afterRoleResourcesFailure = (error) => {
     console.log('Error in role resources action');
     return dispatch => { 
         dispatch(loaderOff());
-        dispatch({ type: ROLE_RESOURCES_FAILURE, payload: { error } }); 
+        dispatch({ type: ROLE_RESOURCES_FAILURE, payload: { error } });
+        dispatch(alertShow({messageType:'Error',content:`Error in fetching role resources/priviledges due to ${error['response']['data']['status']['errors'][0].message}`}));        
+        setTimeout(
+            function(){ 
+                dispatch(alertHide());
+            }, 5000
+        ) 
     }
 }
 
@@ -177,6 +183,12 @@ export const afterScopesFailure = (error) => {
     return dispatch => { 
         dispatch(loaderOff());
         dispatch({ type: ROLE_SCOPES_FAILURE, payload: { error } }); 
+        dispatch(alertShow({messageType:'Error',content:`Error in fetching role scopes/stores due to ${error['response']['data']['status']['errors'][0].message}`}));        
+        setTimeout(
+            function(){ 
+                dispatch(alertHide());
+            }, 5000
+        )
     }
 }
 

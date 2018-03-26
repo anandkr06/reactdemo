@@ -47,6 +47,7 @@ class UserForm extends Component{
 
         return(
             <div className="col-9 tab-content">
+                <Alert />
                 <h4>Account Information</h4>
                 <hr/>
             <form onSubmit={handleSubmit}>
@@ -131,7 +132,6 @@ class UserForm extends Component{
                     <Field name = "userPassword" type = "password" label = "Your Password" component={renderField}
                     /> 
                 </div> */}
-                <Alert />
                 <Loader />
             </div>
         )

@@ -30,17 +30,17 @@ export function createUserAction(data) {
             setTimeout(
                 function(){ 
                     dispatch(alertHide());
-                }, 3000
+                }, 5000
             )
         })
         .catch(e => {
             console.log("Error in creating user",e);
             dispatch(loaderOff());
-            dispatch(alertShow({messageType:'Error',content:e['response']['data']['status']['errors'][0].developerMessage}));
+            dispatch(alertShow({messageType:'Error',content:`Error in creating user due to ${e['response']['data']['status']['errors'][0].developerMessage}`}));
             setTimeout(
                 function(){ 
                     dispatch(alertHide());
-                }, 3000
+                }, 5000
             )
         })
     }
@@ -62,17 +62,17 @@ export function updateUserAction(data){
             setTimeout(
                 function(){ 
                     dispatch(alertHide());
-                }, 3000
+                }, 5000
             )
         })
         .catch(e => {
             dispatch(loaderOff());
-            dispatch(alertShow({messageType:'Error',content:'Error in updating user'}));
-            console.log("Error in creating user");
+            console.log("Error in updating user");
+            dispatch(alertShow({messageType:'Error',content:`Error in updating user due to ${e['response']['data']['status']['errors'][0].message}`}));
             setTimeout(
                 function(){ 
                     dispatch(alertHide());
-                }, 3000
+                }, 5000
             )
         })
     }
@@ -87,6 +87,13 @@ export function fetchCelebrityListAction() {
         })
         .catch(e => {
             console.log("Error in fetching list");
+            dispatch(alertShow({messageType:'Error',content:`Error in fetching celebrity list due to ${e['response']['data']['status']['errors'][0].message}`}));
+            setTimeout(
+                function(){ 
+                    dispatch(alertHide());
+                }, 5000
+            )
+
         })
     }
 }
@@ -102,6 +109,13 @@ export function fetchAllLocaleListAction() {
         .catch(e => {
             dispatch(loaderOff());
             console.log("Error in fetching list");
+            dispatch(alertShow({messageType:'Error',content:`Error in fetching all locale list due to ${e['response']['data']['status']['errors'][0].message}`}));
+            setTimeout(
+                function(){ 
+                    dispatch(alertHide());
+                }, 5000
+            )
+
         })
     }
 }
@@ -118,6 +132,12 @@ export function viewAllUsersAction() {
         .catch(e => {
             dispatch(loaderOff());
             console.log("Error in fetching user list");
+            dispatch(alertShow({messageType:'Error',content:`Error in fetching all user list due to ${e['response']['data']['status']['errors'][0].message}`}));
+            setTimeout(
+                function(){ 
+                    dispatch(alertHide());
+                }, 5000
+            )
         })
     }
 }
@@ -139,6 +159,12 @@ export function fetchAllRoleListAction() {
         })
         .catch(e => {
             dispatch(loaderOff());
+            dispatch(alertShow({messageType:'Error',content:`Error in fetching all role list due to ${e['response']['data']['status']['errors'][0].message}`}));
+            setTimeout(
+                function(){ 
+                    dispatch(alertHide());
+                }, 5000
+            )
             console.log("Error in fetching list");
         })
     }

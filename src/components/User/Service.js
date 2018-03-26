@@ -5,7 +5,7 @@ class Service {
       
     createUser(obj, loginUserObject){
         
-        return axios.post(`${Setting.dev6.url}bq/v1/user/create`,
+        return axios.post(`${Setting.restApi.url}bq/v1/user/create`,
            
               obj,
           
@@ -24,7 +24,7 @@ class Service {
 
     updateUser(obj, loginUserObject){
         
-        return axios.put(`${Setting.dev6.url}bq/v1/user/update/${obj.userId}`,
+        return axios.put(`${Setting.restApi.url}bq/v1/user/update/${obj.userId}`,
            
               obj,
               {
@@ -41,7 +41,7 @@ class Service {
     }
 
     getCelebrityList(loginUserObject){
-        return axios.get(`${Setting.dev6.url}bq/v1/celebs/fetch/`,
+        return axios.get(`${Setting.restApi.url}bq/v1/celebs/fetch/`,
          {
               headers: {
                 token: loginUserObject.loginUser.token.access_token,
@@ -52,7 +52,7 @@ class Service {
     }
 
     getAllLocaleList(loginUserObject){
-        return axios.get(`${Setting.dev6.url}bq/v1/lang/fetch/`, 
+        return axios.get(`${Setting.restApi.url}bq/v1/lang/fetch/`, 
         {
               headers: {
                 token: loginUserObject.loginUser.token.access_token,
@@ -63,7 +63,7 @@ class Service {
     }
 
     getAllUserList(loginUserObject){
-        return axios.get(`${Setting.dev6.url}bq/v1/user/fetch/`,
+        return axios.get(`${Setting.restApi.url}bq/v1/user/fetch/`,
          {
             headers: {
                 token: loginUserObject.loginUser.token.access_token,
@@ -205,7 +205,7 @@ class Service {
         )}
 
             getAllRoleList(loginUserObject){
-                 return axios.get(`${Setting.dev6.url}bq/v1/role/fetch/`,
+                 return axios.get(`${Setting.restApi.url}bq/v1/role/fetch/`,
                  {
                     headers: {
                     token: loginUserObject.loginUser.token.access_token,

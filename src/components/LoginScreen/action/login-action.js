@@ -58,7 +58,7 @@ export const afterLoginFailure = (error) => {
         setTimeout(
             function(){ 
                 dispatch(alertHide());
-            }, 3000
+            }, 5000
         )
     }
 }
@@ -77,7 +77,7 @@ export const makeLoginRequest = (obj) => {
                     
                   
         //         }
-        return response.data.data;
-        // return response.data;
+        // return response.data.data;
+        return response.data;
     });
 }
