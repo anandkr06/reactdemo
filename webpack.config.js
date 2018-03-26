@@ -7,8 +7,8 @@ var config = {
     },
      
     devServer: {
-    // host:'0.0.0.0'     // deployment
-    // disableHostCheck : true,  
+       host:'0.0.0.0',     // deployment
+       disableHostCheck : true,  
        inline: true,
        port: 8081,
        historyApiFallback: true
