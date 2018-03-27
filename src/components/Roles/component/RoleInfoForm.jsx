@@ -27,7 +27,7 @@ const isAlphabet = (value) => value && /[^a-zA-Z\s]/i.test(value) ? 'Only alphan
 //import actions for create calls
 import { createRoleInfoAction, initAction } from "../action/role-action";
 //import actions for update calls.
-import { editRoleForm, updateRoleAction } from '../action/update-role-action';
+import { editRoleForm, updateRoleAction,hideScopeTreeComponent,hideResourcesTreeComponent } from '../action/update-role-action';
 //forms role segment 
 import RoleResources from './RoleResourcesForm.jsx';
 
@@ -177,9 +177,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch) => bindActionCreators({
     createRoleInfoAction,
     initAction,
-    editRoleForm
-    // ,
-    // hideTreeComponent
+    editRoleForm,
+    hideScopeTreeComponent,
+    hideResourcesTreeComponent
     // ,
     // updateRoleAction,
     // nestedResourcesData, nestedScopesData
@@ -193,7 +193,7 @@ RoleInfo = reduxForm({
     enableReinitialize: true,
     onSubmit: (data, dispatch, props) => {
         !data.roleId && dispatch(createRoleInfoAction(data));
-        data.roleId && dispatch(updateRoleAction(data));
+        data.roleId && dispatch(updateRoleAction(data)) && dispatch(hideResourcesTreeComponent(false)) && dispatch(hideScopeTreeComponent(false));
         // dispatch(reset('roleInfo'));
     }
 })(RoleInfo);
