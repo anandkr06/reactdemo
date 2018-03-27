@@ -16,7 +16,9 @@ import {
  import { roleRecordsReducer } from '../components/Roles/reducer/view-roles-reducer';
  import {
     setEditRoleFormReducer,
-    updateRoleReducer
+    updateRoleReducer,
+    hideScopeTreeComponentReducer,
+    hideResourcesTreeComponentReducer
  } from '../components/Roles/reducer/update-role-reducer';
 
  import {
@@ -48,6 +50,8 @@ const integratedReducer = combineReducers({
    allLocaleList : getAllLocaleListReducer,
    editFormData : loadEditUserDataReducer,
    checkedOptions : checkedOptionsReducer,
-   allRoleList : fetchAllRoleListReducer
+   allRoleList : fetchAllRoleListReducer,
+   hideScopeTreeComponent:hideScopeTreeComponentReducer,
+   hideResourcesTreeComponent:hideResourcesTreeComponentReducer
 });
 export default integratedReducer;

@@ -1,7 +1,9 @@
 import { 
     SET_ROLE_EDIT_FORM_DATA,
     UPDATE_ROLE_FAILURE,
-    UPDATE_ROLE_SUCCESS
+    UPDATE_ROLE_SUCCESS,
+    HIDE_SCOPE_TREE_COMPONENT,
+    HIDE_RESOURCES_TREE_COMPONENT
 } from '../constant/action-type';
 
 import { loaderOn , loaderOff  } from '../../../utilities/loader/action/loader-action';
@@ -71,7 +73,7 @@ const prepareRoleUpdateObject = (data,getState) => {
             "createdBy": 0,
             "updatedBy":  getState().userLoginInfo.loginUser.id || 15
           } 
-    console.log(obj);
+    console.log('updated_role_object',obj);
    return obj;
 } 
 
@@ -81,12 +83,26 @@ export const afterUpdateRoleSuccess = (response) => {
         dispatch(loaderOff());
         dispatch(alertShow({messageType: 'Success',content:'Updated role successfully.' }));
         editRoleForm({})(dispatch);
+        hideScopeTreeComponent(true)(dispatch);
+        hideResourcesTreeComponent(true)(dispatch);
         setTimeout(
             function(){ 
                 dispatch(alertHide());
-            }, 3000
+            }, 5000
         )
     }
+}
+
+export const hideScopeTreeComponent = (val) => {
+    return (dispatch,getState) => {
+        dispatch({ type: HIDE_SCOPE_TREE_COMPONENT , payload: { flag : val } });
+  }
+}
+
+export const hideResourcesTreeComponent = (val) => {
+    return (dispatch,getState) => {
+        dispatch({ type:  HIDE_RESOURCES_TREE_COMPONENT , payload: { flag : val } });
+  }
 }
 
 export const afterUpdateRoleFailure = (error) => {
@@ -98,7 +114,7 @@ export const afterUpdateRoleFailure = (error) => {
         setTimeout(
             function(){ 
                 dispatch(alertHide());
-            }, 3000
+            }, 5000
         ) 
     }
 }

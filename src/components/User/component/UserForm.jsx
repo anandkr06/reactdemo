@@ -164,7 +164,7 @@ const mapStateToProps = (state) => {
 UserForm = reduxForm({
         form: 'userForm',
         destroyOnUnmount : true,
-        keepDirtyOnReinitialize  : true,
+        keepDirtyOnReinitialize: false,
         enableReinitialize: true,
         onSubmit: (data, dispatch, props) => {
             !data.userId && dispatch(createUserAction(data));

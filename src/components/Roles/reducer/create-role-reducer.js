@@ -15,12 +15,12 @@ import {
 } from '../constant/action-type';
 
 const initialResourceState = {
-   roleResourcesData : {},
+   roleResourcesData : [],
    roleResourcesError : {}
 }
 
 const initialScopesState = {
-   roleScopeData:{},
+   roleScopeData:[],
    roleScopeError:{}
 }
 
@@ -81,7 +81,7 @@ export const roleResourcesReducer = (state = initialResourceState, action) => {
       case ROLE_RESET_SCOPES:
         return {
           ...state,
-          selectedScopes : {}
+          selectedScopes : []
         }
   
       default:
@@ -100,7 +100,7 @@ export const selectedRoleResourcesReducer = ( state = initialSelectedResourcesSt
     case ROLE_RESET_RESOURCES:
       return {
         ...state,
-        selectedResources : {}
+        selectedResources : []
       }
 
     default:

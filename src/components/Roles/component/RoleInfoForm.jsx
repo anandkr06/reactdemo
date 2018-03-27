@@ -22,7 +22,7 @@ export const minLength = min => value => value && value.length < min ? `Must be 
 export const minLength6 = minLength(6);
 
 //check for alphabet type check.
-const isAlphabet = (value) => value && /[^a-zA-Z]/i.test(value) ? 'Only alphanumeric characters' : undefined;
+const isAlphabet = (value) => value && /[^a-zA-Z\s]/i.test(value) ? 'Only alphanumeric characters' : undefined;
 
 //import actions for create calls
 import { createRoleInfoAction, initAction } from "../action/role-action";
@@ -30,6 +30,12 @@ import { createRoleInfoAction, initAction } from "../action/role-action";
 import { editRoleForm, updateRoleAction } from '../action/update-role-action';
 //forms role segment 
 import RoleResources from './RoleResourcesForm.jsx';
+
+// //include actions
+// import { nestedResourcesData, nestedScopesData } from '../action/role-action';
+
+// //include nestedMultiSelect
+// import TreeComponent from './TreeComponent/component/TreeComponent.jsx';
 
 //import form utilities
 import Alert from '../../../utilities/alert/Alert';
@@ -43,7 +49,7 @@ const renderField = ({
     meta: { touched, error, warning }
             }) => (
         <div className="form-group row">
-            <label className = "col-3">{label}</label>
+            <label className="col-3">{label}</label>
             <div className="col-9 md-input-wrapper">
                 <input {...input} placeholder={label} type={type} className={className} />
                 {
@@ -66,25 +72,27 @@ class RoleInfo extends Component {
     componentDidMount() {
         this.props.editRoleForm([]);
         (this.props.location.state) && this.props.editRoleForm(this.props.location.state.data);
+        // this.props.nestedResourcesData();
+        // this.props.nestedScopesData();
     }
 
     render() {
         let scopeResourceData;
-        if(this.props.location.state){
+        if (this.props.location.state) {
             scopeResourceData = this.props.location.state.data;
         }
-        const { handleSubmit, pristine, submitting } = this.props;        
+        const { handleSubmit, pristine, submitting } = this.props;
         return (
             <div className="col-9">
-                <Alert />            
+                <Alert />
                 <h4>Role Information</h4><hr />
                 <form onSubmit={handleSubmit} >
                     <Field name="roleName" type="text"
                         label="Role Information*"
                         component={renderField}
                         validate={[required, isAlphabet, maxLength256]}
-                        className = "form-control"
-                        label = "Interface Locale" />
+                        className="form-control"
+                        label="Interface Locale" />
                     {/* <div>
                         <label>Current User Identity Verification</label>
                         <Field name="userPassword" type="password" id='password'
@@ -94,9 +102,65 @@ class RoleInfo extends Component {
                     </div> */}
                     <div className="row">
                         <RoleResources scopeResourceData = {scopeResourceData}/>
+                        {/* <div className="container-fluid clearfix">
+                            <h4 className="mt-4">Role Scope</h4>
+                            <hr className="clearfix" />
+                            <div className="col-12 px-0">
+                                <div className="form-group row">
+                                    <label className="col-3">Role Scopes</label>
+                                    <div className="col-9">
+                                        <Field name="roleScopes"
+                                            component="select"
+                                            className="form-control"
+                                            onChange={this.setScopeTree}
+                                            id='roleScopes'
+                                        >
+                                            <option value="All">All</option>
+                                            <option value="Custom">Custom</option>
+                                        </Field>
+                                    </div>
+                                    {this.state.scopeTree ? <div>
+                                        <TreeComponent preSelectedData={scopeResourceData ? scopeResourceData.store : ''} data={this.props.scopes} responseFormat={responseFormat} responseKey={"store"} parentLabel={"cntryNme"} childLabel={"storeNme"} parentId={"cntryId"} childId={"storeId"}></TreeComponent>
+                                    </div> : <span></span>}
+                                </div>
+
+                                <div className="clearfix">
+                                    <h4 className="mt-4">Role Resources</h4>
+                                    <hr />
+                                    <div className="form-group row">
+                                        <label className="col-3">Resource Access</label>
+                                        <div className="col-9">
+                                            <Field name="resourceAccess"
+                                                component="select"
+                                                className="form-control"
+                                                onChange={this.setResourcesTree}
+                                                id='resourceAccess'
+                                            >
+                                                <option value="All">All</option>
+                                                <option value="Custom">Custom</option>
+                                            </Field>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        {
+                                            this.state.resourcesTree ?
+                                                <div>
+                                                    <label>Resources</label>
+                                                    {this.props.resources.length > 0 ?
+                                                        <div>
+                                                            <TreeComponent preSelectedData={scopeResourceData ? scopeResourceData.privilege : ''} data={this.props.resources} responseFormat={responseFormat} responseKey={"privilege"} parentLabel={"privilNme"} childLabel={"privilNme"} parentId={"privilId"} childId={"privilId"}></TreeComponent>
+                                                        </div> :
+                                                        <span>No resources Found</span>
+                                                    }
+                                                </div> :
+                                                <span></span>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div> */}
                     </div>
                 </form>
-                <Alert/>
                 <Loader />
             </div>
         )
@@ -105,25 +169,32 @@ class RoleInfo extends Component {
 
 const mapStateToProps = state => ({
     initialValues: state.setRoleForm.editRoleFormData
+    // ,
+    // resources: state.roleResources.roleResourcesData,
+    // scopes: state.roleScopes.roleScopeData
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
     createRoleInfoAction,
     initAction,
-    editRoleForm,
-    updateRoleAction
+    editRoleForm
+    // ,
+    // hideTreeComponent
+    // ,
+    // updateRoleAction,
+    // nestedResourcesData, nestedScopesData
 }, dispatch);
 
 
 RoleInfo = reduxForm({
     form: 'roleInfo',
-    destroyOnUnmount: false,  
-    keepDirtyOnReinitialize: true,
+    destroyOnUnmount: false,
+    keepDirtyOnReinitialize: false,
     enableReinitialize: true,
     onSubmit: (data, dispatch, props) => {
         !data.roleId && dispatch(createRoleInfoAction(data));
         data.roleId && dispatch(updateRoleAction(data));
-        dispatch(reset('roleInfo'));
+        // dispatch(reset('roleInfo'));
     }
 })(RoleInfo);
 

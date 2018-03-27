@@ -13,6 +13,9 @@ import TreeComponent from './TreeComponent/component/TreeComponent.jsx';
 //include actions
 import { nestedResourcesData, nestedScopesData } from '../action/role-action';
 
+//import actions for update calls.
+import { hideScopeTreeComponent,hideResourcesTreeComponent } from '../action/update-role-action';
+
 
 class RoleResources extends Component {
     constructor(props) {
@@ -21,9 +24,11 @@ class RoleResources extends Component {
         this.state = {
             scopeTree: false,
             resourcesTree: false,
-            isTreePopulated: false
+            isTreePopulatedResource: false,
+            isTreePopulatedScope: false
         }
         this.setResourcesTree = this.setResourcesTree.bind(this);
+        debugger;
     }
 
     componentDidMount() {
@@ -31,7 +36,7 @@ class RoleResources extends Component {
         this.props.nestedScopesData();
     }
 
-    componentDidUpdate() {
+    checkTreeVisibilityAfterUpdate(){
         if (!this.state.isTreePopulatedResource && !this.state.isTreePopulatedScope) {
             if (document.getElementById('resourceAccess').value === 'All') {
                 this.setState({
@@ -66,6 +71,10 @@ class RoleResources extends Component {
         }
     }
 
+    componentDidUpdate() {
+        this.checkTreeVisibilityAfterUpdate();
+    }
+
     shouldComponentUpdate() {
         console.debug('shouldComponentUpdate');
         return true;
@@ -76,6 +85,11 @@ class RoleResources extends Component {
             (previousState, props) => {
                 return { scopeTree: e.target.value === 'Custom' ? true : false }
             });
+        if(e.target.value === 'Custom'){
+            this.props.hideScopeTreeComponent(false);
+        }else {
+            this.props.hideScopeTreeComponent(true);
+        }
     }
 
     setResourcesTree(e) {
@@ -83,6 +97,11 @@ class RoleResources extends Component {
             (previousState, props) => {
                 return { resourcesTree: e.target.value === 'Custom' ? true : false }
             });
+            if(e.target.value === 'Custom'){
+                this.props.hideResourcesTreeComponent(false);
+            }else {
+                this.props.hideResourcesTreeComponent(true);
+            }
     }
 
     render() {
@@ -104,9 +123,16 @@ class RoleResources extends Component {
                                 <option value="Custom">Custom</option>
                             </Field>
                         </div>
-                        {this.state.scopeTree ? <div>
+                        {
+                            this.state.scopeTree && !this.props.hideScopeTree ? 
+                           <div> 
+                           { this.props.scopes.length > 0 ? 
+                                <div>
                             <TreeComponent preSelectedData={this.props.scopeResourceData ? this.props.scopeResourceData.store : ''} data={this.props.scopes} responseFormat={responseFormat} responseKey={"store"} parentLabel={"cntryNme"} childLabel={"storeNme"} parentId={"cntryId"} childId={"storeId"}></TreeComponent>
-                        </div> : <span></span>}
+                        </div> :  <span>No resources Found</span>
+                           }
+                       </div> : <span></span>
+                       }
                     </div>
 
                     <div className="clearfix">
@@ -128,12 +154,15 @@ class RoleResources extends Component {
                         </div>
                         <div>
                             {
-                                this.state.resourcesTree ?
+                                this.state.resourcesTree  && !this.props.hideResourcesTree?
                                     <div>
                                         <label>Resources</label>
-                                        <div>
-                                            <TreeComponent preSelectedData={this.props.scopeResourceData ? this.props.scopeResourceData.privilege : ''} data={this.props.resources} responseFormat={responseFormat} responseKey={"privilege"} parentLabel={"privilNme"} childLabel={"privilNme"} parentId={"privilId"} childId={"privilId"}></TreeComponent>
-                                        </div>
+                                        { this.props.resources.length > 0 ?
+                                             <div>
+                                                <TreeComponent preSelectedData={this.props.scopeResourceData ? this.props.scopeResourceData.privilege : ''} data={this.props.resources} responseFormat={responseFormat} responseKey={"privilege"} parentLabel={"privilNme"} childLabel={"privilNme"} parentId={"privilId"} childId={"privilId"}></TreeComponent>
+                                             </div> : 
+                                             <span>No resources Found</span>
+                                        }
                                     </div> :
                                     <span></span>
                             }
@@ -147,11 +176,16 @@ class RoleResources extends Component {
 
 const mapStateToProps = state => ({
     resources: state.roleResources.roleResourcesData,
-    scopes: state.roleScopes.roleScopeData
+    scopes: state.roleScopes.roleScopeData,
+    hideScopeTree: state.hideScopeTreeComponent.hideScopeTreeAfterUpdate,
+    hideResourcesTree: state.hideResourcesTreeComponent.hideResourcesTreeAfterUpdate
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    nestedResourcesData, nestedScopesData
+    nestedResourcesData, 
+    nestedScopesData, 
+    hideScopeTreeComponent, 
+    hideResourcesTreeComponent
 }, dispatch);
 
 const responseFormat = {

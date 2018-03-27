@@ -77,7 +77,7 @@ export const makeLoginRequest = (obj) => {
                     
                   
         //         }
-        // return response.data.data;
-        return response.data;
+        return response.data.data;
+        // return response.data;
     });
 }

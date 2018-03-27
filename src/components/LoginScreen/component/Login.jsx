@@ -16,6 +16,7 @@ import { login } from '../action/login-action';
 
 //importing actions for hiding alerts
 import { alertHide , alertShow } from '../../../utilities/alert/action/alert-action';
+import { loaderOff } from '../../../utilities/loader/action/loader-action';
 
 
 //importig alert
@@ -59,6 +60,7 @@ class Login extends Component {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
         props.alertHide();
+        props.loaderOff();
     }
 
     handleSubmit(data) {
@@ -135,7 +137,8 @@ class Login extends Component {
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
     requestLogin : login,
-    alertHide
+    alertHide,
+    loaderOff
 }, dispatch)
 
 
