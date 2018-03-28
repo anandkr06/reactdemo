@@ -31,12 +31,6 @@ import { editRoleForm, updateRoleAction,hideScopeTreeComponent,hideResourcesTree
 //forms role segment 
 import RoleResources from './RoleResourcesForm.jsx';
 
-// //include actions
-// import { nestedResourcesData, nestedScopesData } from '../action/role-action';
-
-// //include nestedMultiSelect
-// import TreeComponent from './TreeComponent/component/TreeComponent.jsx';
-
 //import form utilities
 import Alert from '../../../utilities/alert/Alert';
 import Loader from '../../../utilities/loader/Loader';
@@ -72,8 +66,6 @@ class RoleInfo extends Component {
     componentDidMount() {
         this.props.editRoleForm([]);
         (this.props.location.state) && this.props.editRoleForm(this.props.location.state.data);
-        // this.props.nestedResourcesData();
-        // this.props.nestedScopesData();
     }
 
     render() {
@@ -102,63 +94,6 @@ class RoleInfo extends Component {
                     </div> */}
                     <div className="row">
                         <RoleResources scopeResourceData = {scopeResourceData}/>
-                        {/* <div className="container-fluid clearfix">
-                            <h4 className="mt-4">Role Scope</h4>
-                            <hr className="clearfix" />
-                            <div className="col-12 px-0">
-                                <div className="form-group row">
-                                    <label className="col-3">Role Scopes</label>
-                                    <div className="col-9">
-                                        <Field name="roleScopes"
-                                            component="select"
-                                            className="form-control"
-                                            onChange={this.setScopeTree}
-                                            id='roleScopes'
-                                        >
-                                            <option value="All">All</option>
-                                            <option value="Custom">Custom</option>
-                                        </Field>
-                                    </div>
-                                    {this.state.scopeTree ? <div>
-                                        <TreeComponent preSelectedData={scopeResourceData ? scopeResourceData.store : ''} data={this.props.scopes} responseFormat={responseFormat} responseKey={"store"} parentLabel={"cntryNme"} childLabel={"storeNme"} parentId={"cntryId"} childId={"storeId"}></TreeComponent>
-                                    </div> : <span></span>}
-                                </div>
-
-                                <div className="clearfix">
-                                    <h4 className="mt-4">Role Resources</h4>
-                                    <hr />
-                                    <div className="form-group row">
-                                        <label className="col-3">Resource Access</label>
-                                        <div className="col-9">
-                                            <Field name="resourceAccess"
-                                                component="select"
-                                                className="form-control"
-                                                onChange={this.setResourcesTree}
-                                                id='resourceAccess'
-                                            >
-                                                <option value="All">All</option>
-                                                <option value="Custom">Custom</option>
-                                            </Field>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        {
-                                            this.state.resourcesTree ?
-                                                <div>
-                                                    <label>Resources</label>
-                                                    {this.props.resources.length > 0 ?
-                                                        <div>
-                                                            <TreeComponent preSelectedData={scopeResourceData ? scopeResourceData.privilege : ''} data={this.props.resources} responseFormat={responseFormat} responseKey={"privilege"} parentLabel={"privilNme"} childLabel={"privilNme"} parentId={"privilId"} childId={"privilId"}></TreeComponent>
-                                                        </div> :
-                                                        <span>No resources Found</span>
-                                                    }
-                                                </div> :
-                                                <span></span>
-                                        }
-                                    </div>
-                                </div>
-                            </div>
-                        </div> */}
                     </div>
                 </form>
                 <Loader />
@@ -169,9 +104,6 @@ class RoleInfo extends Component {
 
 const mapStateToProps = state => ({
     initialValues: state.setRoleForm.editRoleFormData
-    // ,
-    // resources: state.roleResources.roleResourcesData,
-    // scopes: state.roleScopes.roleScopeData
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
@@ -180,9 +112,6 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
     editRoleForm,
     hideScopeTreeComponent,
     hideResourcesTreeComponent
-    // ,
-    // updateRoleAction,
-    // nestedResourcesData, nestedScopesData
 }, dispatch);
 
 
